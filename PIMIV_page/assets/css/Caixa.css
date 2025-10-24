@@ -1,0 +1,234 @@
+/* --- LAYOUT CAIXA --- */
+
+.pos-layout {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    min-height: calc(100vh - 50px); 
+}
+
+.column-left {
+    flex: 2; 
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.column-right {
+    flex: 1; 
+    min-width: 300px; 
+    height: fit-content; 
+    padding: 30px; 
+}
+
+
+#movementForm .input-group {
+    margin-bottom: 15px;
+}
+
+.move-button {
+    width: 48%; /* Garante que os dois botões caibam lado a lado com espaço */
+}
+
+#btnSuprimento {
+    background-color: #4CAF50; 
+}
+#btnSuprimento:hover {
+    background-color: #45a049;
+}
+
+#btnsaida {
+    background-color: #f44336; /* Vermelho de Saída */
+}
+#btnsaida:hover {
+    background-color: #da190b;
+}
+
+
+.totals-section {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.totals-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    padding: 5px 0;
+}
+
+.totals-row .red {
+    color: #f44336; /* Cor para valores negativos (Saida) */
+    font-weight: 600;
+}
+
+.total-final-row {
+    font-size: 1.5rem;
+    color: #4C7F48; 
+    margin-top: 10px;
+}
+
+/* Botão de Fechar Turno */
+.finish-button {
+    background-color: #4C7F48;
+    padding: 15px;
+    font-size: 1.1rem;
+}
+
+/* 1. Estilo do Card */
+.form-card {
+    background-color: #f0fff0; 
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* 2. Layout de Linha para Inputs (para o formulário de Movimentação) */
+.input-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.input-group {
+    flex: 1; /* Garante que os grupos de input tentem ocupar o mesmo espaço */
+    min-width: 200px; 
+}
+
+/* 3. Estilo Padrão para Inputs e Labels */
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #333;
+}
+.input-group input[type="text"], 
+.input-group input[type="number"], 
+.input-group input[type="date"], 
+.input-group select {
+    width: 100%;
+    padding: 10px 15px; 
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: border-color 0.3s;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06); 
+}
+.input-group input:focus, 
+.input-group select:focus {
+    border-color: #6CA368; /* Cor verde-claro ao focar */
+}
+
+/* 4. Estilo do Formulário (Para alinhar botões) */
+.form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* 5. Estilo padrão dos botões */
+.btn-default{
+    background-color: #4C7F48; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #ffff;
+    cursor: pointer;
+    gap: 8px;
+    height: fit-content;
+    box-shadow: 0px 5px 8px -3px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease-in;
+}
+.btn-default:hover{
+    background-color: #6CA368; 
+}
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    table-layout: fixed; 
+}
+
+/* Aumenta o espaçamento interno das células */
+.data-table th, 
+.data-table td {
+    padding: 10px 15px; 
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Define larguras relativas para as colunas */
+.data-table thead th:nth-child(1), 
+.data-table tbody td:nth-child(1) {
+    width: 12%; 
+}
+
+.data-table thead th:nth-child(2), 
+.data-table tbody td:nth-child(2) {
+    width: 35%; /* Ocupa mais espaço */
+}
+
+.data-table thead th:nth-child(3), 
+.data-table tbody td:nth-child(3) {
+    width: 10%; 
+}
+
+.data-table thead th:nth-child(4), 
+.data-table tbody td:nth-child(4) {
+    width: 15%; 
+}
+
+.data-table thead th:nth-child(5), 
+.data-table tbody td:nth-child(5) {
+    width: 15%; 
+}
+
+.data-table thead th:nth-child(6), 
+.data-table tbody td:nth-child(6) {
+    width: 13%; 
+    text-align: center; 
+}
+
+/* Garante que o ícone de Remover tenha espaço suficiente */
+.btn-action.btn-delete {
+    padding: 5px 8px; 
+}
+
+/* Totais */
+.totals-section {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.totals-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    padding: 5px 0;
+}
+
+.total-final-row {
+    font-size: 1.5rem;
+    color: #4C7F48; 
+    margin-top: 10px;
+}
+
+/* --- RESPONSIVIDADE --- */
+
+@media screen and (max-width: 1024px) {
+    .pos-layout {
+        flex-direction: column; /* Colunas empilham */
+    }
+
+    .column-right {
+        min-width: 100%;
+    }
+}

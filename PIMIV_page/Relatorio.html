@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/Relatorio.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet" />
+    <script src="assets/js/Homepage.js" defer></script>
+
+    <title>Horti-fruti</title>
+</head>
+
+<body>
+    <div class="divMenu">
+
+        <!-- Barra Superior -->
+        <nav class="nav_mobile">
+            <button class="hamb" aria-label="Abrir menu">
+                <span class="ing one"></span>
+                <span class="ing two"></span>
+                <span class="ing three"></span>
+            </button>
+            <div class="search-container">
+                <span class="material-symbols-sharp search-icon">search</span>
+                <input placeholder="Pesquisar" class="pesquisar" type="text">
+            </div>
+        </nav>
+
+        <!-- Overlay (fundo escuro) -->
+        <div class="overlay"></div>
+        <!-- Menu lateral -->
+        <div class="menu">
+            <div class="user">
+                <div class="perfil"></div>
+                <p class="welcome">Bem vindo, Alexandre</p>
+            </div>
+            <ul class="ul_mobile">
+                <!-- Inicio -->
+                <li>
+                    <div class="menu-header">
+                        <img class="icon_link" src="assets/img/InicioHome.svg" alt="Sair">
+                        <a class="link_nav" href="Homepage.html">Inicio</a>
+                    </div>
+                </li>
+                <!-- Usuários -->
+                <li class="has-submenu">
+                    <div class="menu-header">
+                        <img class="icon_link" src="assets/img/user.SVG.svg" alt="Usuários">
+                        <a class="link_nav" href="#">Cadastros ▾</a>
+                    </div>
+                    <ul class="submenu">
+                        <li>
+                            <img class="icon_link" src="assets/img/caduser.SVG.svg" alt="Cadastrar Usuário">
+                            <a href="Caduser.html">Cadastrar Usuário</a>
+                        </li>
+                        <li>
+                            <img class="icon_link" src="assets/img/caduser.SVG.svg" alt="Lista de Usuários">
+                            <a href="Cadfornecedor.html">Cadastrar Fornecedor</a>
+                        </li>
+                        <li>
+                            <img class="icon_link" src="assets/img/relatorio.SVG.svg" alt="Lista de Usuários">
+                            <a href="Listuser.html">Funcionários</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Produtos -->
+                <li class="has-submenu">
+                    <div class="menu-header">
+                        <img class="icon_link" src="assets/img/produtos.SVG.svg" alt="Produtos">
+                        <a class="link_nav" href="#">Produtos ▾</a>
+                    </div>
+                    <ul class="submenu">
+                        <li>
+                            <img class="icon_link" src="assets/img/produtos.SVG.svg" alt="Cadastrar Produtos">
+                            <a href="Cadprodutos.html">Cadastrar Produtos</a>
+                        </li>
+                        <li>
+                            <img class="icon_link" src="assets/img/produtos.SVG.svg" alt="Informações de Produtos">
+                            <a href="Infoprodutos.html">Info. dos Produtos</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Vendas -->
+                <li class="has-submenu">
+                    <div class="menu-header">
+                        <img class="icon_link" src="assets/img/Vendas.SVG.svg" alt="Vendas">
+                        <a class="link_nav" href="#">Vendas ▾</a>
+                    </div>
+                    <ul class="submenu">
+                        <li>
+                            <img class="icon_link" src="assets/img/Vendas.SVG.svg" alt="Nova Venda">
+                            <a href="Novavenda.html">Nova Venda</a>
+                        </li>
+                        <li>
+                            <img class="icon_link" src="assets/img/Vendas.SVG.svg" alt="Histórico de Vendas">
+                            <a href="Histvendas.html">Histórico de Vendas</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Caixa -->
+                <li>
+                    <div class="menu-header">
+                        <img class="icon_link" src="assets/img/caixa.SVG.svg" alt="Caixa">
+                        <a class="link_nav" href="Caixa.html">Caixa</a>
+                    </div>
+                </li>
+                <!-- Relatórios -->
+                <li>
+                    <div class="menu-header">
+                        <img class="icon_link" src="assets/img/relatorio.SVG.svg" alt="Relatórios">
+                        <a class="link_nav" href="Relatorio.html">Relatórios</a>
+                    </div>
+                </li>
+                <!-- Sair -->
+                <li>
+                    <div class="menu-header">
+                        <img class="icon_link" src="assets/img/sair.SVG.svg" alt="Sair">
+                        <a class="link_nav" href="login.html">Sair</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <main class="main-content">
+        <div class="content-header">
+            <h1>Relatórios e Análises</h1>
+            <p>Visualize o desempenho de vendas, estoque e movimentações do sistema.</p>
+        </div>
+
+        <section class="filter-section form-card">
+            <h2>Período e Filtros</h2>
+
+            <form id="reportFilterForm" class="filter-form">
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="reportStartDate">Data Inicial</label>
+                        <input type="date" id="reportStartDate" name="startDate" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="reportEndDate">Data Final</label>
+                        <input type="date" id="reportEndDate" name="endDate" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="reportType">Foco da Análise</label>
+                        <select id="reportType" name="reportType">
+                            <option value="vendas">Vendas Detalhadas</option>
+                            <option value="produtos">Produtos Mais Vendidos</option>
+                            <option value="caixa">Resumo de Caixa</option>
+                            <option value="vendedor">Vendas por Funcionário</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-default search-button">
+                        <span class="material-symbols-sharp">analytics</span>
+                        Gerar Relatório
+                    </button>
+                    <button type="button" class="btn-default clear-button" id="clearReportFilters">
+                        <span class="material-symbols-sharp">close</span>
+                        Limpar Filtros
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <section class="kpi-dashboard">
+            <div class="kpi-card form-card">
+                <h3>Total de Vendas (R$)</h3>
+                <p id="kpiTotalSales" class="kpi-value">R$ 0,00</p>
+            </div>
+            <div class="kpi-card form-card">
+                <h3>Qtd. de Transações</h3>
+                <p id="kpiTotalTransactions" class="kpi-value">0</p>
+            </div>
+            <div class="kpi-card form-card">
+                <h3>Ticket Médio (R$)</h3>
+                <p id="kpiAvgTicket" class="kpi-value">R$ 0,00</p>
+            </div>
+            <div class="kpi-card form-card">
+                <h3>Lucro Estimado (R$)</h3>
+                <p id="kpiProfit" class="kpi-value">R$ 0,00</p>
+            </div>
+        </section>
+
+        <section class="results-report-section form-card">
+            <h2>Resultado Detalhado do Relatório</h2>
+
+            <div id="reportContentArea" class="report-content-area">
+                <p>Selecione um período e um tipo de relatório para visualizar os dados.</p>
+
+                <div id="detailedTableContainer" class="table-container">
+                    <table class="data-table" id="reportTable">
+                        <thead></thead>
+                        <tbody id="reportTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+</body>
+
+</html>

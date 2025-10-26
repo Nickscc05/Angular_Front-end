@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/Cadprodutos.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+    integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet" />
+  <script src="assets/js/Cadprodutos.js" defer></script>
+  <title>Horti-fruti</title>
+</head>
+
+<body>
+
+  <div class="divMenu">
+
+    <!-- Barra Superior -->
+    <nav class="nav_mobile">
+      <button class="hamb" aria-label="Abrir menu">
+        <span class="ing one"></span>
+        <span class="ing two"></span>
+        <span class="ing three"></span>
+      </button>
+      <div class="search-container">
+        <span class="material-symbols-sharp search-icon">search</span>
+        <input placeholder="Pesquisar" class="pesquisar" type="text">
+      </div>
+    </nav>
+
+    <!-- Overlay (fundo escuro) -->
+    <div class="overlay"></div>
+    <!-- Menu lateral -->
+    <div class="menu">
+      <div class="user">
+        <div class="perfil"></div>
+        <p class="welcome">Bem vindo, Alexandre</p>
+      </div>
+      <ul class="ul_mobile">
+        <!-- Inicio -->
+        <li>
+          <div class="menu-header">
+            <img class="icon_link" src="assets/img/InicioHome.svg" alt="Sair">
+            <a class="link_nav" href="Homepage.html">Inicio</a>
+          </div>
+        </li>
+        <!-- Usuários -->
+        <li class="has-submenu">
+          <div class="menu-header">
+            <img class="icon_link" src="assets/img/user.SVG.svg" alt="Usuários">
+            <a class="link_nav" href="#">Cadastros ▾</a>
+          </div>
+          <ul class="submenu">
+            <li>
+              <img class="icon_link" src="assets/img/caduser.SVG.svg" alt="Cadastrar Usuário">
+              <a href="Caduser.html">Cadastrar Usuário</a>
+            </li>
+            <li>
+              <img class="icon_link" src="assets/img/caduser.SVG.svg" alt="Lista de Usuários">
+              <a href="Cadfornecedor.html">Cadastrar Fornecedor</a>
+            </li>
+            <li>
+              <img class="icon_link" src="assets/img/relatorio.SVG.svg" alt="Lista de Usuários">
+              <a href="Listuser.html">Funcionários</a>
+            </li>
+          </ul>
+        </li>
+        <!-- Produtos -->
+        <li class="has-submenu">
+          <div class="menu-header">
+            <img class="icon_link" src="assets/img/produtos.SVG.svg" alt="Produtos">
+            <a class="link_nav" href="#">Produtos ▾</a>
+          </div>
+          <ul class="submenu">
+            <li>
+              <img class="icon_link" src="assets/img/produtos.SVG.svg" alt="Cadastrar Produtos">
+              <a href="Cadprodutos.html">Cadastrar Produtos</a>
+            </li>
+            <li>
+              <img class="icon_link" src="assets/img/produtos.SVG.svg" alt="Informações de Produtos">
+              <a href="Infoprodutos.html">Info. dos Produtos</a>
+            </li>
+          </ul>
+        </li>
+        <!-- Vendas -->
+        <li class="has-submenu">
+          <div class="menu-header">
+            <img class="icon_link" src="assets/img/Vendas.SVG.svg" alt="Vendas">
+            <a class="link_nav" href="#">Vendas ▾</a>
+          </div>
+          <ul class="submenu">
+            <li>
+              <img class="icon_link" src="assets/img/Vendas.SVG.svg" alt="Nova Venda">
+              <a href="Novavenda.html">Nova Venda</a>
+            </li>
+            <li>
+              <img class="icon_link" src="assets/img/Vendas.SVG.svg" alt="Histórico de Vendas">
+              <a href="Histvendas.html">Histórico de Vendas</a>
+            </li>
+          </ul>
+        </li>
+        <!-- Caixa -->
+        <li>
+          <div class="menu-header">
+            <img class="icon_link" src="assets/img/caixa.SVG.svg" alt="Caixa">
+            <a class="link_nav" href="Caixa.html">Caixa</a>
+          </div>
+        </li>
+        <!-- Relatórios -->
+        <li>
+          <div class="menu-header">
+            <img class="icon_link" src="assets/img/relatorio.SVG.svg" alt="Relatórios">
+            <a class="link_nav" href="Relatorio.html">Relatórios</a>
+          </div>
+        </li>
+        <!-- Sair -->
+        <li>
+          <div class="menu-header">
+            <img class="icon_link" src="assets/img/sair.SVG.svg" alt="Sair">
+            <a class="link_nav" href="login.html">Sair</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="formulario">
+    <main id="form-container">
+      <div id="form-header">
+        <h1 id="form-title">
+          Cadastrar Produtos
+        </h1>
+        <button class="btn-default" alt="Botão para acesso">
+          <i class="fa-solid fa-right-to-bracket"></i>
+        </button>
+      </div>
+
+      <form action="" id="form">
+        <div id="input-container">
+          <div class="input-box">
+            <label for="descrição" class="form-label">Descrição</label>
+            <div class="input-field">
+              <input type="text" name="descrição" id="descrição" class="form-control" placeholder="Ex: Banana" required>
+
+              <i class="fa-regular fa-"></i>
+            </div>
+          </div>
+
+          <div class="input-box">
+            <label for="Categoria" class="form-label">Categoria/Grupo</label>
+            <div class="input-field">
+              <input type="text" name="Categoria" id="Categoria" class="form-control" placeholder="Frutas" required>
+
+              <i class="fa-regular fa-"></i>
+            </div>
+          </div>
+          <div class="input-box">
+            <label for="subcategoria" class="form-label">Sub categoria/ Sub grupo</label>
+            <div class="input-field">
+              <input type="text" name="subcategoria" id="subcategoria" class="form-control"
+                placeholder="Ex: Banana-Prata" required>
+
+              <i class="fa-regular fa-"></i>
+            </div>
+          </div>
+
+          <div class="input-box">
+            <label for="fornecedor" class="form-label">Nome fornecedor</label>
+            <div class="input-field">
+              <input type="text" name="fornecedor" id="fornecedor" class="form-control" placeholder="Fornecedor"
+                required>
+
+              <i class="fa-regular fa-user"></i>
+            </div>
+          </div>
+
+
+          <div class="input-box">
+            <label for="email" class="form-label">E-mail do fornecedor</label>
+            <div class="input-field">
+              <input type="email" name="email" id="email" class="form-control" placeholder="exemplo@exemplo.com"
+                required>
+              <i class="fa-regular fa-envelope"></i>
+            </div>
+          </div>
+
+          <div class="input-box">
+            <label for="telefone" class="form-label">Telefone do Fornecedor</label>
+            <div class="input-field">
+              <input type="tel" name="telefone" id="telefone" class="form-control" placeholder="(61) 99999-9999"
+                pattern="\(\d{2}\) \d{5}-\d{4}" required>
+            </div>
+          </div>
+
+          <div class="input-box">
+            <label for="Estoque" class="form-label">Estoque</label>
+            <div class="input-field">
+              <input type="number" name="estoque" id="estoque" class="form-control" placeholder="Estoque" required>
+              <i class=""></i>
+            </div>
+          </div>
+          <div class="input-box">
+            <label for="Lote" class="form-label">Lote</label>
+            <div class="input-field">
+              <input type="number" name="Lote" id="Lote" class="form-control" placeholder="0000" required>
+              <i class=""></i>
+            </div>
+          </div>
+
+          <div class="input-box">
+            <label for="codigo-barras" class="form-label">Código de Barras</label>
+            <div class="input-field">
+              <input type="text" name="codigo-barras" id="codigo-barras" class="form-control"
+                placeholder="Código de barras" required>
+              <i class=""></i>
+            </div>
+          </div>
+
+          <div class="input-box">
+            <label for="tipo-produto" class="form-label">Tipo de Produto</label>
+            <div class="input-field">
+              <input type="text" name="tipo-produto" id="tipo-produto" class="form-control"
+                placeholder="Tipo de produto" required>
+              <i class=""></i>
+            </div>
+          </div>
+          <div class="input-box">
+            <label for="data_cadastro" class="form-label">Data de cadastro</label>
+            <div class="input-field">
+              <input type="date" name="data_cadastro" id="data_cadastro" class="form-control" required>
+            </div>
+          </div>
+          <div class="input-box">
+            <label for="valor-unidade" class="form-label">Valor da Unidade</label>
+            <div class="input-field">
+              <input type="number" name="valor-unidade" id="valor-unidade" class="form-control" placeholder="0,00"
+                step="0.01" min="0" required>
+            </div>
+          </div>
+
+          <div class="input-box">
+            <label for="função" class="form-label">Quantidade</label>
+            <div class="input-field">
+              <input type="number" name="Unidade" id="Unidade" class="form-control" placeholder="Ex: 10" required>
+              <i class=""></i>
+            </div>
+          </div>
+
+          <div class="input-box">
+            <label for="Unidade" class="form-label">Unidade</label>
+            <div class="input-field">
+              <select name="Unidade" id="Unidade" class="form-control" required>
+                <option value="">Selecione a unidade</option>
+                <option value="kg">Quilograma (kg)</option>
+                <option value="g">Grama (g)</option>
+                <option value="un">Unidade (un)</option>
+                <option value="cx">Caixa (cx)</option>
+                <option value="L">Litro (L)</option>
+              </select>
+            </div>
+          </div>
+          <!-- Botão fora do grupo -->
+          <div id="saveproducts">
+            <button type="submit" class="btn-default">
+              <i class="fa-solid fa-check"></i>
+              Salvar Produto
+            </button>
+          </div>
+
+      </form>
+
+
+    </main>
+
+  </div>
+
+
+
+
+
+</body>
+
+</html>

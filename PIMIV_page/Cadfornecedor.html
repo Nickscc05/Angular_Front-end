@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/Cadfornecedor.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+    integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet" />
+  <script src="assets/js/Cadfornecedor.js" defer></script>
+  <title>Horti-fruti</title>
+</head>
+
+<body>
+
+  <div class="divMenu">
+
+    <!-- Barra Superior -->
+    <nav class="nav_mobile">
+      <button class="hamb" aria-label="Abrir menu">
+        <span class="ing one"></span>
+        <span class="ing two"></span>
+        <span class="ing three"></span>
+      </button>
+      <div class="search-container">
+        <span class="material-symbols-sharp search-icon">search</span>
+        <input placeholder="Pesquisar" class="pesquisar" type="text">
+      </div>
+    </nav>
+
+    <!-- Overlay (fundo escuro) -->
+    <div class="overlay"></div>
+    <!-- Menu lateral -->
+    <div class="menu">
+      <div class="user">
+        <div class="perfil"></div>
+        <p class="welcome">Bem vindo, Alexandre</p>
+      </div>
+      <ul class="ul_mobile">
+        <!-- Inicio -->
+        <li>
+          <div class="menu-header">
+            <img class="icon_link" src="assets/img/InicioHome.svg" alt="Sair">
+            <a class="link_nav" href="Homepage.html">Inicio</a>
+          </div>
+        </li>
+        <!-- Usuários -->
+        <li class="has-submenu">
+          <div class="menu-header">
+            <img class="icon_link" src="assets/img/user.SVG.svg" alt="Usuários">
+            <a class="link_nav" href="#">Cadastros ▾</a>
+          </div>
+          <ul class="submenu">
+            <li>
+              <img class="icon_link" src="assets/img/caduser.SVG.svg" alt="Cadastrar Usuário">
+              <a href="Caduser.html">Cadastrar Usuário</a>
+            </li>
+            <li>
+              <img class="icon_link" src="assets/img/caduser.SVG.svg" alt="Lista de Usuários">
+              <a href="Cadfornecedor.html">Cadastrar Fornecedor</a>
+            </li>
+            <li>
+              <img class="icon_link" src="assets/img/relatorio.SVG.svg" alt="Lista de Usuários">
+              <a href="Listuser.html">Funcionários</a>
+            </li>
+          </ul>
+        </li>
+        <!-- Produtos -->
+        <li class="has-submenu">
+          <div class="menu-header">
+            <img class="icon_link" src="assets/img/produtos.SVG.svg" alt="Produtos">
+            <a class="link_nav" href="#">Produtos ▾</a>
+          </div>
+          <ul class="submenu">
+            <li>
+              <img class="icon_link" src="assets/img/produtos.SVG.svg" alt="Cadastrar Produtos">
+              <a href="Cadprodutos.html">Cadastrar Produtos</a>
+            </li>
+            <li>
+              <img class="icon_link" src="assets/img/produtos.SVG.svg" alt="Informações de Produtos">
+              <a href="Infoprodutos.html">Info. dos Produtos</a>
+            </li>
+          </ul>
+        </li>
+        <!-- Vendas -->
+        <li class="has-submenu">
+          <div class="menu-header">
+            <img class="icon_link" src="assets/img/Vendas.SVG.svg" alt="Vendas">
+            <a class="link_nav" href="#">Vendas ▾</a>
+          </div>
+          <ul class="submenu">
+            <li>
+              <img class="icon_link" src="assets/img/Vendas.SVG.svg" alt="Nova Venda">
+              <a href="Novavenda.html">Nova Venda</a>
+            </li>
+            <li>
+              <img class="icon_link" src="assets/img/Vendas.SVG.svg" alt="Histórico de Vendas">
+              <a href="Histvendas.html">Histórico de Vendas</a>
+            </li>
+          </ul>
+        </li>
+        <!-- Caixa -->
+        <li>
+          <div class="menu-header">
+            <img class="icon_link" src="assets/img/caixa.SVG.svg" alt="Caixa">
+            <a class="link_nav" href="Caixa.html">Caixa</a>
+          </div>
+        </li>
+        <!-- Relatórios -->
+        <li>
+          <div class="menu-header">
+            <img class="icon_link" src="assets/img/relatorio.SVG.svg" alt="Relatórios">
+            <a class="link_nav" href="Relatorio.html">Relatórios</a>
+          </div>
+        </li>
+        <!-- Sair -->
+        <li>
+          <div class="menu-header">
+            <img class="icon_link" src="assets/img/sair.SVG.svg" alt="Sair">
+            <a class="link_nav" href="login.html">Sair</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="formulario">
+    <main id="form-container">
+      <div id="form-header">
+        <h1 id="form-title">
+          Cadastrar Fornecedor
+        </h1>
+        <button class="btn-default" alt="Botão para acesso">
+          <i class="fa-solid fa-right-to-bracket"></i>
+        </button>
+      </div>
+
+      <form action="" id="form">
+        <div id="input-container">
+          <div class="input-box">
+            <label for="name" class="form-label">Nome da empresa</label>
+            <div class="input-field">
+              <input type="text" name="name" id="name" class="form-control" placeholder="Nome" required>
+
+              <i class="fa-regular fa-user"></i>
+            </div>
+          </div>
+
+          <div class="input-box">
+            <label for="last_name" class="form-label">Nome fornecedor</label>
+            <div class="input-field">
+              <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Sobrenome" required>
+
+              <i class="fa-regular fa-user"></i>
+            </div>
+          </div>
+          <div class="input-box">
+            <label for="cpf" class="form-label">CPF</label>
+            <div class="input-field">
+              <input type="text" name="cpf" id="cpf" class="form-control" placeholder="00.000.000-00" required>
+              <i class="fa-regular fa-user"></i>
+            </div>
+          </div>
+
+          <div class="input-box">
+            <label for="dataregistro" class="form-label">Data de registro</label>
+            <div class="input-field">
+              <input type="date" name="dataregistro" id="dataregistro" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="input-box">
+            <label for="telefone" class="form-label">Número de telefone</label>
+            <div class="input-field">
+              <input type="tel" name="telefone" id="telefone" class="form-control" placeholder="(61) 99999-9999"
+                pattern="\(\d{2}\) \d{5}-\d{4}" required>
+            </div>
+
+          </div>
+          <div class="input-box">
+            <label for="telefone" class="form-label">Número de telefone extra</label>
+            <div class="input-field">
+              <input type="tel" name="telefone" id="telefone" class="form-control" placeholder="(61) 99999-9999"
+                pattern="\(\d{2}\) \d{5}-\d{4}" required>
+            </div>
+          </div>
+          <div class="input-box">
+            <label for="email" class="form-label">E-mail do fornecedor</label>
+            <div class="input-field">
+              <input type="email" name="email" id="email" class="form-control" placeholder="exemplo@exemplo.com"
+                required>
+              <i class="fa-regular fa-envelope"></i>
+            </div>
+          </div>
+
+          <div class="input-box">
+            <label for="função" class="form-label">Produtos fornecidos</label>
+            <div class="input-field">
+              <input type="text" name="função" id="função" class="form-control" placeholder="função" required>
+              <i class=""></i>
+            </div>
+          </div>
+
+          <div class="input-box">
+            <label for="número_conta" class="form-label">Número da Conta</label>
+            <div class="input-field">
+              <input type="text" name="número_conta" id="número_conta" class="form-control" placeholder="N° conta"
+                required>
+              <i class=""></i>
+            </div>
+          </div>
+
+          <div class="input-box">
+            <label for="agencia" class="form-label">Agencia</label>
+            <div class="input-field">
+              <input type="text" name="agencia" id="agencia" class="form-control" placeholder="0000" required>
+              <i class=""></i>
+            </div>
+          </div>
+          <div class="input-box">
+            <label for="valor-unidade" class="form-label">Valor pedido</label>
+            <div class="input-field">
+              <input type="number" name="valor-unidade" id="valor-unidade" class="form-control" placeholder="0,00"
+                step="0.01" min="0" required>
+            </div>
+          </div>
+          <div class="input-box">
+            <label for="Unidade" class="form-label">Marque</label>
+            <div class="input-field">
+              <select name="Unidade" id="Unidade" class="form-control" required>
+                <option value="">Situação do fornecedor</option>
+                <option value="Ativo">Ativo</option>
+                <option value="Inativo">Inativo</option>
+              </select>
+            </div>
+          </div>
+          <!-- Botão fora do grupo -->
+          <div id="save_fornecedor">
+            <button type="submit" class="btn-default">
+              <i class="fa-solid fa-check"></i>
+              Salvar Fornecedor
+            </button>
+          </div>
+      </form>
+    </main>
+  </div>
+
+
+
+
+
+</body>
+
+</html>

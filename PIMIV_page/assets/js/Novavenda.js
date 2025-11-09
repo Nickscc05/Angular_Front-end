@@ -1,62 +1,18 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const hamb = document.querySelector(".hamb");
-  const menu = document.querySelector(".menu");
-  const overlay = document.querySelector(".overlay");
-  const submenus = document.querySelectorAll(".has-submenu");
+// assets/js/Novavenda.js
 
-  // Abre/fecha menu lateral
-  hamb.addEventListener("click", () => {
-    hamb.classList.toggle("active");
-    menu.classList.toggle("active");
-    overlay.classList.toggle("active"); // exibe overlay
-  });
-
-  // Fecha menu ao clicar no overlay
-  overlay.addEventListener("click", () => {
-    hamb.classList.remove("active");
-    menu.classList.remove("active");
-    overlay.classList.remove("active");
-  });
-
-  // Submenus no desktop
-  submenus.forEach(item => {
-    item.addEventListener("mouseenter", () => {
-      if (window.innerWidth > 768) {
-        item.classList.add("open");
-      }
-    });
-    item.addEventListener("mouseleave", () => {
-      if (window.innerWidth > 768) {
-        item.classList.remove("open");
-      }
-    });
-  });
-
-  // Submenus no mobile (click)
-  submenus.forEach(item => {
-    item.querySelector(".link_nav").addEventListener("click", e => {
-      if (window.innerWidth <= 768) {
-        e.preventDefault();
-        item.classList.toggle("open");
-      }
-    });
-  });
-
-  // ✅ Permite que os links do submenu funcionem normalmente
-  document.querySelectorAll(".submenu a").forEach(link => {
-    link.addEventListener("click", (e) => {
-      e.stopPropagation(); // não fecha o menu por engano
-    });
-  });
-});
-// src/Novavenda.js
-
-// 1. Seleção de Elementos do DOM
+// 1. Seleção de Elementos Principais
 const productForm = document.getElementById('productForm');
 const saleItemsBody = document.getElementById('saleItemsBody');
 const subtotalValueElement = document.getElementById('subtotalValue');
 const totalFinalValueElement = document.getElementById('totalFinalValue');
 const emptyCartMessage = document.getElementById('emptyCart');
+const cancelButton = document.querySelector('.cancel-button');
+
+// 2. Seleção de Elementos do Modal de Pagamento
+const openModalButton = document.getElementById('openPaymentModal');
+const paymentModal = document.getElementById('paymentModal');
+const closeModalButton = document.getElementById('closePaymentModal');
+const paymentOptionButtons = document.querySelectorAll('.payment-option-btn');
 
 // Array que armazena os itens da venda (o carrinho)
 let cartItems = []; 
@@ -69,37 +25,35 @@ const mockProducts = [
     { id: 103, code: '789333', name: "Tomate Italiano (Kg)", price: 5.99 },
 ];
 
-// --- 2. FUNÇÕES DE CÁLCULO E RENDERIZAÇÃO ---
+
+// --- FUNÇÕES DE CÁLCULO E RENDERIZAÇÃO ---
 
 /**
  * Calcula o subtotal e o total final da venda.
  */
 function calculateTotals() {
-    // 1. Calcular Subtotal
     const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    
-    // 2. Aplicar Desconto
     const discountAmount = subtotal * DISCOUNT;
-    
-    // 3. Calcular Total Final
     const totalFinal = subtotal - discountAmount;
     
-    // 4. Atualizar o DOM
+    // Atualiza o DOM
     subtotalValueElement.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
-    // Aqui assumimos que você tem um elemento para o desconto se DISCOUNT for > 0
     document.getElementById('discountValue').textContent = `R$ ${discountAmount.toFixed(2).replace('.', ',')}`;
     totalFinalValueElement.textContent = `R$ ${totalFinal.toFixed(2).replace('.', ',')}`;
 
-    // 5. Exibir/Esconder mensagem de carrinho vazio
+    // Exibir/Esconder mensagem de carrinho vazio
     emptyCartMessage.style.display = cartItems.length === 0 ? 'block' : 'none';
+
+    // Desabilita o botão de Finalizar se o carrinho estiver vazio
+    openModalButton.disabled = cartItems.length === 0;
 }
 
 
 /**
- * Adiciona uma linha (item) na tabela do PDV.
+ * Renderiza a lista de itens da venda na tabela.
  */
 function renderCartItems() {
-    saleItemsBody.innerHTML = ''; // Limpa a tabela
+    saleItemsBody.innerHTML = ''; 
     
     cartItems.forEach((item, index) => {
         const totalItem = item.price * item.quantity;
@@ -119,30 +73,29 @@ function renderCartItems() {
             </button>
         `;
         
-        // Adiciona o listener para remover
         removeCell.querySelector('.remove-item').addEventListener('click', () => removeItem(index));
     });
 
     calculateTotals();
 }
 
-// --- 3. FUNÇÕES DE AÇÃO DO USUÁRIO ---
+
+// --- FUNÇÕES DE AÇÃO DO USUÁRIO (PDV) ---
 
 /**
- * Lida com o clique no botão Adicionar.
+ * Lida com o clique no botão Adicionar Produto.
  */
 function handleAddItem(e) {
-    e.preventDefault();
-    
+    e.preventDefault(); 
+
     const code = document.getElementById('productCode').value.trim();
     const quantity = parseInt(document.getElementById('quantity').value);
 
     if (!code || quantity <= 0) {
-        alert("Preencha o código/nome e a quantidade corretamente.");
+        alert("Preencha o código e a quantidade corretamente.");
         return;
     }
 
-    // 1. Simular Busca do Produto (com base no código/nome)
     const foundProduct = mockProducts.find(p => 
         p.code === code || p.name.toLowerCase().includes(code.toLowerCase())
     );
@@ -152,14 +105,12 @@ function handleAddItem(e) {
         return;
     }
 
-    // 2. Verificar se o item já existe no carrinho
+    // Verifica se o item já existe
     const existingItemIndex = cartItems.findIndex(item => item.id === foundProduct.id);
 
     if (existingItemIndex > -1) {
-        // Se existir, apenas atualiza a quantidade
         cartItems[existingItemIndex].quantity += quantity;
     } else {
-        // Se não existir, adiciona como um novo item
         cartItems.push({
             id: foundProduct.id,
             code: foundProduct.code,
@@ -169,27 +120,91 @@ function handleAddItem(e) {
         });
     }
 
-    // 3. Renderiza e Limpa
+    // Renderiza e Limpa
     renderCartItems();
     document.getElementById('productCode').value = '';
     document.getElementById('quantity').value = '1';
-    document.getElementById('productCode').focus(); // Foca no campo para adicionar rápido
+    document.getElementById('productCode').focus(); 
 }
 
 /**
- * Remove um item do carrinho pelo seu índice.
+ * Remove um item do carrinho.
  */
 function removeItem(index) {
-    if (confirm("Deseja realmente remover este item da venda?")) {
-        cartItems.splice(index, 1); // Remove 1 item no índice especificado
+    if (confirm("Realmente deseja remover este item da venda?")) {
+        cartItems.splice(index, 1);
         renderCartItems();
     }
 }
 
-// --- 4. INICIALIZAÇÃO ---
+
+// --- FUNÇÕES DO MODAL DE PAGAMENTO ---
+
+function openPaymentModal() {
+    if (cartItems.length > 0) {
+        paymentModal.classList.add('active');
+    }
+}
+
+function closePaymentModal() {
+    paymentModal.classList.remove('active');
+}
+
+function handlePaymentSelection(e) {
+    const paymentMethod = e.currentTarget.getAttribute('data-method');
+    
+    const total = document.getElementById('totalFinalValue').textContent;
+    
+    // LÓGICA DE FINALIZAÇÃO (Aqui você faria a chamada à API)
+    console.log(`Método Selecionado: ${paymentMethod}. Valor: ${total}`);
+    
+    alert(`Pagamento de ${total} processado via ${paymentMethod.toUpperCase()}! Venda Finalizada.`);
+    
+    // Fechar o modal e limpar o carrinho (simulação)
+    closePaymentModal();
+    cartItems = []; // Limpa o carrinho
+    renderCartItems(); // Atualiza a tabela
+}
+
+
+// --- INICIALIZAÇÃO E LISTENERS GLOBAIS ---
 document.addEventListener('DOMContentLoaded', () => {
+    
+    // Listeners do PDV
     productForm.addEventListener('submit', handleAddItem);
     
-    // Inicializa os totais (R$ 0,00)
+    // Listeners do Modal
+    openModalButton.addEventListener('click', openPaymentModal);
+    closeModalButton.addEventListener('click', closePaymentModal);
+
+    paymentOptionButtons.forEach(button => {
+        button.addEventListener('click', handlePaymentSelection);
+    });
+    // Liga a função de cancelamento ao botão
+cancelButton.addEventListener('click', cancelSale);
+
+    // Carrega a tabela (vazia) e calcula os totais iniciais
     calculateTotals();
 });
+/**
+ * Cancela a venda atual, limpando o carrinho e redefinindo a interface.
+ */
+function cancelSale() {
+    if (cartItems.length > 0 && !confirm("Atenção! Caso cancele a venda os itens serão excluidos. Deseja realmente Cancelar esta venda?")) {
+        // Se houver itens e o usuário clicar em 'Não', interrompe o cancelamento.
+        return;
+    }
+    
+    // 1. Limpar o carrinho
+    cartItems = [];
+    
+    // 2. Atualizar a interface
+    renderCartItems(); 
+    
+    // 3. Notificar (opcional, mas útil)
+    console.log("Venda cancelada pelo usuário.");
+    alert("Venda Cancelada com Sucesso.");
+
+    // 4. Focar no campo de código para iniciar a próxima venda
+    document.getElementById('productCode').focus(); 
+}

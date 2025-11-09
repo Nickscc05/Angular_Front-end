@@ -11,7 +11,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet" />
-
+  <script src="assets/js/Homepage.js" defer></script>
   <script src="assets/js/Novavenda.js" defer></script>
 
   <title>Horti-fruti</title>
@@ -202,6 +202,28 @@
           Cancelar Venda
         </button>
       </section>
+    </div>
+    <div class="payment-modal" id="paymentModal">
+      <div class="modal-content form-card">
+        <h3>Selecione a Forma de Pagamento</h3>
+        <div class="payment-options">
+          <button class="btn-default payment-option-btn" data-method="dinheiro">
+            <span class="material-symbols-sharp">paid</span> Dinheiro
+          </button>
+          <button class="btn-default payment-option-btn" data-method="credito">
+            <span class="material-symbols-sharp">credit_card</span> Cartão de Crédito
+          </button>
+          <button class="btn-default payment-option-btn" data-method="debito">
+            <span class="material-symbols-sharp">credit_card</span> Cartão de Débito
+          </button>
+          <button class="btn-default payment-option-btn" data-method="pix">
+            <span class="material-symbols-sharp">qr_code</span> PIX
+          </button>
+        </div>
+        <button class="btn-default cancel-modal-btn" id="closePaymentModal">
+          Cancelar
+        </button>
+      </div>
     </div>
   </main>
 

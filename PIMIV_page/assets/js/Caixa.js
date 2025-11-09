@@ -1,114 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const hamb = document.querySelector(".hamb");
-    const menu = document.querySelector(".menu");
-    const overlay = document.querySelector(".overlay");
-    const submenus = document.querySelectorAll(".has-submenu");
-
-    // Abre/fecha menu lateral
-    hamb.addEventListener("click", () => {
-        hamb.classList.toggle("active");
-        menu.classList.toggle("active");
-        overlay.classList.toggle("active");
-    });
-
-    // Fecha menu ao clicar no overlay
-    overlay.addEventListener("click", () => {
-        hamb.classList.remove("active");
-        menu.classList.remove("active");
-        overlay.classList.remove("active");
-    });
-
-    // Submenus por clique (desktop e mobile)
-    submenus.forEach(item => {
-        const trigger = item.querySelector(".menu-header");
-        trigger.addEventListener("click", (e) => {
-            e.preventDefault();
-
-            // Fecha outros submenus abertos
-            submenus.forEach(other => {
-                if (other !== item) {
-                    other.classList.remove("open");
-                }
-            });
-
-            // Alterna o submenu clicado
-            item.classList.toggle("open");
-        });
-    });
-
-    // Links do submenu funcionam normalmente
-    document.querySelectorAll(".submenu a").forEach(link => {
-        link.addEventListener("click", (e) => {
-            e.stopPropagation();
-        });
-    });
-});
-// Aguarda o DOM ser completamente carregado para executar o script
-document.addEventListener('DOMContentLoaded', () => {
-
-    // --- Lógica para o Carrossel de Alertas de Estoque ---
-
-    const alertsList = document.querySelector('.alerts-list');
-    const scrollUpBtn = document.getElementById('alert-scroll-up');
-    const scrollDownBtn = document.getElementById('alert-scroll-down');
-
-    // Verifica se os elementos existem na página antes de continuar
-    if (alertsList && scrollUpBtn && scrollDownBtn) {
-
-        const alertItems = alertsList.querySelectorAll('.item');
-        const totalItems = alertItems.length;
-        const visibleItems = 3; // Quantos itens são visíveis de uma vez
-
-        let itemHeight = 0;
-        if (totalItems > 0) {
-            // Calcula a altura de um item dinamicamente
-            // getBoundingClientRect() inclui padding e borda, mas não margem.
-            const itemStyle = window.getComputedStyle(alertItems[0]);
-            const itemMarginBottom = parseFloat(itemStyle.marginBottom);
-            itemHeight = alertItems[0].getBoundingClientRect().height + itemMarginBottom;
-        }
-
-        let currentIndex = 0; // Índice do primeiro item visível
-
-        // Função para atualizar a posição da lista
-        function updatePosition() {
-            const newY = -currentIndex * itemHeight;
-            alertsList.style.transform = `translateY(${newY}px)`;
-            updateButtonStates();
-        }
-
-        // Função para habilitar/desabilitar os botões
-        function updateButtonStates() {
-            // Desabilita o botão 'para cima' se já estiver no topo
-            scrollUpBtn.disabled = (currentIndex === 0);
-
-            // Desabilita o botão 'para baixo' se os últimos itens já estiverem visíveis
-            scrollDownBtn.disabled = (currentIndex >= totalItems - visibleItems);
-        }
-
-        // Evento de clique para rolar para baixo
-        scrollDownBtn.addEventListener('click', () => {
-            if (currentIndex < totalItems - visibleItems) {
-                currentIndex++;
-                updatePosition();
-            }
-        });
-
-        // Evento de clique para rolar para cima
-        scrollUpBtn.addEventListener('click', () => {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updatePosition();
-            }
-        });
-
-        // Inicia o estado dos botões assim que a página carrega
-        updateButtonStates();
-    }
-
-});
-
-// src/Caixa.js
+// assets/js/Caixa.js
 
 // 1. Seleção de Elementos do DOM
 const movementForm = document.getElementById('movementForm');
@@ -119,16 +9,15 @@ const countedAmountInput = document.getElementById('countedAmount');
 // Elementos de Resumo
 const saldoInicialElement = document.getElementById('saldoInicial');
 const vendasDinheiroElement = document.getElementById('vendasDinheiro');
-const totalSaidasElement = document.getElementById('totalSangrias'); // ID do HTML ainda é 'totalSangrias'
+const totalSaidasElement = document.getElementById('totalsaida'); // Usando o ID do HTML
 const saldoEsperadoElement = document.getElementById('saldoEsperado');
 const differenceAmountElement = document.getElementById('differenceAmount');
 
 // 2. Dados e Variáveis de Controle (MOCK DATA)
-// Estes valores viriam do seu Backend em um sistema real
 let currentBalance = 100.00; // Saldo inicial (Troco)
-let salesInCash = 500.00;    // Total de vendas em dinheiro
+let salesInCash = 500.00;    // Total de vendas em dinheiro
 let movements = [
-    // MUDANÇA AQUI: 'saída'
+    // Movimentação inicial de exemplo
     { type: 'saída', value: 50.00, obs: 'Retirada de troco', time: new Date().toLocaleTimeString('pt-BR') },
 ];
 
@@ -138,22 +27,22 @@ let movements = [
  * Calcula o saldo esperado do caixa (Sistema).
  */
 function calculateExpectedBalance() {
-    let totalSaidas = 0; // MUDANÇA AQUI: Variável interna renomeada
+    let totalSaidas = 0;
     let totalSuprimentos = 0;
 
-    // Calcula totais de movimentação
+    // 1. Calcula totais de movimentação
     for (const move of movements) {
-        if (move.type === 'saída') { // MUDANÇA AQUI
+        if (move.type === 'saída') {
             totalSaidas += move.value;
         } else if (move.type === 'suprimento') {
             totalSuprimentos += move.value;
         }
     }
 
-    // Saldo Esperado = Inicial + Vendas em Dinheiro + Suprimentos - Saídas
+    // 2. FÓRMULA CORRETA: Saldo Inicial + Vendas + Suprimentos - Saídas
     const expected = currentBalance + salesInCash + totalSuprimentos - totalSaidas;
 
-    // Atualiza o DOM (Usando o valor de totalSaidas)
+    // 3. Atualiza o DOM
     totalSaidasElement.textContent = `- R$ ${totalSaidas.toFixed(2).replace('.', ',')}`;
     totalSaidasElement.classList.toggle('red', totalSaidas > 0);
     saldoEsperadoElement.textContent = `R$ ${expected.toFixed(2).replace('.', ',')}`;
@@ -174,18 +63,39 @@ function renderMovementHistory() {
         row.insertCell().textContent = move.time.substring(0, 5); // Apenas Hora:Minuto
 
         const typeCell = row.insertCell();
-        // MUDANÇA AQUI: Exibição 'Saída'
         typeCell.textContent = move.type === 'suprimento' ? 'Suprimento' : 'Saída';
 
-        // MUDANÇA AQUI: Adiciona a classe status-saída
-        typeCell.classList.add(`status-${move.type}`);
+        // Adiciona a classe CSS para a cor (status-saída ou status-suprimento)
+        typeCell.classList.add(`status-${move.type}`); 
 
         row.insertCell().textContent = `R$ ${move.value.toFixed(2).replace('.', ',')}`;
         row.insertCell().textContent = move.obs;
     });
 
-    calculateExpectedBalance();
+    calculateExpectedBalance(); // Recalcula o saldo após a renderização
 }
+
+/**
+ * Calcula e exibe a diferença entre o esperado e o contado.
+ */
+function calculateDifference() {
+    const expected = calculateExpectedBalance();
+    // Usa 0 se o campo estiver vazio
+    // O .replace(',', '.') é essencial se o usuário digitar vírgula como separador decimal
+    const counted = parseFloat(countedAmountInput.value.replace(',', '.')) || 0; 
+    const difference = counted - expected;
+
+    const formattedDiff = `R$ ${Math.abs(difference).toFixed(2).replace('.', ',')}`;
+    differenceAmountElement.textContent = difference >= 0 ? formattedDiff : `- ${formattedDiff}`;
+
+    // Estiliza a diferença
+    differenceAmountInput.classList.remove('red', 'green');
+    if (difference !== 0) {
+        differenceAmountElement.classList.add(difference < 0 ? 'red' : 'green'); 
+    }
+}
+
+// --- 4. FUNÇÕES DE AÇÃO DO USUÁRIO ---
 
 /**
  * Adiciona uma Saída ou Suprimento ao histórico.
@@ -193,15 +103,14 @@ function renderMovementHistory() {
 function handleMovement(e) {
     e.preventDefault();
 
-    const buttonId = e.submitter.id;
-    // MUDANÇA AQUI: 'saída'
-    const type = buttonId.includes('Suprimento') ? 'suprimento' : 'saída';
-
+    // Pega o tipo de movimentação a partir do atributo data-type do botão clicado
+    const type = e.submitter.getAttribute('data-type');
+    
     const valueInput = document.getElementById('moveValue');
     const obsInput = document.getElementById('moveObs');
 
-    const value = parseFloat(valueInput.value);
-    // MUDANÇA AQUI: 'saída'
+    // Remove vírgula para garantir que o parseFloat funcione
+    const value = parseFloat(valueInput.value.replace(',', '.')); 
     const obs = obsInput.value.trim() || (type === 'saída' ? 'Retirada padrão' : 'Adição de troco');
 
     if (isNaN(value) || value <= 0) {
@@ -261,3 +170,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // 3. Renderiza o histórico inicial
     renderMovementHistory();
 });
+

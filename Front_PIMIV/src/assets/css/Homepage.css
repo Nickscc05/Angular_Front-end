@@ -371,6 +371,11 @@ main .recent_order tbody tr:last-child td:last-child { border-bottom-right-radiu
     padding-bottom: 1rem; 
 }
 
+/* Espaçamento do título [Avisos de estoque] com os cards de baixo */
+.sales_analytics h2 {
+    margin-bottom: 0.4rem;
+}
+
 .alerts-list-wrapper {
     max-height: 450px; 
     overflow-y: auto; /* Permite a rolagem vertical quando o conteúdo for maior */

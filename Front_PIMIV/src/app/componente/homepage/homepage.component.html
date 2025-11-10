@@ -155,11 +155,39 @@
 
     <!-- Avisos de falta em estoque -->
     <div class="sales_analytics">
-      <h2>Falta em Estoque</h2>
+      <h2>Avisos de estoque</h2>
 
       <div class="alerts-list-wrapper">
         <div class="alerts-list">
-          
+          @if (carregandoAlertas) {
+            <div class="loading-message">Carregando alertas de estoque...</div>
+
+          } 
+            @if (erroCarregamento) {
+              <div class="error-message">{{ erroCarregamento }}</div>
+
+          } 
+            @if (!carregandoAlertas && !erroCarregamento) { 
+              @for (item of alertasEstoque; track item.codigo) {
+                <div class="item">
+                  <div class="icon">
+                    <span class="material-symbols-sharp">warning</span>
+                  </div>
+                  <div class="right_text">
+                    <div class="info">
+                      <h3>{{ item.nome }}</h3>
+                      <h4 class="variant">{{ item.codigo }}</h4>
+                      <small class="text-muted"
+                        >Apenas {{ item.quantidadeAtual }} (Mínimo: {{ item.quantidadeMinima }})</small
+                      >
+                      <h5 class="danger">ESTOQUE CRÍTICO</h5>
+                    </div>
+                  </div>
+                </div>
+              } @empty {
+                <div class="no-items item">Tudo em ordem! Estoque em dia.</div>
+              } 
+            }
         </div>
       </div>
     </div>

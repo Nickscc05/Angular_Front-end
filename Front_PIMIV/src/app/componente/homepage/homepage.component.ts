@@ -1,13 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-
-// Interface interna para representar os alertas de estoque
-export interface AlertaEstoque {
-  nome: string;
-  codigo: string;
-  estoqueAtual: number;
-  estoqueMinimo: number;
-}
+import { GetProdutoEstoqueCriticoDTO } from '../../modelos/DTO/GetProdutoEstoqueCriticoDTO.model';
+import { ProdutoService } from '../../servicos/produto/produto.service';
 
 @Component({
   selector: 'app-homepage',
@@ -19,22 +12,33 @@ export interface AlertaEstoque {
 
 export class HomePageComponent {
 
-  public alertasEstoque: AlertaEstoque[] = [];
+  public alertasEstoque: GetProdutoEstoqueCriticoDTO[] = [];
   public carregandoAlertas: boolean = true;
   public erroCarregamento: string | null = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private produtoService: ProdutoService) {} // Injeção de dependência do serviço ProdutoService
 
   ngOnInit(): void {
-    this.carregarAlertasEstoque();
+    this.carregarEstoqueCritico();
   }
 
-  carregarAlertasEstoque(): void {
-    
+  carregarEstoqueCritico(): void {
+
     this.carregandoAlertas = true;
     this.erroCarregamento = null;
 
-    const apiUrl = 'localhost:5030/produtos/alertas-estoque';
+    // Chame o método do serviço
+    this.produtoService.getEstoqueCritico().subscribe({
+        next: (data) => {
+            this.alertasEstoque = data;
+            this.carregandoAlertas = false;
+        },
+        error: (error) => {
+            console.error('Erro ao carregar estoque crítico:', error);
+            this.erroCarregamento = 'Não foi possível carregar os alertas de estoque.';
+            this.carregandoAlertas = false;
+        }
+    });
   }
 
 }

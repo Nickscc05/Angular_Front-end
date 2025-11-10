@@ -6,6 +6,7 @@ import { Categoria } from '../../modelos/Categoria.model';
 @Component({
   selector: 'app-categoria',
   imports: [CommonModule],
+  standalone: true,
   templateUrl: './categoria.component.html',
   styleUrls: ['./categoria.component.css'],
 })

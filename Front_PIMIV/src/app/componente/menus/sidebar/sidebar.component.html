@@ -1,0 +1,42 @@
+<div class="user">
+  <div class="perfil"></div>
+  <p class="welcome">Bem vindo, {{ userName }}</p>
+</div>
+
+<ul class="ul_mobile">
+  @for (item of menuItems; track item.title) {
+
+    <li
+      [class.has-submenu]="item.subMenu"
+      [class.open]="item.estadoSubMenu"
+
+      (click)="item.subMenu ? toggleSubMenu(item, $event) : null"
+    >
+      <div class="menu-header">
+        <img class="icon_link" [src]="item.icon" [alt]="item.title" />
+
+        <a
+          class="link_nav"
+          [routerLink]="item.link || '#'"
+          [title]="item.title"
+        >
+          {{ item.title }}
+          @if (item.subMenu) {
+            <span>▾</span>
+          }
+        </a>
+      </div>
+
+      @if (item.subMenu) {
+        <ul class="submenu">
+          @for (subitem of item.subMenu; track subitem.link) {
+            <li>
+              <img class="icon_link" [src]="subitem.icon" [alt]="subitem.title" />
+              <a [routerLink]="subitem.link">{{ subitem.title }}</a>
+            </li>
+          }
+        </ul>
+      }
+    </li>
+  }
+</ul>

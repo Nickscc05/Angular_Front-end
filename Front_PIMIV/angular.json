@@ -19,13 +19,21 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
+              "src/assets"              
             ],
             "styles": [
-              "src/styles.css"
+              "src/assets/css/Cadfornecedor.css",
+              "src/assets/css/Cadprodutos.css",
+              "src/assets/css/Caduser.css",
+              "src/assets/css/Caixa.css",
+              "src/assets/css/Global.css",
+              "src/assets/css/histvendas.css",
+              "src/assets/css/Homepage.css",
+              "src/assets/css/Infoprodutos.css",
+              "src/assets/css/Listuser.css",
+              
+              "src/assets/css/Novavenda.css",
+              "src/assets/css/Relatorio.css"
             ]
           },
           "configurations": {
@@ -76,13 +84,21 @@
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
+              "src/assets"              
             ],
             "styles": [
-              "src/styles.css"
+              "src/assets/css/Cadfornecedor.css",
+              "src/assets/css/Cadprodutos.css",
+              "src/assets/css/Caduser.css",
+              "src/assets/css/Caixa.css",
+              "src/assets/css/Global.css",
+              "src/assets/css/histvendas.css",
+              "src/assets/css/Homepage.css",
+              "src/assets/css/Infoprodutos.css",
+              "src/assets/css/Listuser.css",
+              
+              "src/assets/css/Novavenda.css",
+              "src/assets/css/Relatorio.css"
             ]
           }
         }

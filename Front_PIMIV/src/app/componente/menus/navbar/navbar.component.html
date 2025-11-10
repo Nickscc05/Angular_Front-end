@@ -1,0 +1,12 @@
+<!-- Barra Superior -->
+<nav class="nav_mobile">
+  <button class="hamb" aria-label="Abrir menu" [class.active]="estadoMenu" (click)="onToggleMenu()">
+    <span class="ing one"></span>
+    <span class="ing two"></span>
+    <span class="ing three"></span>
+  </button>
+  <div class="search-container">
+    <span class="material-symbols-sharp search-icon">search</span>
+    <input placeholder="Pesquisar" class="pesquisar" type="text" />
+  </div>
+</nav>

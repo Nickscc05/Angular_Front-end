@@ -19,7 +19,12 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              "src/assets"              
+              {
+                "glob": "favicon.ico",
+                "input": "src/assets",
+                "output": "/"
+              },
+              "src/assets"
             ],
             "styles": [
               "src/assets/css/Cadfornecedor.css",
@@ -31,7 +36,6 @@
               "src/assets/css/Homepage.css",
               "src/assets/css/Infoprodutos.css",
               "src/assets/css/Listuser.css",
-              
               "src/assets/css/Novavenda.css",
               "src/assets/css/Relatorio.css"
             ]
@@ -84,7 +88,12 @@
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
-              "src/assets"              
+              {
+                "glob": "favicon.ico",
+                "input": "src/assets",
+                "output": "/"
+              },
+              "src/assets"
             ],
             "styles": [
               "src/assets/css/Cadfornecedor.css",
@@ -96,7 +105,6 @@
               "src/assets/css/Homepage.css",
               "src/assets/css/Infoprodutos.css",
               "src/assets/css/Listuser.css",
-              
               "src/assets/css/Novavenda.css",
               "src/assets/css/Relatorio.css"
             ]

@@ -1,0 +1,19 @@
+/* Estilos para a Célula de Ações na Tabela de Fornecedores */
+.data-table td:last-child {
+    display: flex;
+    gap: 8px; 
+    align-items: center; 
+    padding: 5px 15px;
+    /* Nota: Se o layout não quebrar, adicione 'justify-content: flex-start;' */
+}
+
+/* Garante que o botão de Edição se alinhe com o texto */
+.btn-action.btn-edit {
+    height: 30px; 
+}
+
+/* Estilo para o botão de Entrada (para que ele se pareça com o de Adicionar) */
+.btn-default.btn-small {
+    padding: 5px 10px; 
+    font-size: 0.9rem;
+}

@@ -8,6 +8,7 @@ import { Categoria } from '../../modelos/Categoria.model';
 
 @Injectable({ providedIn: 'root' })
 export class CategoriaService {
+  
   private readonly url = `localhost:5030/Categoria`;
   // private readonly url = `${environment.apiBaseUrl}/Categoria`;
 
@@ -17,9 +18,14 @@ export class CategoriaService {
     return this.http.get<Categoria[]>(this.url);
   }
 
-  obter(id: number): Observable<Categoria> {
+  obterPorId(id: number): Observable<Categoria> {
     return this.http.get<Categoria>(`${this.url}/${id}`);
   }
+  
+  // MAYBE? PENSANDO ALTO
+  // obterPorNome(nome: string): Observable<Categoria> {
+  //   return this.http.get<Categoria>(`${this.url}/nome/${nome}`);
+  // }
 
   criar(dto: PostCategoriaDTO): Observable<Categoria> {
     return this.http.post<Categoria>(this.url, dto);

@@ -5,10 +5,12 @@
   </app-navbar>
 
   <!-- Overlay (fundo escuro) -->
-  <div class="overlay"></div>
+  <div class="overlay" [class.active]="estadoMenu" (click)="closeMenu()"></div>
 
   <!-- Menu lateral -->
-  <app-sidebar></app-sidebar>
+  <div class="menu" [class.active]="estadoMenu">
+    <app-sidebar></app-sidebar>
+  </div>
 
 </div>
 

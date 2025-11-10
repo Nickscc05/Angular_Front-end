@@ -364,17 +364,27 @@ main .recent_order tbody tr:last-child td:last-child { border-bottom-right-radiu
 .right .sales_analytics .item .icon .material-symbols-sharp {
     font-size: 2.3rem;
 }
-/* --- Carrossel de Alertas de Estoque --- */
 
+/* --- Carrossel de Alertas de Estoque --- */
 .sales_analytics {
     position: relative;
     padding-bottom: 1rem; 
 }
 
-
 .alerts-list-wrapper {
     max-height: 450px; 
-    overflow: hidden; /* Esconde os itens que saem da área visível */
+    overflow-y: auto; /* Permite a rolagem vertical quando o conteúdo for maior */
+}
+
+/* Esconde a barra de rolagem no Chrome, Safari e Opera (navegadores webkit) */
+.alerts-list-wrapper::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+/* Esconde a barra de rolagem no Firefox */
+.alerts-list-wrapper {
+    scrollbar-width: none;
 }
 
 /* O container que realmente se move */

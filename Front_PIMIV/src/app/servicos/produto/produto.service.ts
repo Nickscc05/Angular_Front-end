@@ -4,11 +4,12 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { PostProdutoDTO } from '../../modelos/DTO/PostProdutoDTO.model';
 import { Produto } from '../../modelos/Produto.model';
+import { GetProdutoEstoqueCriticoDTO } from '../../modelos/DTO/GetProdutoEstoqueCriticoDTO.model';
 
 @Injectable({ providedIn: 'root' })
 export class ProdutoService {
   
-  private readonly url = `localhost:5030/Produto`;
+  private readonly url = `http://localhost:5030/api/Produto`;
   //private readonly url = `${environment.apiUrl}/Produto`;
 
   constructor(private http: HttpClient) {}
@@ -21,13 +22,13 @@ export class ProdutoService {
     return this.http.get<Produto>(`${this.url}/${id}`);
   }
   
-  // obterPorCodigo(codigo: string): Observable<Produto> {
+  // getObterPorCodigo(codigo: string): Observable<Produto> {
   //   return this.http.get<Produto>(`${this.url}/codigo/${codigo}`);
   // }
 
-  // alertasEstoque(): Observable<Produto[]> {
-  //   return this.http.get<Produto[]>(`${this.url}/alertas-estoque`);
-  // }
+  getEstoqueCritico(): Observable<GetProdutoEstoqueCriticoDTO[]> {
+    return this.http.get<GetProdutoEstoqueCriticoDTO[]>(`${this.url}/estoque-critico`);
+  }
 
   criar(dto: PostProdutoDTO): Observable<Produto> {
     return this.http.post<Produto>(this.url, dto);

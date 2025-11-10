@@ -9,7 +9,7 @@ import { Categoria } from '../../modelos/Categoria.model';
 @Injectable({ providedIn: 'root' })
 export class CategoriaService {
   
-  private readonly url = `localhost:5030/Categoria`;
+  private readonly url = `http://localhost:5030/api/Categoria`;
   // private readonly url = `${environment.apiBaseUrl}/Categoria`;
 
   constructor(private http: HttpClient) { }

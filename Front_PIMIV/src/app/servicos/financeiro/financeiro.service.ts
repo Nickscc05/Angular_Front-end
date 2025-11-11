@@ -1,0 +1,24 @@
+// src/app/services/financeiro.service.ts
+
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class FinanceiroService {
+
+  // Defina a URL base da sua API
+  private apiUrl = 'http://localhost:5030/api/Financeiro'; // Ajuste a URL base
+
+  constructor(private http: HttpClient) { }
+
+  /**
+   * Obtém o lucro semanal do backend.
+   * O tipo de retorno é 'number' no TypeScript, pois o JSON será desserializado para um número.
+   */
+  obterLucroSemanal(): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/lucro-semanal`);
+  }
+}

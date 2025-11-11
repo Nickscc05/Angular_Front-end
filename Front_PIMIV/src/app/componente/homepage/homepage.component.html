@@ -38,7 +38,9 @@
         <div class="middle">
           <div class="left">
             <h3>Lucro da semana</h3>
-            <h1>R$1000,00</h1>
+            <!-- TODO TENTAR ALTERAR PARA BLOCO NOVO -->
+            <h1 *ngIf="!carregandoAlertas">R$ {{ lucroSemanal | number: '1.2-2' }}</h1>
+            <h1 *ngIf="carregandoAlertas">Carregando...</h1>
           </div>
           <div class="progress"></div>
         </div>

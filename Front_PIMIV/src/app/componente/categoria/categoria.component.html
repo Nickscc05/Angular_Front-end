@@ -1,1 +1,82 @@
-<p>categoria works!</p>
+<main class="main-content">
+  <div class="content-header">
+    <h1>Gerenciamento de Categorias</h1>
+    <p>Adicione, visualize e gerencie as categorias de produtos (Frutas, Legumes, etc.).</p>
+  </div>
+
+  <section class="filter-section form-card">
+    @if (!editandoId) {
+      <h2>Adicionar Nova Categoria</h2>
+    } @else {
+      <h2>Editar Categoria</h2>
+    }
+
+    <form id="categoryForm" class="filter-form" (ngSubmit)="onSubmit()">
+      <div class="input-row">
+        <div class="input-group category-input-group">
+          <label for="categoryName">Nome da Categoria</label>
+          <input
+            type="text"
+            id="categoryName"
+            name="nome"
+            placeholder="Ex: Frutas, Legumes"
+            [(ngModel)]="novaCategoriaNome"
+            required
+            autofocus
+          />
+        </div>
+
+        <div class="form-actions category-form-actions">
+          <button type="submit" class="btn-default search-button" [disabled]="enviando || !novaCategoriaNome.trim()">
+            @if (!editandoId) {
+              <span class="material-symbols-sharp">add_circle</span>
+              {{ enviando ? 'Cadastrando...' : 'Cadastrar Categoria' }}
+            } @else {
+              <span class="material-symbols-sharp">save</span>
+              {{ enviando ? 'Salvando...' : 'Salvar Alterações' }}
+            }
+          </button>
+          @if (editandoId) {
+            <button type="button" class="btn-default outline" (click)="cancelarEdicao()" [disabled]="enviando">
+              Cancelar
+            </button>
+          }
+        </div>
+      </div>
+    </form>
+  </section>
+
+  <section class="results-section form-card">
+    <h2>Categorias Ativas</h2>
+
+    @if (listaCategorias.length) {
+      <div class="table-container">
+        <table class="data-table" id="categoriesTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome da Categoria</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (c of listaCategorias; track c.id) {
+              <tr>
+                <td>{{ c.id }}</td>
+                <td>{{ c.nome }}</td>
+                <td>
+                  <button type="button" class="table-action" (click)="iniciarEdicao(c)" [disabled]="enviando"
+                    title="Editar categoria">
+                    <span class="material-symbols-sharp">edit</span>
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <p id="noCategories" class="empty-message">Nenhuma categoria cadastrada.</p>
+    }
+  </section>
+</main>

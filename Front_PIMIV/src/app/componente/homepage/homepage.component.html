@@ -2,7 +2,7 @@
   <!--main inicio-->
 
   <main>
-    <h1>DashBoard</h1>
+    <h1>Dashboard</h1>
     
     <!--inicio insights-->
     <div class="insights">
@@ -53,7 +53,7 @@
       <table>
         <thead>
           <tr>
-            <th>Descrição Produto</th>
+            <th>Produto</th>
             <th>Código</th>
             <th>Valor Pedido</th>
             <th>Estoque</th>
@@ -121,7 +121,7 @@
     <!--right inicio fim-->
     <!--right inicio recente updates-->
     <div class="recent_updates">
-      <h2>Atualizações Recentes</h2>
+      <h2>Atualizações recentes</h2>
       <div class="updates">
         <div class="update">
           <div class="profile-photo">
@@ -158,11 +158,11 @@
       <div class="alerts-list-wrapper">
         <div class="alerts-list">
           @if (carregandoAlertas) {
-            <div class="loading-message">Carregando alertas de estoque...</div>
+            <div class="loading-message item">Carregando alertas de estoque...</div>
 
           } 
             @if (erroCarregamento) {
-              <div class="error-message">{{ erroCarregamento }}</div>
+              <div class="error-message item">{{ erroCarregamento }}</div>
 
           } 
             @if (!carregandoAlertas && !erroCarregamento) { 
@@ -176,8 +176,12 @@
                       <h3>{{ item.nome }}</h3>
                       <h4 class="variant">{{ item.codigo }}</h4>
                       <small class="text-muted"
-                        >Apenas {{ item.quantidadeAtual }} (Mínimo: {{ item.quantidadeMinima }})</small
-                      >
+                        >Em estoque: {{ item.quantidadeAtual }} 
+                      </small>
+                      <br/>
+                      <small class="text-muted">
+                        Estoque mín: {{ item.quantidadeMinima }}
+                      </small>
                       <h5 class="danger">ESTOQUE CRÍTICO</h5>
                     </div>
                   </div>

@@ -7,7 +7,7 @@ import { SidebarComponent } from './componente/menus/sidebar/sidebar.component';
   selector: 'app-root',
   imports: [RouterOutlet, NavbarComponent, SidebarComponent],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css']
 })
 export class App {
   protected readonly title = signal('Front_PIMIV');

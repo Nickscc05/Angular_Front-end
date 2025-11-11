@@ -13,7 +13,9 @@
       (click)="item.subMenu ? toggleSubMenu(item, $event) : null"
     >
       <div class="menu-header">
-        <img class="icon_link" [src]="item.icon" [alt]="item.title" />
+        @if (item.icon && item.icon.trim() !== '') {
+          <img class="icon_link" [src]="item.icon" [alt]="item.title" />
+        }
 
         <a
           class="link_nav"
@@ -31,7 +33,9 @@
         <ul class="submenu">
           @for (subitem of item.subMenu; track subitem.link) {
             <li>
-              <img class="icon_link" [src]="subitem.icon" [alt]="subitem.title" />
+              @if (subitem.icon && subitem.icon.trim() !== '') {
+                <img class="icon_link" [src]="subitem.icon" [alt]="subitem.title" />
+              }
               <a [routerLink]="subitem.link">{{ subitem.title }}</a>
             </li>
           }

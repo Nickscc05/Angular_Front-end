@@ -1,0 +1,22 @@
+/*  Mudanças CSS Alexandre */
+/*  Categoria */
+:host .form-card {
+  background-color: #669b665d;
+  padding: 30px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+#categoryName {
+  background-color: rgb(247, 255, 246);
+}
+
+/* Garantir que o componente raiz expanda toda a largura */
+:host {
+  display: block;
+  width: 100%;
+}
+
+
+

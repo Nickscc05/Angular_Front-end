@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { GetProdutoEstoqueCriticoDTO } from '../../modelos/DTO/GetProdutoEstoqueCriticoDTO.model';
 import { ProdutoService } from '../../servicos/produto/produto.service';
-import { FinanceiroService } from '../../servicos/financeiro/financeiro.service';
+import { FinanceiroService, Entrada } from '../../servicos/financeiro/financeiro.service';
 import { CommonModule } from '@angular/common';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-homepage',
@@ -20,6 +21,8 @@ export class HomePageComponent implements OnInit {
   public lucroSemanal: number = 0.00;
   public gastosMensais: number = 0.00;
   public vendasDiarias: number = 0.00;
+  public entradasRecentes: Entrada[] = [];
+  public isLoadingEntradas: boolean = false;
 
 
 
@@ -30,6 +33,7 @@ export class HomePageComponent implements OnInit {
     this.carregarLucroSemanal();
     this.carregarGastosMensais();
     this.carregarVendasDiarias();
+    this.carregarEntradasRecentes();
   }
 
   carregarEstoqueCritico(): void {
@@ -91,6 +95,20 @@ export class HomePageComponent implements OnInit {
         this.carregandoAlertas = false;
       }
     });
+  }
+  carregarEntradasRecentes() {
+    this.isLoadingEntradas = true;
+    this.financeiroService.obterEntradasRecentes(6) // Limite de 6 itens, como na sua imagem
+      .pipe(finalize(() => this.isLoadingEntradas = false))
+      .subscribe({
+        next: (dados) => {
+          this.entradasRecentes = dados;
+        },
+        error: (err) => {
+          console.error('Erro ao obter entradas recentes:', err);
+          this.entradasRecentes = []; // Limpa a lista em caso de erro
+        }
+      });
   }
 
 }

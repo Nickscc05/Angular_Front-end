@@ -53,70 +53,35 @@
     <!--fim insights-->
     <!--inicio pedidos recents-->
     <div class="recent_order">
-      <h1>Pedidos Recentes</h1>
-      <table>
+      <h1>Entradas Recentes</h1>
+    
+    <div *ngIf="isLoadingEntradas">Carregando entradas...</div>
+
+    <table *ngIf="!isLoadingEntradas && entradasRecentes.length > 0">
         <thead>
-          <tr>
-            <th>Descrição Produto</th>
-            <th>Código</th>
-            <th>Valor Pedido</th>
-            <th>Estoque</th>
-            <th>Situação</th>
-          </tr>
+            <tr>
+                <th>Descrição Produto</th>
+                <th>Código</th>
+                <th>Valor Total</th> 
+                <th>Intens</th> <th>Fornecedor ID</th>
+            </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Banana</td>
-            <td>12385</td>
-            <td>R$100,00</td>
-            <td class="warning">50 Und</td>
-            <td class="primary">Pagar fornecedor</td>
-          </tr>
-          <tr>
-            <td>Maça-Fuji</td>
-            <td>12396</td>
-            <td>R$200,00</td>
-            <td class="warning">10 Kg</td>
-            <td class="primary">Pagamento realizado</td>
-          </tr>
-          <tr>
-            <td>Pera</td>
-            <td>12365</td>
-            <td>R$300,00</td>
-            <td class="warning">9 kg</td>
-            <td class="primary">Pago</td>
-          </tr>
-          <tr>
-            <td>Uva</td>
-            <td>12323</td>
-            <td>R$500,00</td>
-            <td class="warning">50 Und</td>
-            <td class="primary">Pagar fornecedor</td>
-          </tr>
-          <tr>
-            <td>Pepino</td>
-            <td>98565</td>
-            <td>R$100,00</td>
-            <td class="warning">20 kg</td>
-            <td class="primary">Pagar fornecedor</td>
-          </tr>
-          <tr>
-            <td>Tomate</td>
-            <td>31849</td>
-            <td>R$800,00</td>
-            <td class="warning">200 kg</td>
-            <td class="primary">Realizar pedido</td>
-          </tr>
-          <tr>
-            <td>Cenoura</td>
-            <td>87949</td>
-            <td>R$800,00</td>
-            <td class="warning">200 kg</td>
-            <td class="primary">Realizar pedido</td>
-          </tr>
+            <tr *ngFor="let entrada of entradasRecentes">
+                <td>{{ entrada.descricaoProduto }}</td>
+                <td>{{ entrada.codigo }}</td>
+                <td>{{ entrada.precoTotal | currency: 'BRL' }}</td>
+                <td>{{ entrada.itens }} und</td>
+                <td>{{ entrada.fornecedorId }}</td>
+            </tr>
         </tbody>
-      </table>
+    </table>
+
+    <div *ngIf="!isLoadingEntradas && entradasRecentes.length === 0">
+        Nenhuma entrada recente encontrada.
     </div>
+
+      </div>
     <!--fim pedidos recents -->
   </main>
   <!--main FIM-->

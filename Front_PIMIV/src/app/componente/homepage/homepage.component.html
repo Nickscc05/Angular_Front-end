@@ -12,7 +12,8 @@
         <div class="middle">
           <div class="left">
             <h3>Vendas do dia</h3>
-            <h1>R$500,00</h1>
+            <h1 *ngIf="!carregandoAlertas">R$ {{ vendasDiarias | number: '1.2-2' }}</h1>
+            <h1 *ngIf="carregandoAlertas">Carregando...</h1>
           </div>
           <div class="progress"></div>
         </div>
@@ -25,7 +26,8 @@
         <div class="middle">
           <div class="left">
             <h3>Gastos do Mês</h3>
-            <h1>R$100,99</h1>
+            <h1 *ngIf="!carregandoAlertas">R$ {{ gastosMensais | number: '1.2-2' }}</h1>
+            <h1 *ngIf="carregandoAlertas">Carregando...</h1>
           </div>
           <div class="progress"></div>
         </div>

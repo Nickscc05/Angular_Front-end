@@ -21,4 +21,12 @@ export class FinanceiroService {
   obterLucroSemanal(): Observable<number> {
     return this.http.get<number>(`${this.apiUrl}/lucro-semanal`);
   }
+
+  obterGastosMensais(): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/gastos-mensais`);
+  }
+
+  obterVendasDiarias(): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/vendas-diarias`);
+  }
 }

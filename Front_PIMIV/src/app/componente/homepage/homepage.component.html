@@ -64,13 +64,12 @@
 
     <table *ngIf="!isLoadingEntradas && entradasRecentes.length > 0">
         <thead>
-          <tr>
-            <th>Produto</th>
-            <th>Código</th>
-            <th>Valor Pedido</th>
-            <th>Estoque</th>
-            <th>Situação</th>
-          </tr>
+            <tr>
+                <th>Descrição Produto</th>
+                <th>Código</th>
+                <th>Valor Total</th> 
+                <th>Intens</th> <th>Fornecedor ID</th>
+            </tr>
         </thead>
         <tbody>
             <tr *ngFor="let entrada of entradasRecentes">

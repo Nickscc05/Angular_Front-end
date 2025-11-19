@@ -8,7 +8,8 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
-body{
+
+body {
   background-color: #ffffff;
 }
 
@@ -46,31 +47,38 @@ body{
 
 /* Container para a barra de pesquisa */
 .search-container {
-    position: relative; /* Essencial para posicionar o ícone dentro dele */
-    display: flex;
-    align-items: center;
+  position: relative;
+  /* Essencial para posicionar o ícone dentro dele */
+  display: flex;
+  align-items: center;
 }
 
 /* Estilo do ícone de pesquisa */
 .search-icon {
-    position: absolute; /* Posiciona o ícone sobre o input */
-    left: 10px; /* Distância da borda esquerda */
-    color: #7d8da1; /* Cor cinza para o ícone */
-    pointer-events: none; /* Permite clicar "através" do ícone no campo de texto */
+  position: absolute;
+  /* Posiciona o ícone sobre o input */
+  left: 10px;
+  /* Distância da borda esquerda */
+  color: #7d8da1;
+  /* Cor cinza para o ícone */
+  pointer-events: none;
+  /* Permite clicar "através" do ícone no campo de texto */
 }
 
 /* Ajuste no campo de pesquisa */
 .pesquisar {
-    padding-left: 45px; /* Adiciona espaço à esquerda para o texto não ficar sob o ícone */
-    padding-top: 0.4rem;
-    padding-bottom: 0.4rem;
-    padding-right: 0.8rem;
-    border-radius: 10px;
-    border: none;
-    outline: none;
-    width: 300px;
-    background-color: #ffffff;
+  padding-left: 45px;
+  /* Adiciona espaço à esquerda para o texto não ficar sob o ícone */
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  padding-right: 0.8rem;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  width: 300px;
+  background-color: #ffffff;
 }
+
 /* Menu lateral */
 .menu {
   position: fixed;
@@ -155,18 +163,16 @@ body{
   max-height: 100vh;
   overflow-y: auto;
 }
+
 .menu::-webkit-scrollbar {
   width: 0px;
 }
-
-
 
 .link_nav:hover {
   color: #166003;
 }
 
 /* Submenu (inicialmente escondido) */
-
 
 .submenu {
   list-style: none;
@@ -240,7 +246,7 @@ body{
   display: block;
 }
 
-.btn-default{
+.btn-default {
   background-color: #35612970;
   display: flex;
   align-items: center;
@@ -254,164 +260,216 @@ body{
   cursor: pointer;
   gap: 8px;
   height: fit-content;
-  box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease-in;
-  
+
 }
-.btn-default:hover{
+
+.btn-default:hover {
   background-color: #96d08670;
 }
 
 .main-content {
-    padding: 20px;
-    transition: margin-left 0.3s ease;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+
+  /* Extra */
+  width: 100%;
+  max-width: 100%;
+  min-height: calc(100vh - 70px);
+  /* ocupa altura inteira menos navbar (aprox) */
+  box-sizing: border-box;
+  display: block;
 }
 
 .content-header {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .content-header h1 {
-    color: #4C7F48; 
-    border-bottom: 2px solid #4C7F48;
-    padding-bottom: 5px;
+  color: #4C7F48;
+  border-bottom: 2px solid #4C7F48;
+  padding-bottom: 5px;
 }
 
 .form-card {
-    background-color: #669b665d; 
-    padding: 30px;
-    border-radius: 12px;
-    margin-bottom: 30px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  background-color: #669b665d;
+  padding: 30px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 .filter-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .input-row {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap; 
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  /* alinha o botão com a base do input */
 }
 
 
 .input-group {
-    flex: 1; 
-    min-width: 200px;
+  flex: 1;
+  min-width: 200px;
 }
 
 .input-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 500;
-    color: #333;
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #333;
 }
 
-.input-group input, .input-group select {
-    width: 100%;
-    padding: 10px 15px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    outline: none;
-    transition: border-color 0.3s;
+.input-group input,
+.input-group select {
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: border-color 0.3s;
 }
 
-.input-group input:focus, .input-group select:focus {
-    border-color: #6CA368;
+.input-group input:focus,
+.input-group select:focus {
+  border-color: #6CA368;
 }
 
 .form-actions {
-    display: flex;
-    gap: 15px;
-    margin-top: 10px;
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
 }
 
+.category-form-actions {
+  align-items: center;
+  margin-left: auto;
+}
+
+.category-form-actions .btn-default {
+  height: 44px;
+  padding: 0 16px;
+}
+
+/* Em telas pequenas, deixa empilhado naturalmente */
+@media screen and (max-width: 768px) {
+  .input-row {
+    align-items: stretch;
+  }
+
+  .category-form-actions {
+    margin-left: 0;
+  }
+}
 
 .table-container {
-    overflow-x: auto; 
+  overflow-x: auto;
 }
 
 .data-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
 }
 
-.data-table th, .data-table td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+.data-table th,
+.data-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
 }
 
 .data-table th {
-    background-color: #4C7F48;
-    color: white;
-    font-weight: 600;
-    text-transform: uppercase;
+  background-color: #4C7F48;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .data-table tr:hover {
-    background-color: #e6ffe6;
+  background-color: #e6ffe6;
 }
 
 /* Responsividade do Main Content */
 @media screen and (max-width: 992px) {
-    .main-content {
-        margin-left: 0; /* Remove o margin-left em tablets e celulares */
-    }
+  .main-content {
+    margin-left: 0;
+    /* Remove o margin-left em tablets e celulares */
+  }
 }
 
 /*RESPONSIVIDADE DOS ELEMENTOS GLOBAIS (MENU E NAVEGAÇÃO)*/
 
 /* --- Telas de Tablet (até 992px) --- */
 @media screen and (max-width: 992px) {
-    .nav_mobile {
-        padding: 0.8rem 1rem; /* Padding horizontal e vertical */
-    }
-    .pesquisar {
-        width: 250px; /* Largura fixa para a pesquisa em tablets */
-    }
+  .nav_mobile {
+    padding: 0.8rem 1rem;
+    /* Padding horizontal e vertical */
+  }
+
+  .pesquisar {
+    width: 250px;
+    /* Largura fixa para a pesquisa em tablets */
+  }
 }
 
 
 /* --- Telas de Celular (até 768px) --- */
 @media screen and (max-width: 768px) {
-    .nav_mobile {
-        justify-content: flex-start; /* Alinha itens ao início */
-        gap: 1rem; /* Espaço entre o hambúrguer e a pesquisa */
-    }
-    
-    .search-container {
-        flex-grow: 1;  /* Faz a área de pesquisa crescer */
-        min-width: 0;   /* Permite que a área encolha sem quebrar o layout */
-    }
-    
-    .pesquisar {
-        width: 100%; /* Faz o input ocupar 100% do seu container */
-    }
+  .nav_mobile {
+    justify-content: flex-start;
+    /* Alinha itens ao início */
+    gap: 1rem;
+    /* Espaço entre o hambúrguer e a pesquisa */
+  }
+
+  .search-container {
+    flex-grow: 1;
+    /* Faz a área de pesquisa crescer */
+    min-width: 0;
+    /* Permite que a área encolha sem quebrar o layout */
+  }
+
+  .pesquisar {
+    width: 100%;
+    /* Faz o input ocupar 100% do seu container */
+  }
 }
 
 
 /* --- Telas de Celular Pequenas (até 480px) --- */
 @media screen and (max-width: 480px) {
-    .pesquisar {
-        font-size: 0.9rem;
-    }
-    
-    .hamb {
-        width: 22px;
-        height: 18px;
-    }
+  .pesquisar {
+    font-size: 0.9rem;
+  }
 
-    .ing {
-        height: 2px;
-    }
-    
-    .menu {
-        width: 250px; /* Menu lateral um pouco mais estreito */
-        left: -250px;
-    }
+  .hamb {
+    width: 22px;
+    height: 18px;
+  }
+
+  .ing {
+    height: 2px;
+  }
+
+  .menu {
+    width: 250px;
+    /* Menu lateral um pouco mais estreito */
+    left: -250px;
+  }
 }
+
+/* Não funcionando */
+/* Em desktops, não escurecer o conteúdo ao abrir o menu  */
+/* @media screen and (min-width: 993px) {
+  :host .overlay.active {
+    display: none;
+  }
+} */

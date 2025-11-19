@@ -306,6 +306,10 @@ main .recent_order tbody tr:last-child td:last-child { border-bottom-right-radiu
     
 }
 
+.right .recent_updates h2 {
+    margin-bottom: 0.4rem;
+}
+
 .right .recent_updates .updates {
     background-color: var(--clr-background-cards);
     padding: var(--card-padding);

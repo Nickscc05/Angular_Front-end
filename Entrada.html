@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/Global.css">
+
+    <script src="assets/js/Homepage.js" defer></script>
+    <script src="assets/js/Entradaprod.js" defer></script>
+    <title>Horti-fruti - Entrada de Produtos</title>
+</head>
+
+<body>
+<div class="divMenu">
+
+    <!-- Barra Superior -->
+    <nav class="nav_mobile">
+      <button class="hamb" aria-label="Abrir menu">
+        <span class="ing one"></span>
+        <span class="ing two"></span>
+        <span class="ing three"></span>
+      </button>
+      <div class="search-container">
+        <span class="material-symbols-sharp search-icon">search</span>
+        <input placeholder="Pesquisar" class="pesquisar" type="text">
+      </div>
+    </nav>
+
+    <!-- Overlay (fundo escuro) -->
+    <div class="overlay"></div>
+    <!-- Menu lateral -->
+    <div class="menu">
+      <div class="user">
+        <div class="perfil"></div>
+        <p class="welcome">Bem vindo, Alexandre</p>
+      </div>
+      <ul class="ul_mobile">
+        <!-- Inicio -->
+        <li>
+          <div class="menu-header">
+            <img class="icon_link" src="assets/img/InicioHome.svg" alt="Sair">
+            <a class="link_nav" href="Homepage.html">Inicio</a>
+          </div>
+        </li>
+        <!-- Usuários -->
+        <li class="has-submenu">
+          <div class="menu-header">
+            <img class="icon_link" src="assets/img/user.SVG.svg" alt="Usuários">
+            <a class="link_nav" href="#">Cadastros ▾</a>
+          </div>
+          <ul class="submenu">
+            <li>
+              <img class="icon_link" src="assets/img/caduser.SVG.svg" alt="Cadastrar Usuário">
+              <a href="Caduser.html">Cadastrar Usuário</a>
+            </li>
+            <li>
+              <img class="icon_link" src="assets/img/caduser.SVG.svg" alt="Lista de Usuários">
+              <a href="Cadfornecedor.html">Cadastrar Fornecedor</a>
+            </li>
+            <li>
+              <img class="icon_link" src="assets/img/relatorio.SVG.svg" alt="Lista de Usuários">
+              <a href="Categoria.html">Categoria</a>
+            </li>
+            <li>
+              <img class="icon_link" src="assets/img/relatorio.SVG.svg" alt="Lista de Usuários">
+              <a href="Listuser.html">Funcionários</a>
+            </li>
+            <li>
+              <img class="icon_link" src="assets/img/relatorio.SVG.svg" alt="Lista de Usuários">
+              <a href="ListFornecedor.html">Fornecedores</a>
+            </li>
+          </ul>
+        </li>
+        <!-- Produtos -->
+        <li class="has-submenu">
+          <div class="menu-header">
+            <img class="icon_link" src="assets/img/produtos.SVG.svg" alt="Produtos">
+            <a class="link_nav" href="#">Produtos ▾</a>
+          </div>
+          <ul class="submenu">
+            <li>
+              <img class="icon_link" src="assets/img/produtos.SVG.svg" alt="Cadastrar Produtos">
+              <a href="Cadprodutos.html">Cadastrar Produtos</a>
+            </li>
+            <li>
+              <img class="icon_link" src="assets/img/produtos.SVG.svg" alt="Informações de Produtos">
+              <a href="Infoprodutos.html">Info. dos Produtos</a>
+            </li>
+            <li>
+              <img class="icon_link" src="assets/img/produtos.SVG.svg" alt="Informações de Produtos">
+              <a href="Entrada.html">Entrada de Produtos</a>
+            </li>
+          </ul>
+        </li>
+        <!-- Vendas -->
+        <li class="has-submenu">
+          <div class="menu-header">
+            <img class="icon_link" src="assets/img/Vendas.SVG.svg" alt="Vendas">
+            <a class="link_nav" href="#">Vendas ▾</a>
+          </div>
+          <ul class="submenu">
+            <li>
+              <img class="icon_link" src="assets/img/Vendas.SVG.svg" alt="Nova Venda">
+              <a href="Novavenda.html">Nova Venda</a>
+            </li>
+            <li>
+              <img class="icon_link" src="assets/img/Vendas.SVG.svg" alt="Histórico de Vendas">
+              <a href="Histvendas.html">Histórico de Vendas</a>
+            </li>
+          </ul>
+        </li>
+        <!-- Caixa -->
+        <li>
+          <div class="menu-header">
+            <img class="icon_link" src="assets/img/caixa.SVG.svg" alt="Caixa">
+            <a class="link_nav" href="Caixa.html">Caixa</a>
+          </div>
+        </li>
+        <!-- Relatórios -->
+        <li>
+          <div class="menu-header">
+            <img class="icon_link" src="assets/img/relatorio.SVG.svg" alt="Relatórios">
+            <a class="link_nav" href="Relatorio.html">Relatórios</a>
+          </div>
+        </li>
+        <!-- Sair -->
+        <li>
+          <div class="menu-header">
+            <img class="icon_link" src="assets/img/sair.SVG.svg" alt="Sair">
+            <a class="link_nav" href="login.html">Sair</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+    <main class="main-content">
+        <div class="content-header">
+            <h1>Registro de Entrada de Produtos</h1>
+            <p>Utilize o formulário abaixo para dar entrada em produtos adquiridos e atualizar o estoque.</p>
+        </div>
+
+        <section class="form-card">
+            <h2>Informações da Entrada</h2>
+
+            <form id="productEntryForm" class="filter-form">
+                <div class="input-row">
+
+                    <div class="input-group">
+                        <label for="barcode">Código de Barras</label>
+                        <input type="text" id="barcode" name="barcode" placeholder="Leia ou digite o código" required
+                            autofocus>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="productName">Nome do Produto</label>
+                        <input type="text" id="productName" name="productName"
+                            placeholder="Será preenchido automaticamente" disabled>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="supplier">Fornecedor</label>
+                        <select id="supplier" name="supplier" required>
+                            <option value="" disabled selected>Selecione o Fornecedor</option>
+                            <option value="forn1">Fazenda Verde</option>
+                            <option value="forn2">Hortifruti Mais</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <div class="input-row">
+
+                        <div class="input-group">
+                            <label for="motive">Motivo da Entrada</label>
+                            <select id="motive" name="motivoMovimentacaoId" required>
+                                <option value="" disabled selected>Selecione o Motivo</option>
+                                <option value="1">Compra de Estoque</option>
+                                <option value="2">Devolução de Cliente</option>
+                                <option option value="3">Transferência</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-row">
+
+                        <div class="input-group">
+                            <label for="invoiceNumber">Número da Nota Fiscal</label>
+                            <input type="text" id="invoiceNumber" name="numeroNota" placeholder="Ex: 000123456"
+                                required>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="entryDate">Data da Entrada</label>
+                        <input type="date" id="entryDate" name="entryDate" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="quantity">Quantidade (Un./Kg)</label>
+                        <input type="number" id="quantity" name="quantity" placeholder="0,00" min="0.01" step="0.01"
+                            required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="unitCost">Custo Unitário (R$)</label>
+                        <input type="number" id="unitCost" name="unitCost" placeholder="0,00" min="0.01" step="0.01"
+                            required>
+                    </div>
+
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-default search-button">
+                        <span class="material-symbols-sharp">inventory_2</span>
+                        Registrar Entrada
+                    </button>
+                </div>
+            </form>
+        </section>
+        <section class="results-section form-card">
+            <h2>Itens Adicionados à Entrada</h2>
+
+            <div class="table-container">
+                <table class="data-table" id="entryItemsTable">
+                    <thead>
+                        <tr>
+                            <th>Cód. Produto</th>
+                            <th>Descrição</th>
+                            <th>Qtd.</th>
+                            <th>Custo Unit. (R$)</th>
+                            <th>Custo Total (R$)</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="entryItemsBody">
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="empty-message">Nenhum produto adicionado ainda.</p>
+        </section>
+    </main>
+</body>
+
+</html>

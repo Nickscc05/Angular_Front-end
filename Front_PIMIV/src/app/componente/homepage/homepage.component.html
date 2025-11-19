@@ -2,7 +2,7 @@
   <!--main inicio-->
 
   <main>
-    <h1>DashBoard</h1>
+    <h1>Dashboard</h1>
     
     <!--inicio insights-->
     <div class="insights">
@@ -40,9 +40,14 @@
         <div class="middle">
           <div class="left">
             <h3>Lucro da semana</h3>
-            <!-- TODO TENTAR ALTERAR PARA BLOCO NOVO -->
-            <h1 *ngIf="!carregandoAlertas">R$ {{ lucroSemanal | number: '1.2-2' }}</h1>
-            <h1 *ngIf="carregandoAlertas">Carregando...</h1>
+            @if (!carregandoAlertas) {
+              <!-- 1 (Número minimo de dígitos inteiros antes da vírgula)-->
+              <!-- 2 (Número minimo de dígitos decimais depois da vírgula)-->
+              <!-- 2 (Número máximo de dígitos decimais depois da vírgula)-->
+              <h1>R$ {{ lucroSemanal | number: '1.2-2' }}</h1>  
+            } @else {
+              <h1>Carregando...</h1>
+            }
           </div>
           <div class="progress"></div>
         </div>
@@ -90,7 +95,7 @@
     <!--right inicio fim-->
     <!--right inicio recente updates-->
     <div class="recent_updates">
-      <h2>Atualizações Recentes</h2>
+      <h2>Atualizações recentes</h2>
       <div class="updates">
         <div class="update">
           <div class="profile-photo">
@@ -127,11 +132,11 @@
       <div class="alerts-list-wrapper">
         <div class="alerts-list">
           @if (carregandoAlertas) {
-            <div class="loading-message">Carregando alertas de estoque...</div>
+            <div class="loading-message item">Carregando alertas de estoque...</div>
 
           } 
             @if (erroCarregamento) {
-              <div class="error-message">{{ erroCarregamento }}</div>
+              <div class="error-message item">{{ erroCarregamento }}</div>
 
           } 
             @if (!carregandoAlertas && !erroCarregamento) { 
@@ -145,8 +150,12 @@
                       <h3>{{ item.nome }}</h3>
                       <h4 class="variant">{{ item.codigo }}</h4>
                       <small class="text-muted"
-                        >Apenas {{ item.quantidadeAtual }} (Mínimo: {{ item.quantidadeMinima }})</small
-                      >
+                        >Em estoque: {{ item.quantidadeAtual }} 
+                      </small>
+                      <br/>
+                      <small class="text-muted">
+                        Estoque mín: {{ item.quantidadeMinima }}
+                      </small>
                       <h5 class="danger">ESTOQUE CRÍTICO</h5>
                     </div>
                   </div>

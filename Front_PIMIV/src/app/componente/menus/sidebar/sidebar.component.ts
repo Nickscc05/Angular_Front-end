@@ -16,7 +16,7 @@ interface MenuItem {
   selector: 'app-sidebar',
   imports: [CommonModule, RouterLink],
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.css',
+  styleUrls: ['./sidebar.component.css'],
   standalone: true
 })
 
@@ -32,15 +32,8 @@ export class SidebarComponent {
     // Início
     { title: 'Início', icon: 'assets/img/InicioHome.svg', link: '/homepage' },
     
-    {
-      title: 'Manter categoria',
-      icon: '',
-      estadoSubMenu: false,
-      subMenu: [
-        { title: 'Cadastrar Categoria', icon: '', link: '/categoria' },
-        { title: 'Listar Categorias', icon: '', link: '/categoria' }
-      ]
-    },
+    { title: 'Categoria', icon: '', link: '/categoria' },
+
     {
       title: 'Cadastros',
       icon: 'assets/img/user.SVG.svg',

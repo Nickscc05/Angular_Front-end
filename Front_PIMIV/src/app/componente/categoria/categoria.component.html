@@ -5,6 +5,12 @@
   </div>
 
   <section class="filter-section form-card">
+    @if (mensagem) {
+      <div class="alert" [class.alert-success]="mensagemTipo === 'sucesso'" [class.alert-error]="mensagemTipo === 'falha'">
+        {{ mensagem }}
+      </div>
+    }
+
     @if (!editandoId) {
       <h2>Adicionar Nova Categoria</h2>
     } @else {

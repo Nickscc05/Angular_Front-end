@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { GetProdutoEstoqueCriticoDTO } from '../../modelos/DTO/GetProdutoEstoqueCriticoDTO.model';
 import { ProdutoService } from '../../servicos/produto/produto.service';
-import { FinanceiroService } from '../../servicos/financeiro/financeiro.service';
+import { FinanceiroService, Entrada } from '../../servicos/financeiro/financeiro.service';
 import { CommonModule } from '@angular/common';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-homepage',
@@ -18,32 +19,40 @@ export class HomePageComponent implements OnInit {
   public carregandoAlertas: boolean = true;
   public erroCarregamento: string | null = null;
   public lucroSemanal: number = 0.00;
-  
+  public gastosMensais: number = 0.00;
+  public vendasDiarias: number = 0.00;
+  public entradasRecentes: Entrada[] = [];
+  public isLoadingEntradas: boolean = false;
 
-  constructor(private produtoService: ProdutoService, private financeiroService: FinanceiroService) {} // Injeção de dependência do serviço ProdutoService
+
+
+  constructor(private produtoService: ProdutoService, private financeiroService: FinanceiroService) { } // Injeção de dependência do serviço ProdutoService
 
   ngOnInit(): void {
     this.carregarEstoqueCritico();
     this.carregarLucroSemanal();
+    this.carregarGastosMensais();
+    this.carregarVendasDiarias();
+    this.carregarEntradasRecentes();
   }
 
   carregarEstoqueCritico(): void {
 
     this.carregandoAlertas = true;
     this.erroCarregamento = null;
-  
+
 
     // Chame o método do serviço
     this.produtoService.getEstoqueCritico().subscribe({
-        next: (data) => {
-            this.alertasEstoque = data;
-            this.carregandoAlertas = false;
-        },
-        error: (error) => {
-            console.error('Erro ao carregar estoque crítico:', error);
-            this.erroCarregamento = 'Não foi possível carregar os alertas de estoque.';
-            this.carregandoAlertas = false;
-        }
+      next: (data) => {
+        this.alertasEstoque = data;
+        this.carregandoAlertas = false;
+      },
+      error: (error) => {
+        console.error('Erro ao carregar estoque crítico:', error);
+        this.erroCarregamento = 'Não foi possível carregar os alertas de estoque.';
+        this.carregandoAlertas = false;
+      }
     });
   }
 
@@ -60,6 +69,46 @@ export class HomePageComponent implements OnInit {
         // Lógica para mostrar uma mensagem de erro ao usuário, se necessário
       }
     });
+  }
+
+  carregarGastosMensais(): void {
+    this.financeiroService.obterGastosMensais().subscribe({
+      next: (gastos) => {
+        this.gastosMensais = gastos;
+        this.carregandoAlertas = false;
+      },
+      error: (err) => {
+        console.error('Erro ao buscar gastos mensais:', err);
+        this.carregandoAlertas = false;
+      }
+    });
+  }
+  carregarVendasDiarias(): void {
+    this.financeiroService.obterVendasDiarias().subscribe({
+      next: (vendas) => {
+        // Armazene ou utilize o valor de vendas diárias conforme necessário
+        this.vendasDiarias = vendas;
+        this.carregandoAlertas = false;
+      },
+      error: (err) => {
+        console.error('Erro ao buscar vendas diárias:', err);
+        this.carregandoAlertas = false;
+      }
+    });
+  }
+  carregarEntradasRecentes() {
+    this.isLoadingEntradas = true;
+    this.financeiroService.obterEntradasRecentes(6) // Limite de 6 itens, como na sua imagem
+      .pipe(finalize(() => this.isLoadingEntradas = false))
+      .subscribe({
+        next: (dados) => {
+          this.entradasRecentes = dados;
+        },
+        error: (err) => {
+          console.error('Erro ao obter entradas recentes:', err);
+          this.entradasRecentes = []; // Limpa a lista em caso de erro
+        }
+      });
   }
 
 }

@@ -35,8 +35,7 @@ export class CategoriaService {
     return this.http.put<void>(`${this.url}/${id}`, categoria);
   }
 
-  // delete foi comentado no backend; habilite se expor
-  // deletar(id: number): Observable<void> {
-  //   return this.http.delete<void>(`${this.url}/${id}`);
-  // }
+  deletar(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.url}/${id}`);
+  }
 }

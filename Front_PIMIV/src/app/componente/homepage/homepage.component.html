@@ -15,8 +15,11 @@
         <div class="middle">
           <div class="left">
             <h3>Vendas do dia</h3>
-            <h1 *ngIf="!carregandoAlertas">R$ {{ vendasDiarias | number: '1.2-2' }}</h1>
-            <h1 *ngIf="carregandoAlertas">Carregando...</h1>
+            @if (!carregandoAlertas) {
+              <h1>R$ {{ vendasDiarias | number: '1.2-2' }}</h1>
+            } @else {
+              <h1>Carregando...</h1>
+            }
           </div>
           <div class="progress"></div>
         </div>
@@ -29,8 +32,11 @@
         <div class="middle">
           <div class="left">
             <h3>Gastos do Mês</h3>
-            <h1 *ngIf="!carregandoAlertas">R$ {{ gastosMensais | number: '1.2-2' }}</h1>
-            <h1 *ngIf="carregandoAlertas">Carregando...</h1>
+            @if (!carregandoAlertas) {
+              <h1>R$ {{ gastosMensais | number: '1.2-2' }}</h1>
+            } @else {
+              <h1>Carregando...</h1>
+            }
           </div>
           <div class="progress"></div>
         </div>
@@ -44,9 +50,6 @@
           <div class="left">
             <h3>Lucro da semana</h3>
             @if (!carregandoAlertas) {
-              <!-- 1 (Número minimo de dígitos inteiros antes da vírgula)-->
-              <!-- 2 (Número minimo de dígitos decimais depois da vírgula)-->
-              <!-- 2 (Número máximo de dígitos decimais depois da vírgula)-->
               <h1>R$ {{ lucroSemanal | number: '1.2-2' }}</h1>  
             } @else {
               <h1>Carregando...</h1>
@@ -63,31 +66,37 @@
     <div class="recent_order">
       <h1>Entradas Recentes</h1>
     
-    <div *ngIf="isLoadingEntradas">Carregando entradas...</div>
+    @if (isLoadingEntradas) {
+      <div>Carregando entradas...</div>
+    }
 
-    <table *ngIf="!isLoadingEntradas && entradasRecentes.length > 0">
-        <thead>
-            <tr>
-                <th>Descrição Produto</th>
-                <th>Código</th>
-                <th>Valor Total</th> 
-                <th>Intens</th> <th>Fornecedor ID</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let entrada of entradasRecentes">
-                <td>{{ entrada.descricaoProduto }}</td>
-                <td>{{ entrada.codigo }}</td>
-                <td>{{ entrada.precoTotal | currency: 'BRL' }}</td>
-                <td>{{ entrada.itens }} und</td>
-                <td>{{ entrada.fornecedorId }}</td>
-            </tr>
-        </tbody>
-    </table>
+    @if (!isLoadingEntradas && entradasRecentes.length > 0) {
+      <table>
+          <thead>
+              <tr>
+                  <th>Descrição Produto</th>
+                  <th>Código</th>
+                  <th>Valor Total</th>
+                  <th>Intens</th> <th>Fornecedor ID</th>
+              </tr>
+          </thead>
+          <tbody>
+              @for (entrada of entradasRecentes; track entrada.codigo) {
+                <tr>
+                    <td>{{ entrada.descricaoProduto }}</td>
+                    <td>{{ entrada.codigo }}</td>
+                    <td>{{ entrada.precoTotal | currency: 'BRL' }}</td>
+                    <td>{{ entrada.itens }} und</td>
+                    <td>{{ entrada.fornecedorId }}</td>
+                </tr>
+              }
+          </tbody>
+      </table>
+    }
 
-    <div *ngIf="!isLoadingEntradas && entradasRecentes.length === 0">
-        Nenhuma entrada recente encontrada.
-    </div>
+    @if (!isLoadingEntradas && entradasRecentes.length === 0) {
+      <div>Nenhuma entrada recente encontrada.</div>
+    }
 
       </div>
     <!--fim pedidos recents -->

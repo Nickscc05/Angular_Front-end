@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GetProdutoEstoqueCriticoDTO } from '../../modelos/DTO/GetProdutoEstoqueCriticoDTO.model';
 import { ProdutoService } from '../../servicos/produto/produto.service';
 import { FinanceiroService, Entrada } from '../../servicos/financeiro/financeiro.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe, DecimalPipe } from '@angular/common';
 import { finalize } from 'rxjs';
 import { ErrorHandlerService } from '../../servicos/shared/error-handler.service';
 import { NotificationService } from '../../servicos/shared/notification.service';
@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-homepage',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, CurrencyPipe, DecimalPipe],
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.css'],
 })

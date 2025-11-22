@@ -2,13 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { GetProdutoEstoqueCriticoDTO } from '../../modelos/DTO/GetProdutoEstoqueCriticoDTO.model';
 import { ProdutoService } from '../../servicos/produto/produto.service';
 import { FinanceiroService, Entrada } from '../../servicos/financeiro/financeiro.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe, DecimalPipe } from '@angular/common';
 import { finalize } from 'rxjs';
+import { ErrorHandlerService } from '../../servicos/shared/error-handler.service';
+import { NotificationService } from '../../servicos/shared/notification.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-homepage',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule, CurrencyPipe, DecimalPipe],
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.css'],
 })
@@ -23,12 +26,19 @@ export class HomePageComponent implements OnInit {
   public vendasDiarias: number = 0.00;
   public entradasRecentes: Entrada[] = [];
   public isLoadingEntradas: boolean = false;
+  public dataDash: string = ''; // Propriedade para o data picker
 
-
-
-  constructor(private produtoService: ProdutoService, private financeiroService: FinanceiroService) { } // Injeção de dependência do serviço ProdutoService
+  constructor(
+    private produtoService: ProdutoService,
+    private financeiroService: FinanceiroService,
+    private errorHandler: ErrorHandlerService,
+    private notification: NotificationService
+  ) { }
 
   ngOnInit(): void {
+    // Definir data atual para o input date
+    this.dataDash = new Date().toISOString().split('T')[0];
+
     this.carregarEstoqueCritico();
     this.carregarLucroSemanal();
     this.carregarGastosMensais();
@@ -37,12 +47,9 @@ export class HomePageComponent implements OnInit {
   }
 
   carregarEstoqueCritico(): void {
-
     this.carregandoAlertas = true;
     this.erroCarregamento = null;
 
-
-    // Chame o método do serviço
     this.produtoService.getEstoqueCritico().subscribe({
       next: (data) => {
         this.alertasEstoque = data;
@@ -50,7 +57,8 @@ export class HomePageComponent implements OnInit {
       },
       error: (error) => {
         console.error('Erro ao carregar estoque crítico:', error);
-        this.erroCarregamento = 'Não foi possível carregar os alertas de estoque.';
+        this.erroCarregamento = this.errorHandler.extrairMensagemErro(error, 'Não foi possível carregar os alertas de estoque.');
+        this.notification.erro('Falha ao carregar dados do dashboard.');
         this.carregandoAlertas = false;
       }
     });
@@ -59,14 +67,10 @@ export class HomePageComponent implements OnInit {
   carregarLucroSemanal() {
     this.financeiroService.obterLucroSemanal().subscribe({
       next: (lucro) => {
-        // O valor retornado (ex: 1000.00) é armazenado aqui
         this.lucroSemanal = lucro;
-        this.carregandoAlertas = false;
       },
       error: (err) => {
         console.error('Erro ao buscar lucro semanal:', err);
-        this.carregandoAlertas = false;
-        // Lógica para mostrar uma mensagem de erro ao usuário, se necessário
       }
     });
   }
@@ -75,30 +79,27 @@ export class HomePageComponent implements OnInit {
     this.financeiroService.obterGastosMensais().subscribe({
       next: (gastos) => {
         this.gastosMensais = gastos;
-        this.carregandoAlertas = false;
       },
       error: (err) => {
         console.error('Erro ao buscar gastos mensais:', err);
-        this.carregandoAlertas = false;
       }
     });
   }
+
   carregarVendasDiarias(): void {
     this.financeiroService.obterVendasDiarias().subscribe({
       next: (vendas) => {
-        // Armazene ou utilize o valor de vendas diárias conforme necessário
         this.vendasDiarias = vendas;
-        this.carregandoAlertas = false;
       },
       error: (err) => {
         console.error('Erro ao buscar vendas diárias:', err);
-        this.carregandoAlertas = false;
       }
     });
   }
+
   carregarEntradasRecentes() {
     this.isLoadingEntradas = true;
-    this.financeiroService.obterEntradasRecentes(6) // Limite de 6 itens, como na sua imagem
+    this.financeiroService.obterEntradasRecentes(6)
       .pipe(finalize(() => this.isLoadingEntradas = false))
       .subscribe({
         next: (dados) => {
@@ -106,9 +107,9 @@ export class HomePageComponent implements OnInit {
         },
         error: (err) => {
           console.error('Erro ao obter entradas recentes:', err);
-          this.entradasRecentes = []; // Limpa a lista em caso de erro
+          this.notification.erro(this.errorHandler.extrairMensagemErro(err, 'Erro ao obter entradas recentes.'));
+          this.entradasRecentes = [];
         }
       });
   }
-
 }

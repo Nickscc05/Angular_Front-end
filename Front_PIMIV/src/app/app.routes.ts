@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { HomePageComponent } from './componente/homepage/homepage.component';
 import { CategoriaComponent } from './componente/categoria/categoria.component';
-import { CadastroUsuarioComponent } from './componente/cadastro-usuario/cadastro-usuario.component';
+import { FuncionarioComponent } from './componente/funcionario/funcionario.component';
 
 export const routes: Routes = [
     // Rotas do aplicativo
@@ -15,7 +15,7 @@ export const routes: Routes = [
     },
     {
         path: 'cadastro-usuario',
-        component: CadastroUsuarioComponent
+        component: FuncionarioComponent
     },
 
 

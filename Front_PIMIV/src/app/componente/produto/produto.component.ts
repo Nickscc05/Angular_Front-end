@@ -4,8 +4,9 @@ import { Component } from '@angular/core';
   selector: 'app-produto',
   imports: [],
   templateUrl: './produto.component.html',
-  styleUrl: './produto.component.css',
+  styleUrls: ['./produto.component.css'],
 })
-export class Produto {
+
+export class ProdutoComponent {
 
 }

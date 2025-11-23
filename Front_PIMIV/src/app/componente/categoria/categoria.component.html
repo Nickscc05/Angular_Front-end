@@ -30,7 +30,7 @@
           <button type="submit" class="btn-default search-button" [disabled]="enviando || !novaCategoriaNome.trim()">
             @if (!editandoId) {
               <span class="material-symbols-sharp">add_circle</span>
-              {{ enviando ? 'Cadastrando...' : 'Cadastrar Categoria' }}
+              {{ enviando ? 'Cadastrando...' : 'Cadastrar' }}
             } @else {
               <span class="material-symbols-sharp">save</span>
               {{ enviando ? 'Salvando...' : 'Salvar Alterações' }}

@@ -396,6 +396,26 @@ body {
 .data-table tr:hover {
   background-color: #e6ffe6;
 }
+/* Estilo para agrupar inputs visualmente */
+.form-fieldset {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+/* Estilo para o título do grupo */
+.fieldset-legend {
+    font-size: 1.1rem;
+    font-weight: 600;
+    background-color: #f0fff0;
+    color:#4C7F48;
+    padding: 0 10px;
+    display: table; 
+    float: none;
+    width: auto;
+}
+
 
 /* Responsividade do Main Content */
 @media screen and (max-width: 992px) {

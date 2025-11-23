@@ -31,35 +31,27 @@ export class SidebarComponent {
 
     // Início
     { title: 'Início', icon: 'assets/img/InicioHome.svg', link: '/homepage' },
-    
-    { title: 'Categoria', icon: '', link: '/categoria' },
-
     {
-      title: 'Cadastros',
+      title: 'Gerenciar',
       icon: 'assets/img/user.SVG.svg',
       estadoSubMenu: false,
       subMenu: [
+        
         { title: 'Cadastrar Usuário', icon: 'assets/img/caduser.SVG.svg', link: '/cadastros/usuario' },
         { title: 'Cadastrar Fornecedor', icon: 'assets/img/caduser.SVG.svg', link: '/cadastros/fornecedor' },
-        { title: 'Funcionários', icon: 'assets/img/relatorio.SVG.svg', link: '/listagem/funcionarios' }
-      ]
-    },
-    {
-      title: 'Produtos',
-      icon: 'assets/img/produtos.SVG.svg',
-      estadoSubMenu: false,
-      subMenu: [
         { title: 'Cadastrar Produtos', icon: 'assets/img/produtos.SVG.svg', link: '/produtos/cadastro' },
-        { title: 'Info. dos Produtos', icon: 'assets/img/produtos.SVG.svg', link: '/produtos/info' }
+        { title: 'Info. dos Produtos', icon: 'assets/img/produtos.SVG.svg', link: '/produtos/info' },
+        { title: 'Categoria', icon: 'assets/img/relatorio.SVG.svg', link: '/categoria' },
+        { title: 'Funcionários', icon: 'assets/img/relatorio.SVG.svg', link: '/listagem/funcionarios' },
+        { title: 'Histórico de Vendas', icon: 'assets/img/Vendas.SVG.svg', link: '/vendas/historico' }
       ]
     },
     {
-      title: 'Vendas',
-      icon: 'assets/img/Vendas.SVG.svg',
+      title: 'Entrada',
+      icon: '',
       estadoSubMenu: false,
       subMenu: [
         { title: 'Nova Venda', icon: 'assets/img/Vendas.SVG.svg', link: '/vendas/nova' },
-        { title: 'Histórico de Vendas', icon: 'assets/img/Vendas.SVG.svg', link: '/vendas/historico' }
       ]
     },
     { title: 'Caixa', icon: 'assets/img/caixa.SVG.svg', link: '/caixa' },

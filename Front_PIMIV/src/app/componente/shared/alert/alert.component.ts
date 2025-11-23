@@ -12,45 +12,39 @@ import { NotificationService, Notificacao } from '../../../servicos/shared/notif
 
 export class AlertComponent implements OnInit {
   
-  notificacao: Notificacao | null = null;
-  slideOut = false;
-  private closeTimeout: any;
-  private autoCloseTimeout: any;
+  notificacoes: (Notificacao & { closing?: boolean, timeoutId?: any })[] = [];
 
   constructor(private notificationService: NotificationService) { }
 
   ngOnInit(): void {
-    this.notificationService.notificacao$.subscribe(n => {
-      this.notificacao = n;
-      
-      if (this.autoCloseTimeout) {
-        clearTimeout(this.autoCloseTimeout);
-        this.autoCloseTimeout = null;
-      }
-
-      if (n) {
-        this.slideOut = false;
-        if (n.tempo && n.tempo > 0) {
-          this.autoCloseTimeout = setTimeout(() => {
-            this.fechar();
-          }, n.tempo);
+    this.notificationService.notificacoes$.subscribe(listaDoServico => {
+      // Adicionar novos
+      listaDoServico.forEach(n => {
+        const existente = this.notificacoes.find(local => local.id === n.id);
+        if (!existente) {
+          const novo: any = { ...n, closing: false };
+          if (n.tempo && n.tempo > 0) {
+            novo.timeoutId = setTimeout(() => this.fechar(novo), n.tempo);
+          }
+          this.notificacoes.push(novo);
         }
-      }
+      });
+
+      // Remover os que não estão mais no serviço
+      this.notificacoes = this.notificacoes.filter(local => 
+        listaDoServico.some(servico => servico.id === local.id)
+      );
     });
   }
 
-  fechar(): void {
-    if (this.slideOut) return;
+  fechar(notificacao: any): void {
+    if (notificacao.closing) return;
     
-    if (this.autoCloseTimeout) {
-      clearTimeout(this.autoCloseTimeout);
-      this.autoCloseTimeout = null;
-    }
+    notificacao.closing = true;
+    if (notificacao.timeoutId) clearTimeout(notificacao.timeoutId);
 
-    this.slideOut = true;
-    clearTimeout(this.closeTimeout);
-    this.closeTimeout = setTimeout(() => {
-      this.notificationService.limpar();
+    setTimeout(() => {
+      this.notificationService.remover(notificacao.id);
     }, 400); // tempo igual ao transition do CSS
   }
 }

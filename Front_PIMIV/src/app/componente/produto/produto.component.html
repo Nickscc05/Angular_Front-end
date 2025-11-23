@@ -1,0 +1,68 @@
+<main class="main-content">
+    <div class="content-header">
+      <h1>Informações de Produtos</h1>
+      <p>Utilize os filtros abaixo para buscar e gerenciar o estoque de produtos.</p>
+    </div>
+
+    <section class="filter-section form-card">
+      <h2>Pesquisar Produto</h2>
+
+      <form id="searchProductForm" class="filter-form">
+        <div class="input-row">
+          <div class="input-group">
+            <label for="searchDescricao">Descrição do Produto</label>
+            <input type="text" id="searchDescricao" name="descricao" placeholder="Ex: Banana, Maçã, Tomate...">
+          </div>
+
+          <div class="input-group">
+            <label for="searchCategoria">Categoria/Grupo</label>
+            <select id="searchCategoria" name="categoria">
+              <option value="">Todas as Categorias</option>
+              <option value="Frutas">Frutas</option>
+              <option value="Verduras">Verduras</option>
+              <option value="Legumes">Legumes</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="searchCodigoBarras">Código de Barras</label>
+            <input type="text" id="searchCodigoBarras" name="codigoBarras" placeholder="Ex: 7891234567890">
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-default search-button">
+            <span class="material-symbols-sharp">search</span>
+            Buscar Produtos
+          </button>
+          <button type="button" class="btn-default clear-button" id="clearProductFilters">
+            <span class="material-symbols-sharp">close</span>
+            Limpar Filtros
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <section class="results-section form-card">
+      <h2>Resultados da Busca</h2>
+
+      <div class="table-container">
+        <table class="data-table" id="productsTable">
+          <thead>
+            <tr>
+              <th>Produto</th>
+              <th>Categoria</th>
+              <th>Fornecedor</th>
+              <th>Estoque</th>
+              <th>Valor (Un.)</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="productsTableBody">
+          </tbody>
+        </table>
+      </div>
+
+      <p id="noProductResults">Nenhum produto encontrado com os filtros aplicados.</p>
+    </section>
+  </main>

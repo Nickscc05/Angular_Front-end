@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-cadastro-usuario',
+  selector: 'app-funcionario',
   standalone: true,
   imports: [],
   templateUrl: './funcionario.component.html',

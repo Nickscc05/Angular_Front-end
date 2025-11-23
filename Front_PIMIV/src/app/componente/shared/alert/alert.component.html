@@ -1,13 +1,13 @@
-@if (notificacao) {
-      <div class="alert-container">
-        <div class="alert"
-            [class.alert-success]="notificacao.tipo === 'sucesso'"
-            [class.alert-error]="notificacao.tipo === 'erro'"
-            [class.alert-info]="notificacao.tipo === 'info'"
-            [class.slide-out]="slideOut"
-        >
-          <span class="message">{{ notificacao.mensagem }}</span>
-          <button class="close-btn" (click)="fechar()">&times;</button>
-        </div>
-      </div>
-    }
+<div class="alert-container">
+  @for (notificacao of notificacoes; track notificacao.id) {
+    <div class="alert"
+        [class.alert-success]="notificacao.tipo === 'sucesso'"
+        [class.alert-error]="notificacao.tipo === 'erro'"
+        [class.alert-info]="notificacao.tipo === 'info'"
+        [class.slide-out]="notificacao.closing"
+    >
+      <span class="message">{{ notificacao.mensagem }}</span>
+      <button class="close-btn" (click)="fechar(notificacao)">&times;</button>
+    </div>
+  }
+</div>

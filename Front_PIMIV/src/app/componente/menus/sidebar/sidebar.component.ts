@@ -37,13 +37,14 @@ export class SidebarComponent {
       estadoSubMenu: false,
       subMenu: [
         
-        { title: 'Cadastrar Usuário', icon: 'assets/img/caduser.SVG.svg', link: '/cadastros/usuario' },
-        { title: 'Cadastrar Fornecedor', icon: 'assets/img/caduser.SVG.svg', link: '/cadastros/fornecedor' },
-        { title: 'Cadastrar Produtos', icon: 'assets/img/produtos.SVG.svg', link: '/produtos/cadastro' },
-        { title: 'Info. dos Produtos', icon: 'assets/img/produtos.SVG.svg', link: '/produtos/info' },
         { title: 'Categoria', icon: 'assets/img/relatorio.SVG.svg', link: '/categoria' },
+        { title: 'Unidades de medida', icon: 'assets/img/relatorio.SVG.svg', link: '/unid-medida' },
+        { title: 'Produto', icon: 'assets/img/produtos.SVG.svg', link: '/produtos/info' },
+        { title: 'Cadastrar usuário', icon: 'assets/img/caduser.SVG.svg', link: '/cadastros/usuario' },
+        { title: 'Cadastrar fornecedor', icon: 'assets/img/caduser.SVG.svg', link: '/cadastros/fornecedor' },
+        { title: 'Cadastrar produtos', icon: 'assets/img/produtos.SVG.svg', link: '/produtos/cadastro' },
         { title: 'Funcionários', icon: 'assets/img/relatorio.SVG.svg', link: '/listagem/funcionarios' },
-        { title: 'Histórico de Vendas', icon: 'assets/img/Vendas.SVG.svg', link: '/vendas/historico' }
+        { title: 'Histórico de vendas', icon: 'assets/img/Vendas.SVG.svg', link: '/vendas/historico' }
       ]
     },
     {
@@ -65,7 +66,7 @@ export class SidebarComponent {
     // Só permite abrir/fechar submenu se o item tiver algum submenu
     if (item.subMenu) {
       event.preventDefault(); // Previne o comportamento padrão do link
-      // item.estadoSubMenu = !item.estadoSubMenu;
+        //item.estadoSubMenu = !item.estadoSubMenu;
 
       // Passa por todos os itens do menu e fecha os submenus abertos, exceto o clicado
       this.menuItems.forEach(menuItem => {

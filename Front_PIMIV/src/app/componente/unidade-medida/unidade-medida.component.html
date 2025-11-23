@@ -1,0 +1,103 @@
+<main class="main-content">
+  <div class="content-header">
+    <h1>Gerenciamento de 'Unidades de Medida'</h1>
+    <p>Adicione, visualize e gerencie as unidades de medida (Kg, Litro, Unidade, etc.).</p>
+  </div>
+
+  <section class="filter-section form-card">
+    @if (!editandoId) {
+      <h2>Adicionar nova unidade</h2>
+    } @else {
+      <h2>Editar unidade</h2>
+    }
+
+    <form id="unidadeForm" class="filter-form" (ngSubmit)="onSubmit()">
+      <div class="input-row">
+        <div class="input-group unidade-input-group">
+          <label for="unidadeName">Nome da unidade</label>
+          <input
+            type="text"
+            id="unidadeName"
+            name="nome"
+            placeholder="Ex: Quilograma, Litro"
+            [(ngModel)]="novaUnidadeNome"
+            maxlength="50"
+            required
+            autofocus
+          />
+        </div>
+
+        <div class="input-group unidade-input-group-sm">
+          <label for="unidadeAbv">Abreviação</label>
+          <input
+            type="text"
+            id="unidadeAbv"
+            name="abreviacao"
+            placeholder="Ex: kg, l, un"
+            [(ngModel)]="novaUnidadeAbreviacao"
+            required
+            maxlength="10"
+            required
+          />
+        </div>
+
+        <div class="form-actions unidade-form-actions">
+          <button type="submit" class="btn-default search-button" [disabled]="enviando || !novaUnidadeNome.trim() || !novaUnidadeAbreviacao.trim()">
+            @if (!editandoId) {
+              <span class="material-symbols-sharp">add_circle</span>
+              {{ enviando ? 'Cadastrando...' : 'Cadastrar' }}
+            } @else {
+              <span class="material-symbols-sharp">save</span>
+              {{ enviando ? 'Salvando...' : 'Salvar' }}
+            }
+          </button>
+          @if (editandoId) {
+            <button type="button" class="btn-default outline" (click)="cancelarEdicao()" [disabled]="enviando">
+              Cancelar
+            </button>
+          }
+        </div>
+      </div>
+    </form>
+  </section>
+
+  <section class="results-section form-card">
+    <h2>Unidades ativas</h2>
+
+    @if (listaUnidades.length) {
+      <div class="table-container">
+        <table class="data-table" id="unidadesTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Abreviação</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (u of listaUnidades; track u.id) {
+              <tr>
+                <td>{{ u.id }}</td>
+                <td>{{ u.nome }}</td>
+                <td>{{ u.abreviacao }}</td>
+                <td>
+                  <button type="button" class="" (click)="iniciarEdicao(u)" [disabled]="enviando"
+                    title="Editar unidade">
+                    <span class="material-symbols-sharp">edit</span>
+                  </button>
+                  <button type="button" class="" (click)="excluir(u.id)" [disabled]="enviando"
+                    title="Excluir unidade" style="color: var(--color-danger);">
+                    <span class="material-symbols-sharp">delete</span>
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <p id="noUnidades" class="empty-message">Nenhuma unidade de medida cadastrada.</p>
+    }
+  </section>
+</main>

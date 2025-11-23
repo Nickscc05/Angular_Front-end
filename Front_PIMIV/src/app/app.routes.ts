@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 import { HomePageComponent } from './componente/homepage/homepage.component';
 import { CategoriaComponent } from './componente/categoria/categoria.component';
 import { FuncionarioComponent } from './componente/funcionario/funcionario.component';
+import { ProdutoComponent } from './componente/produto/produto.component';
+import { UnidadeMedidaComponent } from './componente/unidade-medida/unidade-medida.component';
 
 export const routes: Routes = [
     // Rotas do aplicativo
@@ -12,6 +14,14 @@ export const routes: Routes = [
     {
         path: 'categoria',
         component: CategoriaComponent
+    },
+    {
+        path: 'unid-medida',
+        component: UnidadeMedidaComponent
+    },
+    {
+        path: 'produto',
+        component: ProdutoComponent
     },
     {
         path: 'cadastro-usuario',

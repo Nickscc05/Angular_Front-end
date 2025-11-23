@@ -65,11 +65,11 @@
                 <td>{{ c.id }}</td>
                 <td>{{ c.nome }}</td>
                 <td>
-                  <button type="button" class="table-action" (click)="iniciarEdicao(c)" [disabled]="enviando"
+                  <button type="button" class="" (click)="iniciarEdicao(c)" [disabled]="enviando"
                     title="Editar categoria">
                     <span class="material-symbols-sharp">edit</span>
                   </button>
-                  <button type="button" class="table-action" (click)="excluir(c.id)" [disabled]="enviando"
+                  <button type="button" class="" (click)="excluir(c.id)" [disabled]="enviando"
                     title="Excluir categoria" style="color: var(--color-danger);">
                     <span class="material-symbols-sharp">delete</span>
                   </button>

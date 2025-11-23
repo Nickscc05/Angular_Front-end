@@ -18,24 +18,5 @@
   width: 100%;
 }
 
-.alert {
-  padding: 12px 16px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  font-weight: 500;
-}
-
-.alert-success {
-  background-color: #e5f7e5;
-  color: #276327;
-  border: 1px solid #7bc67b;
-}
-
-.alert-error {
-  background-color: #fdeaea;
-  color: #7a1f1f;
-  border: 1px solid #f19595;
-}
-
 
 

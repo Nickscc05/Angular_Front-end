@@ -22,12 +22,6 @@ export class NotificationService {
   mostrar(mensagem: string, tipo: 'sucesso' | 'erro' | 'info' = 'info', tempo: number = 5000): void {
     this.limpar();
     this.notificacaoSubject.next({ mensagem, tipo, tempo });
-
-    if (tempo > 0) {
-      this.timeoutId = setTimeout(() => {
-        this.limpar();
-      }, tempo);
-    }
   }
 
   sucesso(mensagem: string, tempo: number = 5000): void {

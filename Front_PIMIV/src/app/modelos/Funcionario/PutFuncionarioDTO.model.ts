@@ -1,7 +1,7 @@
-export interface PostFuncionarioDTO {
-
+export interface PutFuncionarioDTO {
+    
     // Propriedades
-    cargoId: number;
+    Id: number;
     cpf: string;
     rg: string;
     nome: string;

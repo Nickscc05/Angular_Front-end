@@ -40,7 +40,7 @@
             <td class="col-qtd">{{ p.quantidadeAtual }}</td>
             <td class="col-qtd">{{ p.quantidadeMinima }}</td>
             <td class="col-status">
-              <span [style.color]="p.ativo ? 'green' : 'red'">
+              <span class="status-badge" [class.active]="p.ativo">
                 {{ p.ativo ? 'Ativo' : 'Inativo' }}
               </span>
             </td>

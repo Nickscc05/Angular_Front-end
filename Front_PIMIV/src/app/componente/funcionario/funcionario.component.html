@@ -1,1 +1,74 @@
-<p>cadastro-usuario works!</p>
+<main class="main-content">
+  <div class="content-header">
+    <div class="header-line">
+      <h1>Gestão de Funcionários</h1>
+      <button class="btn-default" (click)="abrirModalCriacao()">
+        <span class="material-symbols-sharp">person_add</span>
+        Novo Funcionário
+      </button>
+    </div>
+    <p>Cadastre, visualize e mantenha o controle dos colaboradores do sistema.</p>
+  </div>
+
+  <section class="results-section form-card">
+    <h2>Funcionários Cadastrados</h2>
+
+    @if (carregando) {
+      <p>Carregando funcionários...</p>
+    } @else if (listaFuncionarios.length) {
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th class="col-nome">Nome</th>
+              <th class="col-cpf">CPF</th>
+              <th class="col-rg">RG</th>
+              <th class="col-telefone">Telefone</th>
+              <th class="col-telefone">Telefone Extra</th>
+              <th class="col-email">Email</th>
+              <th class="col-status">Status</th>
+              <th class="col-acoes">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (func of listaFuncionarios; track func.id) {
+              <tr>
+                <td class="col-nome">{{ func.nome }}</td>
+                <td class="col-cpf">{{ func.cpf }}</td>
+                <td class="col-rg">{{ func.rg }}</td>
+                <td class="col-telefone">{{ func.telefone }}</td>
+                <td class="col-telefone">{{ func.telefoneExtra || '-' }}</td>
+                <td class="col-email">{{ func.email }}</td>
+                <td class="col-status">
+                  <span class="status-badge" [class.active]="func.ativo">
+                    {{ func.ativo ? 'Ativo' : 'Inativo' }}
+                  </span>
+                </td>
+                <td class="col-acoes">
+                  <button type="button" class="table-action" (click)="abrirModalEdicao(func)" title="Editar funcionário">
+                    <span class="material-symbols-sharp">edit</span>
+                  </button>
+                  <button
+                    type="button"
+                    class="table-action"
+                    (click)="excluir(func.id)"
+                    title="Excluir funcionário"
+                    style="color: var(--color-danger)"
+                  >
+                    <span class="material-symbols-sharp">delete</span>
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <p class="empty-message">Nenhum funcionário cadastrado.</p>
+    }
+  </section>
+</main>
+
+@if (mostrarModal) {
+  <app-funcionario-form [funcionarioId]="funcionarioIdParaEditar" (close)="fecharModal($event)"></app-funcionario-form>
+}

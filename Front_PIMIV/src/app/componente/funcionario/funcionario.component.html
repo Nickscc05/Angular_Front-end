@@ -1,1 +1,189 @@
-<p>cadastro-usuario works!</p>
+<main class="main-content">
+    <div class="content-header">
+        <h1>Gestão de Funcionários (Usuários)</h1>
+        <p>Cadastre, visualize e gerencie as contas de acesso dos funcionários.</p>
+    </div>
+
+    <section class="filter-section form-card">
+        @if (!editandoId) {
+            <h2>Cadastrar Novo Funcionário</h2>
+        } @else {
+            <h2>Editar Dados do Funcionário</h2>
+        }
+
+        <form id="userForm" class="filter-form" (ngSubmit)="onSubmit()">
+            
+            <div class="input-row">
+                <div class="input-group">
+                    <label for="userName">Nome Completo</label>
+                    <input
+                        type="text"
+                        id="userName"
+                        name="nome"
+                        placeholder="Nome completo do funcionário"
+                        [(ngModel)]="novoUsuario.nome"
+                        required
+                        [disabled]="enviando"
+                        autofocus
+                    />
+                </div>
+                <div class="input-group">
+                    <label for="userCpf">CPF</label>
+                    <input
+                        type="text"
+                        id="userCpf"
+                        name="cpf"
+                        placeholder="000.000.000-00"
+                        [(ngModel)]="novoUsuario.cpf"
+                        required
+                        [disabled]="enviando"
+                    />
+                </div>
+                <div class="input-group">
+                    <label for="userEmail">E-mail</label>
+                    <input
+                        type="email"
+                        id="userEmail"
+                        name="email"
+                        placeholder="email@empresa.com"
+                        [(ngModel)]="novoUsuario.email"
+                        required
+                        [disabled]="enviando"
+                    />
+                </div>
+            </div>
+
+            <div class="input-row">
+                <div class="input-group">
+                    <label for="userCargo">Cargo</label>
+                    <select
+                        id="userCargo"
+                        name="cargo"
+                        [(ngModel)]="novoUsuario.cargo"
+                        required
+                        [disabled]="enviando"
+                    >
+                        <option value="Gerente">Gerente</option>
+                        <option value="Vendedor">Vendedor</option>
+                        <option value="Estoquista">Estoquista</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="userTelefone">Telefone</label>
+                    <input
+                        type="tel"
+                        id="userTelefone"
+                        name="telefone"
+                        placeholder="(61) 99999-9999"
+                        [(ngModel)]="novoUsuario.telefone"
+                        required
+                        [disabled]="enviando"
+                    />
+                </div>
+                <div class="input-group">
+                    <label for="userConta">Nº Conta</label>
+                    <input
+                        type="text"
+                        id="userConta"
+                        name="numeroConta"
+                        placeholder="Número da conta"
+                        [(ngModel)]="novoUsuario.numeroConta"
+                        required
+                        [disabled]="enviando"
+                    />
+                </div>
+            </div>
+            
+            @if (!editandoId) {
+            <div class="input-row">
+                <div class="input-group">
+                    <label for="userSenha">Senha</label>
+                    <input
+                        type="password"
+                        id="userSenha"
+                        name="senha"
+                        placeholder="Senha de acesso"
+                        [(ngModel)]="novoUsuario.senha"
+                        required
+                        [disabled]="enviando"
+                    />
+                </div>
+                <div class="input-group">
+                    <label for="userConfirma">Confirmar Senha</label>
+                    <input
+                        type="password"
+                        id="userConfirma"
+                        name="confirmaSenha"
+                        placeholder="Repita a senha"
+                        [(ngModel)]="novoUsuario.confirmaSenha"
+                        required
+                        [disabled]="enviando"
+                    />
+                </div>
+                <div class="input-group"></div> 
+            </div>
+            }
+
+            <div class="form-actions user-form-actions">
+                <button type="submit" class="btn-default search-button" [disabled]="enviando || !novoUsuario.nome.trim()">
+                    @if (!editandoId) {
+                        <span class="material-symbols-sharp">person_add</span>
+                        {{ enviando ? 'Cadastrando...' : 'Cadastrar Funcionário' }}
+                    } @else {
+                        <span class="material-symbols-sharp">save</span>
+                        {{ enviando ? 'Salvando...' : 'Salvar Alterações' }}
+                    }
+                </button>
+                @if (editandoId) {
+                    <button type="button" class="btn-default outline" (click)="cancelarEdicao()" [disabled]="enviando">
+                        Cancelar
+                    </button>
+                }
+            </div>
+        </form>
+    </section>
+
+    <section class="results-section form-card">
+        <h2>Funcionários Ativos</h2>
+
+        @if (listaUsuarios.length) {
+            <div class="table-container">
+                <table class="data-table" id="usersTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Cargo</th>
+                            <th>CPF</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (u of listaUsuarios; track u.id) {
+                            <tr>
+                                <td>{{ u.id }}</td>
+                                <td>{{ u.nome }}</td>
+                                <td>{{ u.cargo }}</td>
+                                <td>{{ u.cpf }}</td>
+                                <td>{{ u.status }}</td>
+                                <td>
+                                    <button type="button" class="table-action" (click)="iniciarEdicao(u)" [disabled]="enviando"
+                                        title="Editar usuário">
+                                        <span class="material-symbols-sharp">edit</span>
+                                    </button>
+                                    <button type="button" class="table-action" (click)="excluir(u.id)" [disabled]="enviando"
+                                        title="Excluir usuário" style="color: var(--color-danger);">
+                                        <span class="material-symbols-sharp">delete</span>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        } @else {
+            <p id="noUsers" class="empty-message">Nenhum funcionário cadastrado.</p>
+        }
+    </section>
+</main>

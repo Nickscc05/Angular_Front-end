@@ -40,10 +40,9 @@ export class SidebarComponent {
         { title: 'Categoria', icon: 'assets/img/relatorio.SVG.svg', link: '/categoria' },
         { title: 'Unidades de medida', icon: 'assets/img/relatorio.SVG.svg', link: '/unid-medida' },
         { title: 'Produto', icon: 'assets/img/produtos.SVG.svg', link: '/produtos/info' },
-        { title: 'Cadastrar usuário', icon: 'assets/img/caduser.SVG.svg', link: '/cadastros/usuario' },
         { title: 'Cadastrar fornecedor', icon: 'assets/img/caduser.SVG.svg', link: '/cadastros/fornecedor' },
         { title: 'Cadastrar produtos', icon: 'assets/img/produtos.SVG.svg', link: '/produtos/cadastro' },
-        { title: 'Funcionários', icon: 'assets/img/relatorio.SVG.svg', link: '/listagem/funcionarios' },
+        { title: 'Funcionario', icon: 'assets/img/relatorio.SVG.svg', link: '/funcionario' },
         { title: 'Histórico de vendas', icon: 'assets/img/Vendas.SVG.svg', link: '/vendas/historico' }
       ]
     },

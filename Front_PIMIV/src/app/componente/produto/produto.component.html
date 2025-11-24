@@ -1,68 +1,74 @@
 <main class="main-content">
-    <div class="content-header">
-      <h1>Informações de Produtos</h1>
-      <p>Utilize os filtros abaixo para buscar e gerenciar o estoque de produtos.</p>
+  <div class="content-header">
+    <div class="header-line">
+      <h1>Gerenciamento de Produtos</h1>
+      <button class="btn-default" (click)="abrirModalCriacao()">
+        <span class="material-symbols-sharp">add_circle</span>
+        Novo Produto
+      </button>
     </div>
+    <p>Adicione, visualize e gerencie os produtos do estoque.</p>
+  </div>
 
-    <section class="filter-section form-card">
-      <h2>Pesquisar Produto</h2>
+  <section class="results-section form-card">
+    <h2>Produtos Cadastrados</h2>
 
-      <form id="searchProductForm" class="filter-form">
-        <div class="input-row">
-          <div class="input-group">
-            <label for="searchDescricao">Descrição do Produto</label>
-            <input type="text" id="searchDescricao" name="descricao" placeholder="Ex: Banana, Maçã, Tomate...">
-          </div>
+    @if (carregando) {
+    <p>Carregando produtos...</p>
+    } @else if (listaProdutos.length) {
+    <div class="table-container">
+      <table class="data-table" id="produtosTable">
+        <thead>
+          <tr>
+            <th class="col-codigo">Código</th>
+            <th class="col-nome">Nome</th>
+            <th class="col-categoria">Categoria</th>
+            <th class="col-preco">Preço</th>
+            <th class="col-qtd">Qtd. Atual</th>
+            <th class="col-qtd">Qtd. Mínima</th>
+            <th class="col-status">Status</th>
+            <th class="col-acoes">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (p of listaProdutos; track p.id) {
+          <tr>
+            <td class="col-codigo">{{ p.codigo }}</td>
+            <td class="col-nome" title="{{ p.nome }}">{{ p.nome }}</td>
+            <td class="col-categoria">{{ p.categoria?.nome }}</td>
+            <td class="col-preco">{{ p.preco | currency : 'BRL' }}</td>
+            <td class="col-qtd">{{ p.quantidadeAtual }}</td>
+            <td class="col-qtd">{{ p.quantidadeMinima }}</td>
+            <td class="col-status">
+              <span [style.color]="p.ativo ? 'green' : 'red'">
+                {{ p.ativo ? 'Ativo' : 'Inativo' }}
+              </span>
+            </td>
+            <td class="col-acoes">
+              <button type="button" (click)="abrirModalEdicao(p)" title="Editar">
+                <span class="material-symbols-sharp">edit</span>
+              </button>
+              <button
+                type="button"
+                (click)="excluir(p.id)"
+                title="Excluir"
+                style="color: var(--color-danger)"
+              >
+                <span class="material-symbols-sharp">delete</span>
+              </button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    } @else {
+    <p class="empty-message">Nenhum produto cadastrado.</p>
+    }
+  </section>
+</main>
 
-          <div class="input-group">
-            <label for="searchCategoria">Categoria/Grupo</label>
-            <select id="searchCategoria" name="categoria">
-              <option value="">Todas as Categorias</option>
-              <option value="Frutas">Frutas</option>
-              <option value="Verduras">Verduras</option>
-              <option value="Legumes">Legumes</option>
-            </select>
-          </div>
-
-          <div class="input-group">
-            <label for="searchCodigoBarras">Código de Barras</label>
-            <input type="text" id="searchCodigoBarras" name="codigoBarras" placeholder="Ex: 7891234567890">
-          </div>
-        </div>
-
-        <div class="form-actions">
-          <button type="submit" class="btn-default search-button">
-            <span class="material-symbols-sharp">search</span>
-            Buscar Produtos
-          </button>
-          <button type="button" class="btn-default clear-button" id="clearProductFilters">
-            <span class="material-symbols-sharp">close</span>
-            Limpar Filtros
-          </button>
-        </div>
-      </form>
-    </section>
-
-    <section class="results-section form-card">
-      <h2>Resultados da Busca</h2>
-
-      <div class="table-container">
-        <table class="data-table" id="productsTable">
-          <thead>
-            <tr>
-              <th>Produto</th>
-              <th>Categoria</th>
-              <th>Fornecedor</th>
-              <th>Estoque</th>
-              <th>Valor (Un.)</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody id="productsTableBody">
-          </tbody>
-        </table>
-      </div>
-
-      <p id="noProductResults">Nenhum produto encontrado com os filtros aplicados.</p>
-    </section>
-  </main>
+@if (mostrarModal) {
+<app-produto-form [produtoId]="produtoIdParaEditar" (close)="fecharModal($event)">
+</app-produto-form>
+}

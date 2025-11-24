@@ -39,11 +39,9 @@ export class SidebarComponent {
         
         { title: 'Categoria', icon: 'assets/img/relatorio.SVG.svg', link: '/categoria' },
         { title: 'Unidades de medida', icon: 'assets/img/relatorio.SVG.svg', link: '/unid-medida' },
-        { title: 'Produto', icon: 'assets/img/produtos.SVG.svg', link: '/produtos/info' },
-        { title: 'Cadastrar fornecedor', icon: 'assets/img/caduser.SVG.svg', link: '/cadastros/fornecedor' },
-        { title: 'Cadastrar produtos', icon: 'assets/img/produtos.SVG.svg', link: '/produtos/cadastro' },
+        { title: 'Produto', icon: 'assets/img/produtos.SVG.svg', link: '/produto' },
         { title: 'Funcionario', icon: 'assets/img/relatorio.SVG.svg', link: '/funcionario' },
-        { title: 'Histórico de vendas', icon: 'assets/img/Vendas.SVG.svg', link: '/vendas/historico' }
+        { title: 'Fornecedor', icon: 'assets/img/caduser.SVG.svg', link: '/fornecedor' },
       ]
     },
     {
@@ -54,7 +52,15 @@ export class SidebarComponent {
         { title: 'Nova Venda', icon: 'assets/img/Vendas.SVG.svg', link: '/vendas/nova' },
       ]
     },
-    { title: 'Caixa', icon: 'assets/img/caixa.SVG.svg', link: '/caixa' },
+    {
+      title: 'Vendas',
+      icon: '',
+      estadoSubMenu: false,
+      subMenu: [
+        { title: 'Caixa', icon: 'assets/img/caixa.SVG.svg', link: '/caixa' },
+        { title: 'Histórico de vendas', icon: 'assets/img/Vendas.SVG.svg', link: '/vendas/historico' },
+      ]
+    },
     { title: 'Relatórios', icon: 'assets/img/relatorio.SVG.svg', link: '/relatorios' },
     { title: 'Sair', icon: 'assets/img/sair.SVG.svg', link: '/login' }
 

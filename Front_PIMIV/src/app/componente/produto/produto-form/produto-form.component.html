@@ -1,0 +1,82 @@
+<div class="modal-overlay">
+  <div class="modal-content form-card">
+    <div class="modal-header">
+      <h2>{{ produtoId ? 'Editar Produto' : 'Novo Produto' }}</h2>
+      <button type="button" class="close-btn" (click)="cancelar()">&times;</button>
+    </div>
+
+    @if (carregando) {
+      <div class="loading">Carregando...</div>
+    } @else {
+      <form (ngSubmit)="onSubmit()" class="filter-form">
+        <div class="form-grid">
+          <!-- Linha 1 -->
+          <div class="input-group">
+            <label for="nome">Nome do Produto *</label>
+            <input type="text" id="nome" [(ngModel)]="produto.nome" name="nome" required placeholder="Ex: Maçã Gala">
+          </div>
+          
+          <div class="input-group">
+            <label for="codigo">Código *</label>
+            <input type="text" id="codigo" [(ngModel)]="produto.codigo" name="codigo" required placeholder="Ex: PROD001">
+          </div>
+
+          <!-- Linha 2 -->
+          <div class="input-group">
+            <label for="categoria">Categoria *</label>
+            <select id="categoria" [(ngModel)]="produto.categoriaId" name="categoriaId" required>
+              <option [ngValue]="0" disabled>Selecione...</option>
+              @for (cat of categorias; track cat.id) {
+                <option [ngValue]="cat.id">{{ cat.nome }}</option>
+              }
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="unidade">Unidade *</label>
+            <select id="unidade" [(ngModel)]="produto.unidadeMedidaId" name="unidadeMedidaId" required>
+              <option [ngValue]="0" disabled>Selecione...</option>
+              @for (uni of unidades; track uni.id) {
+                <option [ngValue]="uni.id">{{ uni.nome }} ({{ uni.abreviacao }})</option>
+              }
+            </select>
+          </div>
+
+          <!-- Linha 3 -->
+          <div class="input-group">
+            <label for="preco">Preço (R$) *</label>
+            <input type="number" id="preco" [(ngModel)]="produto.preco" name="preco" placeholder="0,00" required min="0" max="99999999.99" step="0.01">
+          </div>
+
+          <div class="input-group">
+            <label for="qtdMin">Qtd. Mínima *</label>
+            <input type="number" id="qtdMin" [(ngModel)]="produto.quantidadeMinima" name="quantidadeMinima" required min="0">
+          </div>
+
+          @if (produtoId) {
+          <div class="input-group status-toggle">
+            <label for="ativo" class="toggle-label">
+              <input type="checkbox" id="ativo" [(ngModel)]="ativo" name="ativo">
+              Produto ativo
+            </label>
+          </div>
+          }
+
+          <!-- Linha 4 -->
+          <div class="input-group full-width">
+            <label for="descricao">Descrição</label>
+            <textarea id="descricao" [(ngModel)]="produto.descricao" name="descricao" rows="3"></textarea>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn-default outline" (click)="cancelar()" [disabled]="enviando">Cancelar</button>
+          <button type="submit" class="btn-default" [disabled]="enviando">
+            <span class="material-symbols-sharp">save</span>
+            {{ enviando ? 'Salvando...' : 'Salvar' }}
+          </button>
+        </div>
+      </form>
+    }
+  </div>
+</div>

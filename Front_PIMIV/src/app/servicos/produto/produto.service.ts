@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 //import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
-import { PostProdutoDTO } from '../../modelos/DTO/PostProdutoDTO.model';
-import { Produto } from '../../modelos/Produto.model';
+import { PostProdutoDTO } from '../../modelos/Produto/PostProdutoDTO.model';
+import { Produto } from '../../modelos/Produto/Produto.model';
 import { GetProdutoEstoqueCriticoDTO } from '../../modelos/DTO/GetProdutoEstoqueCriticoDTO.model';
+import { GetProdutoDTO } from '../../modelos/Produto/GetProdutoDTO';
+import { PutProdutoDTO } from '../../modelos/Produto/PutProdutoDTO.models';
 
 @Injectable({ providedIn: 'root' })
 export class ProdutoService {
@@ -14,28 +16,38 @@ export class ProdutoService {
 
   constructor(private http: HttpClient) {}
 
-  listar(): Observable<Produto[]> {
-    return this.http.get<Produto[]>(this.url);
+  // GET: api/Produto
+  obterTodosOsProdutos(): Observable<GetProdutoDTO[]> {
+    return this.http.get<GetProdutoDTO[]>(this.url);
   }
 
-  obter(id: number): Observable<Produto> {
-    return this.http.get<Produto>(`${this.url}/${id}`);
-  }
-  
-  // getObterPorCodigo(codigo: string): Observable<Produto> {
-  //   return this.http.get<Produto>(`${this.url}/codigo/${codigo}`);
-  // }
-
-  getEstoqueCritico(): Observable<GetProdutoEstoqueCriticoDTO[]> {
+  // GET: api/Produto/estoque-critico
+  obterProdutosComEstoqueCritico(): Observable<GetProdutoEstoqueCriticoDTO[]> {
     return this.http.get<GetProdutoEstoqueCriticoDTO[]>(`${this.url}/estoque-critico`);
   }
 
-  criar(dto: PostProdutoDTO): Observable<Produto> {
-    return this.http.post<Produto>(this.url, dto);
+  // GET: api/Produto/{id}
+  obterProdutoPorId(id: number): Observable<GetProdutoDTO> {
+    return this.http.get<GetProdutoDTO>(`${this.url}/${id}`);
   }
 
-  atualizar(id: number, produto: Partial<Produto>): Observable<void> {
+  // GET: api/Produto/codigo/{codigo}
+  obterProdutoPorCodigo(codigo: string): Observable<GetProdutoDTO> {
+    return this.http.get<GetProdutoDTO>(`${this.url}/codigo/${codigo}`);
+  }
+
+  // POST: api/Produto
+  criarProduto(produto: PostProdutoDTO): Observable<GetProdutoDTO> {
+    return this.http.post<GetProdutoDTO>(this.url, produto);
+  }
+
+  // PUT: api/Produto/{id}
+  atualizarProduto(id: number, produto: PutProdutoDTO): Observable<void> {
     return this.http.put<void>(`${this.url}/${id}`, produto);
   }
-  
+
+  // DELETE: api/Produto/{id}
+  deletarProduto(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.url}/${id}`);
+  }
 }

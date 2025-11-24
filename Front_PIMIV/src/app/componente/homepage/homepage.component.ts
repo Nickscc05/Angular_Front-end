@@ -50,7 +50,7 @@ export class HomePageComponent implements OnInit {
     this.carregandoAlertas = true;
     this.erroCarregamento = null;
 
-    this.produtoService.getEstoqueCritico().subscribe({
+    this.produtoService.obterProdutosComEstoqueCritico().subscribe({
       next: (data) => {
         this.alertasEstoque = data;
         this.carregandoAlertas = false;

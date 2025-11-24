@@ -40,8 +40,8 @@ export class SidebarComponent {
         { title: 'Categoria', icon: 'assets/img/relatorio.SVG.svg', link: '/categoria' },
         { title: 'Unidades de medida', icon: 'assets/img/relatorio.SVG.svg', link: '/unid-medida' },
         { title: 'Produto', icon: 'assets/img/produtos.SVG.svg', link: '/produto' },
-        { title: 'Funcionario', icon: 'assets/img/relatorio.SVG.svg', link: '/funcionario' },
         { title: 'Fornecedor', icon: 'assets/img/caduser.SVG.svg', link: '/fornecedor' },
+        { title: 'Funcionario', icon: 'assets/img/relatorio.SVG.svg', link: '/funcionario' },
       ]
     },
     {

@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CategoriaService } from '../../servicos/categoria/categoria.service';
-import { Categoria } from '../../modelos/Categoria.model';
-import { PostCategoriaDTO } from '../../modelos/DTO/PostCategoriaDTO.model';
+import { Categoria } from '../../modelos/Categoria/Categoria.model';
+import { PostCategoriaDTO } from '../../modelos/Categoria/PostCategoriaDTO.model';
 import { finalize } from 'rxjs';
 import { ErrorHandlerService } from '../../servicos/shared/error-handler.service';
 import { NotificationService } from '../../servicos/shared/notification.service';
@@ -34,7 +34,7 @@ export class CategoriaComponent implements OnInit {
   }
 
   private obterCategorias(): void {
-    this.categoriaService.listar().subscribe({
+    this.categoriaService.obterTodas().subscribe({
       next: (categorias) => { this.listaCategorias = categorias; },
       error: (erro) => {
         console.error('Erro ao obter categorias:', erro);

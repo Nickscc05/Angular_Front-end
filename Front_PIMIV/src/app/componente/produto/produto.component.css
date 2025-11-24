@@ -1,0 +1,114 @@
+/*  Mudanças CSS Alexandre */
+/*  Produto */
+:host .form-card {
+  background-color: #669b665d;
+  padding: 30px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Garantir que o componente raiz expanda toda a largura */
+:host {
+  display: block;
+  width: 100%;
+}
+
+button {
+  margin: 1%;
+}
+
+.actions-section {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.actions-section .btn-default {
+  height: 44px;
+  padding: 0 20px;
+  font-size: 1rem;
+}
+
+.header-line {
+    display: flex;
+
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Tabela */
+.table-container {
+  width: 100%;
+  overflow-x: auto; 
+}
+
+.data-table {
+  width: 100%;
+  table-layout: fixed; /* OBRIGATÓRIO: Respeita as larguras definidas abaixo */
+  border-collapse: collapse;
+}
+
+/* Estilo base das células */
+.data-table th,
+.data-table td {
+  padding: 0.75rem;
+  text-align: center;
+  /* Mantém o texto em uma linha e coloca ... se for grande demais */
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-bottom: 1px solid #eee; /* Opcional: linha separadora suave */
+}
+
+/* --- DEFINIÇÃO DAS LARGURAS (Soma = 100%) --- */
+/* 
+  Para que o table-layout: fixed funcione, as larguras devem ser aplicadas
+  diretamente nos cabeçalhos (th) ou na primeira linha de células (td).
+  Ao usar o seletor ':host' isso garante que o estilo se aplique dentro do componente.
+*/
+
+/* Código: Pequeno */
+:host .data-table .col-codigo {
+  width: 10%; 
+}
+
+/* Nome: O maior espaço */
+:host .data-table .col-nome {
+  width: 20%;
+  text-align: center;
+}
+
+/* Categoria: Espaço médio */
+:host .data-table .col-categoria {
+  width: 20%;
+}
+
+/* Preço: Pequeno */
+:host .data-table .col-preco {
+  width: 10%;
+}
+
+/* Quantidades: Centralizadas e pequenas */
+:host .data-table .col-qtd {
+  width: 10%;
+}
+
+/* Status: Pequeno */
+:host .data-table .col-status {
+  width: 10%;
+}
+
+/* Ações: Botões */
+:host .data-table .col-acoes {
+  width: 10%;
+  overflow: visible; /* Permite ver o tooltip ou sombra do botão se houver */
+}
+
+/* Ajuste para telas menores (Responsividade básica) */
+@media (max-width: 768px) {
+    .data-table td, .data-table th {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+}

@@ -3,35 +3,31 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 // import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
-import { PostCategoriaDTO } from '../../modelos/DTO/PostCategoriaDTO.model';
-import { Categoria } from '../../modelos/Categoria.model';
+import { PostCategoriaDTO } from '../../modelos/Categoria/PostCategoriaDTO.model';
+import { Categoria } from '../../modelos/Categoria/Categoria.model';
+import { PutCategoriaDTO } from '../../modelos/Categoria/PutCategoriaDTO.model';
 
 @Injectable({ providedIn: 'root' })
 export class CategoriaService {
-  
+
   private readonly url = `http://localhost:5030/api/Categoria`;
   // private readonly url = `${environment.apiBaseUrl}/Categoria`;
 
   constructor(private http: HttpClient) { }
 
-  listar(): Observable<Categoria[]> {
+  obterTodas(): Observable<Categoria[]> {
     return this.http.get<Categoria[]>(this.url);
   }
 
   obterPorId(id: number): Observable<Categoria> {
     return this.http.get<Categoria>(`${this.url}/${id}`);
   }
-  
-  // MAYBE? PENSANDO ALTO
-  // obterPorNome(nome: string): Observable<Categoria> {
-  //   return this.http.get<Categoria>(`${this.url}/nome/${nome}`);
-  // }
 
-  criar(dto: PostCategoriaDTO): Observable<Categoria> {
-    return this.http.post<Categoria>(this.url, dto);
+  criar(categoria: PostCategoriaDTO): Observable<Categoria> {
+    return this.http.post<Categoria>(this.url, categoria);
   }
 
-  atualizar(id: number, categoria: Partial<Categoria>): Observable<void> {
+  atualizar(id: number, categoria: PutCategoriaDTO): Observable<void> {
     return this.http.put<void>(`${this.url}/${id}`, categoria);
   }
 

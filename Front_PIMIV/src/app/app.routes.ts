@@ -4,6 +4,7 @@ import { CategoriaComponent } from './componente/categoria/categoria.component';
 import { FuncionarioComponent } from './componente/funcionario/funcionario.component';
 import { ProdutoComponent } from './componente/produto/produto.component';
 import { UnidadeMedidaComponent } from './componente/unidade-medida/unidade-medida.component';
+import { FornecedorComponent } from './componente/fornecedor/fornecedor.component';
 
 export const routes: Routes = [
     // Rotas do aplicativo
@@ -26,6 +27,10 @@ export const routes: Routes = [
     {
         path: 'funcionario',
         component: FuncionarioComponent
+    },
+    {
+        path: 'fornecedor',
+        component: FornecedorComponent
     },
 
 

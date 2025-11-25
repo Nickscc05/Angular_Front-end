@@ -1,0 +1,72 @@
+<main class="main-content">
+  <div class="content-header">
+    <div class="header-line">
+      <h1>Gestão de Fornecedores</h1>
+      <button class="btn-default" (click)="abrirModalCriacao()">
+        <span class="material-symbols-sharp">add_business</span>
+        Novo Fornecedor
+      </button>
+    </div>
+    <p>Cadastre, visualize e mantenha o controle dos fornecedores do sistema.</p>
+  </div>
+
+  <section class="results-section form-card">
+    <h2>Fornecedores Cadastrados</h2>
+
+    @if (carregando) {
+      <p>Carregando fornecedores...</p>
+    } @else if (listaFornecedores.length) {
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th class="col-nome">Nome</th>
+              <th class="col-documento">Documento</th>
+              <th class="col-telefone">Telefone</th>
+              <th class="col-email">Email</th>
+              <th class="col-data">Data de Registro</th>
+              <th class="col-status">Status</th>
+              <th class="col-acoes">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (fornecedor of listaFornecedores; track fornecedor.id) {
+              <tr>
+                <td class="col-nome">{{ fornecedor.nome }}</td>
+                <td class="col-documento">{{ fornecedor.cadastroPessoa }}</td>
+                <td class="col-telefone">{{ fornecedor.telefone }}</td>
+                <td class="col-email">{{ fornecedor.email }}</td>
+                <td class="col-data">{{ fornecedor.dataRegistro | date: 'dd/MM/yyyy' }}</td>
+                <td class="col-status">
+                  <span class="status-badge" [class.active]="fornecedor.ativo">
+                    {{ fornecedor.ativo ? 'Ativo' : 'Inativo' }}
+                  </span>
+                </td>
+                <td class="col-acoes">
+                  <button type="button" class="table-action" (click)="abrirModalEdicao(fornecedor)" title="Editar fornecedor">
+                    <span class="material-symbols-sharp">edit</span>
+                  </button>
+                  <button
+                    type="button"
+                    class="table-action"
+                    (click)="excluir(fornecedor.id)"
+                    title="Excluir fornecedor"
+                    style="color: var(--color-danger)"
+                  >
+                    <span class="material-symbols-sharp">delete</span>
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <p class="empty-message">Nenhum fornecedor cadastrado.</p>
+    }
+  </section>
+</main>
+
+@if (mostrarModal) {
+  <app-fornecedor-form [fornecedorId]="fornecedorIdParaEditar" (close)="fecharModal($event)"></app-fornecedor-form>
+}

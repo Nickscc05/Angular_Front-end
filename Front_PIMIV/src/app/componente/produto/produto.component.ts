@@ -38,7 +38,6 @@ export class ProdutoComponent implements OnInit {
       next: (produtos) => {
         this.listaProdutos = produtos;
         this.carregando = false;
-        console.log('Produtos carregados:', produtos);
       },
       error: (erro) => {
         console.error('Erro ao obter produtos:', erro);

@@ -5,9 +5,9 @@ export interface ItemEntrada {
     entradaId: number;
     produtoId: number;
     lote: string;
+    validade: string;
     precoUnitario: number;
     quantidade: number;
-    validade: string;
 
     // Relacionamentos
     // entrada?: Entrada;

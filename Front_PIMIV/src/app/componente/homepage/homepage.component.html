@@ -62,7 +62,7 @@
     <!--fim insights-->
     <!--inicio pedidos recents-->
     <div class="recent_order">
-      <h1>Entradas Recentes</h1>
+      <h1>Entradas recentes</h1>
     
     @if (isLoadingEntradas) {
       <div>Carregando entradas...</div>
@@ -72,21 +72,21 @@
       <table>
           <thead>
               <tr>
-                  <th>Descrição produto</th>
-                  <th>Código</th>
+                  <th>ID</th>
+                  <th>Fornecedor</th>
+                  <th>Motivo</th>
                   <th>Valor total</th>
-                  <th>Qtd. itens</th> 
-                  <th>Fornecedor ID</th>
+                  <th>Data da Compra</th>
               </tr>
           </thead>
           <tbody>
-              @for (entrada of entradasRecentes; track entrada.codigo) {
+              @for (entrada of entradasRecentes; track entrada.id) {
                 <tr>
-                    <td>{{ entrada.descricaoProduto }}</td>
-                    <td>{{ entrada.codigo }}</td>
+                    <td>{{ entrada.id }}</td>
+                    <td>{{ entrada.nomeFantasiaFornecedor }}</td>
+                    <td>{{ entrada.motivo }}</td>
                     <td>{{ entrada.precoTotal | currency: 'BRL' }}</td>
-                    <td>{{ entrada.itens }} und</td>
-                    <td>{{ entrada.fornecedorId }}</td>
+                    <td>{{ entrada.dataCompra | date: 'dd/MM/yyyy' }}</td>
                 </tr>
               }
           </tbody>

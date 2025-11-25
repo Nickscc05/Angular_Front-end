@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Fornecedor } from '../../servicos/fornecedor/fornecedor.services';
+import { FornecedorService } from '../../servicos/fornecedor/fornecedor.service';
 import { NotificationService } from '../../servicos/shared/notification.service';
 import { ErrorHandlerService } from '../../servicos/shared/error-handler.service';
 import { GetFornecedorDTO } from '../../modelos/Fornecedor/GetFornecedor.model';
@@ -20,7 +20,7 @@ export class FornecedorComponent implements OnInit {
   fornecedorIdParaEditar: number | null = null;
 
   constructor(
-    private fornecedorService: Fornecedor,
+    private fornecedorService: FornecedorService,
     private notification: NotificationService,
     private errorHandler: ErrorHandlerService
   ) {}

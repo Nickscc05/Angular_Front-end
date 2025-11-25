@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { finalize } from 'rxjs';
-import { Fornecedor } from '../../../servicos/fornecedor/fornecedor.services';
+import { FornecedorService } from '../../../servicos/fornecedor/fornecedor.service';
 import { NotificationService } from '../../../servicos/shared/notification.service';
 import { ErrorHandlerService } from '../../../servicos/shared/error-handler.service';
 import { PostFornecedorDTO } from '../../../modelos/Fornecedor/PostFornecedorDTO.model';
@@ -26,7 +26,7 @@ export class FornecedorFormComponent implements OnInit, OnChanges {
     carregando = false;
 
     constructor(
-        private fornecedorService: Fornecedor,
+        private fornecedorService: FornecedorService,
         private notification: NotificationService,
         private errorHandler: ErrorHandlerService
     ) {}

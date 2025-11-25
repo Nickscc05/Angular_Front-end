@@ -1,7 +1,8 @@
-import { ItemEntradaDTO } from "../DTO/ItemEntradaDTO.model";
+import { ItemEntradaDTO } from "../ItemEntrada/ItemEntradaDTO.model";
+
 
 export interface GetEntradaDTO {
-
+  
   id: number;
   numeroNota?: string;
   nomeFantasiaFornecedor: string;

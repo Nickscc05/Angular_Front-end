@@ -1,0 +1,58 @@
+<div class="modal-overlay">
+  <div class="modal-content form-card">
+    <div class="modal-header">
+      <h2>{{ fornecedorId ? 'Editar Fornecedor' : 'Novo Fornecedor' }}</h2>
+      <button type="button" class="close-btn" (click)="cancelar()">&times;</button>
+    </div>
+
+    @if (carregando) {
+      <div class="loading">Carregando dados...</div>
+    } @else {
+      <form (ngSubmit)="onSubmit()" class="filter-form">
+        <div class="form-grid">
+          <div class="input-group">
+            <label for="nomeFantasia">Nome Fantasia *</label>
+            <input type="text" id="nomeFantasia" name="nomeFantasia" [(ngModel)]="fornecedor.nomeFantasia" required />
+          </div>
+
+          <div class="input-group">
+            <label for="cadastroPessoa">CPF/CNPJ *</label>
+            <input type="text" id="cadastroPessoa" name="cadastroPessoa" [(ngModel)]="fornecedor.cadastroPessoa" required />
+          </div>
+
+          <div class="input-group">
+            <label for="telefone">Telefone *</label>
+            <input type="text" id="telefone" name="telefone" [(ngModel)]="fornecedor.telefone" required />
+          </div>
+
+          <div class="input-group">
+            <label for="telefoneExtra">Telefone extra</label>
+            <input type="text" id="telefoneExtra" name="telefoneExtra" [(ngModel)]="fornecedor.telefoneExtra" />
+          </div>
+
+          <div class="input-group">
+            <label for="email">E-mail *</label>
+            <input type="email" id="email" name="email" [(ngModel)]="fornecedor.email" required />
+          </div>
+
+          @if (fornecedorId) {
+          <div class="input-group status-toggle">
+            <label for="ativo" class="toggle-label">
+              <input type="checkbox" id="ativo" name="ativo" [(ngModel)]="ativo" />
+              Fornecedor ativo
+            </label>
+          </div>
+          }
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn-default outline" (click)="cancelar()" [disabled]="enviando">Cancelar</button>
+          <button type="submit" class="btn-default" [disabled]="enviando">
+            <span class="material-symbols-sharp">save</span>
+            {{ enviando ? 'Salvando...' : 'Salvar' }}
+          </button>
+        </div>
+      </form>
+    }
+  </div>
+</div>

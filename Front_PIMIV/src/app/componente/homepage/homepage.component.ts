@@ -30,7 +30,7 @@ export class HomePageComponent implements OnInit {
 
   constructor(
     private produtoService: ProdutoService,
-    private financeiroService: FinanceiroService,
+    private entradaService: EntradaService,
     private errorHandler: ErrorHandlerService,
     private notification: NotificationService
   ) { }
@@ -99,7 +99,7 @@ export class HomePageComponent implements OnInit {
 
   carregarEntradasRecentes() {
     this.isLoadingEntradas = true;
-    this.financeiroService.obterEntradasRecentes(6)
+    this.entradaService.obterEntradasRecentes()
       .pipe(finalize(() => this.isLoadingEntradas = false))
       .subscribe({
         next: (dados) => {

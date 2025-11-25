@@ -46,7 +46,7 @@ export class SidebarComponent {
     },
     {
       title: 'Entrada',
-      icon: '',
+      icon: 'assets/img/entrada.svg',
       estadoSubMenu: false,
       subMenu: [
         { title: 'Nova Venda', icon: 'assets/img/Vendas.SVG.svg', link: '/vendas/nova' },
@@ -54,7 +54,7 @@ export class SidebarComponent {
     },
     {
       title: 'Vendas',
-      icon: '',
+      icon: 'assets/img/vendasGerenciar.svg',
       estadoSubMenu: false,
       subMenu: [
         { title: 'Caixa', icon: 'assets/img/caixa.SVG.svg', link: '/caixa' },

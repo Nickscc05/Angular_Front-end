@@ -5,6 +5,8 @@ import { FuncionarioComponent } from './componente/funcionario/funcionario.compo
 import { ProdutoComponent } from './componente/produto/produto.component';
 import { UnidadeMedidaComponent } from './componente/unidade-medida/unidade-medida.component';
 import { FornecedorComponent } from './componente/fornecedor/fornecedor.component';
+import { HistoricoVendasComponent } from './componente/historico-vendas/historico-vendas.component';
+import { MotivoMovimentacaoComponent } from './componente/motivo-movimentacao/motivo-movimentacao.component';
 
 export const routes: Routes = [
     // Rotas do aplicativo
@@ -31,6 +33,14 @@ export const routes: Routes = [
     {
         path: 'fornecedor',
         component: FornecedorComponent
+    },
+    {
+        path: 'historico-vendas',
+        component: HistoricoVendasComponent
+    },
+    {
+        path: 'motivo-movimentacao',
+        component: MotivoMovimentacaoComponent
     },
 
 

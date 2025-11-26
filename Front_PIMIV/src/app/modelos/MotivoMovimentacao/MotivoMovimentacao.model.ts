@@ -2,7 +2,7 @@ export interface MotivoMovimentacao {
 
     // Propriedades
     id: number;
-    tipoMovimentacao: string;
+    motivo: string;
     ativo: boolean;
 
     // Relacionamentos

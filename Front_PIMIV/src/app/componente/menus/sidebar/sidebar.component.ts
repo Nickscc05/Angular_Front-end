@@ -42,6 +42,7 @@ export class SidebarComponent {
         { title: 'Produto', icon: 'assets/img/produtos.SVG.svg', link: '/produto' },
         { title: 'Fornecedor', icon: 'assets/img/caduser.SVG.svg', link: '/fornecedor' },
         { title: 'Funcionario', icon: 'assets/img/relatorio.SVG.svg', link: '/funcionario' },
+        { title: 'Motivo de movimentação', icon: 'assets/img/relatorio.SVG.svg', link: '/motivo-movimentacao' },
       ]
     },
     {
@@ -58,7 +59,7 @@ export class SidebarComponent {
       estadoSubMenu: false,
       subMenu: [
         { title: 'Caixa', icon: 'assets/img/caixa.SVG.svg', link: '/caixa' },
-        { title: 'Histórico de vendas', icon: 'assets/img/Vendas.SVG.svg', link: '/vendas/historico' },
+        { title: 'Histórico de vendas', icon: 'assets/img/Vendas.SVG.svg', link: '/historico-vendas' },
       ]
     },
     { title: 'Relatórios', icon: 'assets/img/relatorio.SVG.svg', link: '/relatorios' },

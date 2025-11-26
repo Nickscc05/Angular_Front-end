@@ -16,7 +16,7 @@ import { GetProdutoDTO } from '../../modelos/Produto/GetProdutoDTO';
   selector: 'app-historico-produto',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './historico-produto.component.html',
+  templateUrl:'./historico-produto.component.html',
   styleUrls: ['./historico-produto.component.css']
 })
 export class HistoricoProdutoComponent implements OnInit {

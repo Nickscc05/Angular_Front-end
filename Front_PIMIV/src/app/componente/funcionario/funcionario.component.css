@@ -1,0 +1,101 @@
+/*  Mudanças CSS Alexandre */
+/*  Funcionario (baseado em Produto) */
+:host .form-card {
+    background-color: #669b665d;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+:host {
+    display: block;
+    width: 100%;
+}
+
+button {
+    margin: 1%;
+}
+
+.actions-section {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.actions-section .btn-default {
+    height: 44px;
+    padding: 0 20px;
+    font-size: 1rem;
+}
+
+.header-line {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.data-table th,
+.data-table td {
+    padding: 0.75rem;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-bottom: 1px solid #eee;
+}
+
+/* --- DEFINIÇÃO DAS LARGURAS (Soma = 100%) --- */
+:host .data-table .col-nome {
+    width: 20%;
+    text-align: center;
+}
+
+:host .data-table .col-cpf {
+    width: 13%;
+}
+
+:host .data-table .col-rg {
+    width: 10%;
+}
+
+:host .data-table .col-telefone {
+    width: 13%;
+}
+
+:host .data-table .col-email {
+    width: 15%;
+}
+
+:host .data-table .col-banco {
+    width: 13%;
+}
+
+:host .data-table .col-status {
+    width: 8%;
+}
+
+:host .data-table .col-acoes {
+    width: 8%;
+    overflow: visible;
+}
+
+@media (max-width: 768px) {
+
+    .data-table td,
+    .data-table th {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+}

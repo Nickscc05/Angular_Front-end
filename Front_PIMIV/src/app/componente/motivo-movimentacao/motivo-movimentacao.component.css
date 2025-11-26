@@ -39,15 +39,15 @@ button {
 }
 
 /* --- DEFINIÇÃO DAS LARGURAS --- */
-:host .data-table .col-id {
+/* :host .data-table .col-id {
   width: 20%;
 }
 
 :host .data-table .col-nome {
   width: 60%;
 }
-
+*/
 :host .data-table .col-acoes {
-  width: 20%;
+  width: 80%;
   overflow: visible;
-}
+} 

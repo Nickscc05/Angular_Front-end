@@ -7,6 +7,8 @@ import { UnidadeMedidaComponent } from './componente/unidade-medida/unidade-medi
 import { FornecedorComponent } from './componente/fornecedor/fornecedor.component';
 import { HistoricoVendasComponent } from './componente/historico-vendas/historico-vendas.component';
 import { MotivoMovimentacaoComponent } from './componente/motivo-movimentacao/motivo-movimentacao.component';
+import { HistoricoProdutoComponent } from './componente/historico-produto/historico-produto.component';
+import { FornecedorProdutoComponent } from './componente/fornecedor-produto/fornecedor-produto.component';
 
 export const routes: Routes = [
     // Rotas do aplicativo
@@ -41,6 +43,14 @@ export const routes: Routes = [
     {
         path: 'motivo-movimentacao',
         component: MotivoMovimentacaoComponent
+    },
+    {
+        path: 'historico-precos',
+        component: HistoricoProdutoComponent
+    },
+    {
+        path: 'fornecedor-produto',
+        component: FornecedorProdutoComponent
     },
 
 

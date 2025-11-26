@@ -1,0 +1,77 @@
+<main class="main-content">
+    <div class="content-header">
+        <h1>Histórico de Produto</h1>
+        <p>Visualize o histórico de movimentações de um produto.</p>
+    </div>
+
+    <section class="filter-section form-card">
+        <h2>Filtros de Histórico</h2>
+        
+        <form id="searchHistoryForm" class="filter-form" (ngSubmit)="onSearch()">
+            <div class="filter-options">
+                <label>Tipo de Busca:</label>
+                <div class="radio-group">
+                    <input type="radio" id="todos" name="searchType" value="todos" [(ngModel)]="searchType">
+                    <label for="todos">Todos</label>
+                    
+                    <input type="radio" id="idRegistro" name="searchType" value="idRegistro" [(ngModel)]="searchType">
+                    <label for="idRegistro">Por ID do Registro</label>
+                    
+                    <input type="radio" id="idProduto" name="searchType" value="idProduto" [(ngModel)]="searchType">
+                    <label for="idProduto">Por Produto</label>
+                </div>
+            </div>
+
+            <div class="input-row">
+                <div *ngIf="searchType === 'idRegistro'" class="input-group">
+                    <label for="searchId">ID do Registro</label>
+                    <input type="number" id="searchId" name="searchId" [(ngModel)]="searchId" placeholder="Digite o ID do registro">
+                </div>
+                
+                <div *ngIf="searchType === 'idProduto'" class.input-group>
+                    <label for="product">Produto</label>
+                    <select id="product" name="product" [(ngModel)]="selectedProduto">
+                        <option [ngValue]="null">Selecione um Produto</option>
+                        <option *ngFor="let p of produtos$ | async" [value]="p.id">{{ p.nome }}</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn-default search-button" [disabled]="isSearchButtonDisabled()">
+                    <span class="material-symbols-sharp">search</span>
+                    {{ loadingHistorico ? 'Buscando...' : 'Buscar Histórico' }}
+                </button>
+                <button type="button" class="btn-default clear-button" (click)="clearFilters()">
+                    <span class="material-symbols-sharp">close</span>
+                    Limpar Filtros
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <section class="results-section form-card">
+        <h2>Resultados da Busca</h2>
+        
+        <div *ngIf="historico$ | async as historico" class="table-container">
+            <table class="data-table" id="historyTable">
+                <thead>
+                    <tr>
+                        <th class="col-data">Data da Alteração</th>
+                        <th class="col-preco">Preço do Produto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let h of historico">
+                        <td>{{ h.dataAlteracao | date:'dd/MM/yyyy HH:mm' }}</td>
+                        <td>{{ h.precoProduto | currency:'BRL' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p *ngIf="!historico.length && !loadingHistorico" id="noHistoryResults">Nenhum histórico encontrado com os filtros aplicados.</p>
+        </div>
+        <div *ngIf="loadingHistorico">
+            <p>Carregando histórico...</p>
+        </div>
+    </section>
+</main>

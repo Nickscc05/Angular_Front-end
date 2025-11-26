@@ -7,7 +7,7 @@ import { UnidadeMedidaService } from '../../../servicos/unidade-medida/unidade-m
 import { NotificationService } from '../../../servicos/shared/notification.service';
 import { ErrorHandlerService } from '../../../servicos/shared/error-handler.service';
 import { Categoria } from '../../../modelos/Categoria/Categoria.model';
-import { UnidadeMedida } from '../../../modelos/UnidadeMedida.model';
+import { UnidadeMedida } from '../../../modelos/UnidadeMedida/UnidadeMedida.model';
 import { PostProdutoDTO } from '../../../modelos/Produto/PostProdutoDTO.model';
 import { PutProdutoDTO } from '../../../modelos/Produto/PutProdutoDTO.models';
 import { GetProdutoDTO } from '../../../modelos/Produto/GetProdutoDTO';

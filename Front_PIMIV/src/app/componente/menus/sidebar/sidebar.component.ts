@@ -43,6 +43,9 @@ export class SidebarComponent {
         { title: 'Fornecedor', icon: 'assets/img/caduser.SVG.svg', link: '/fornecedor' },
         { title: 'Funcionario', icon: 'assets/img/relatorio.SVG.svg', link: '/funcionario' },
         { title: 'Motivo de movimentação', icon: 'assets/img/relatorio.SVG.svg', link: '/motivo-movimentacao' },
+        { title: 'Histórico de preços produtos', icon: 'assets/img/relatorio.SVG.svg', link: '/historico-precos' },
+        { title: 'Fornecedor e produtos', icon: 'assets/img/relatorio.SVG.svg', link: '/fornecedor-produto' }
+
       ]
     },
     {

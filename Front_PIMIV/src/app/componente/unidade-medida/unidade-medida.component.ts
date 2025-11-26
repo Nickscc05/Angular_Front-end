@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UnidadeMedidaService } from '../../servicos/unidade-medida/unidade-medida.service.service';
-import { UnidadeMedida } from '../../modelos/UnidadeMedida.model';
+import { UnidadeMedida } from '../../modelos/UnidadeMedida/UnidadeMedida.model';
 import { PostUnidadeMedidaDTO } from '../../modelos/DTO/PostUnidadeMedidaDTO.model';
 import { PutUnidadeMedidaDTO } from '../../modelos/DTO/PutUnidadeMedidaDTO.model';
 import { finalize } from 'rxjs';

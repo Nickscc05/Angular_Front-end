@@ -1,4 +1,4 @@
-export interface GetEntradaSimples {
+export interface GetEntradaSimplesDTO {
   
   id: number;
   nomeFantasiaFornecedor: string;

@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { GetProdutoEstoqueCriticoDTO } from '../../modelos/DTO/GetProdutoEstoqueCriticoDTO.model';
 import { ProdutoService } from '../../servicos/produto/produto.service';
-import { FinanceiroService, Entrada } from '../../servicos/financeiro/financeiro.service';
-import { CommonModule, CurrencyPipe, DecimalPipe } from '@angular/common';
-import { finalize } from 'rxjs';
+import { FinanceiroService } from '../../servicos/financeiro/financeiro.service'
+import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { ErrorHandlerService } from '../../servicos/shared/error-handler.service';
 import { NotificationService } from '../../servicos/shared/notification.service';
 import { FormsModule } from '@angular/forms';
+import { EntradaService } from '../../servicos/entrada/entrada.service';
+import { GetEntradaSimplesDTO } from '../../modelos/Entrada/GetEntradaSimplesDTO.model';
 
 @Component({
   selector: 'app-homepage',
   standalone: true,
-  imports: [CommonModule, FormsModule, CurrencyPipe, DecimalPipe],
+  imports: [CommonModule, FormsModule, CurrencyPipe, DatePipe],
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.css'],
 })
@@ -24,12 +25,13 @@ export class HomePageComponent implements OnInit {
   public lucroSemanal: number = 0.00;
   public gastosMensais: number = 0.00;
   public vendasDiarias: number = 0.00;
-  public entradasRecentes: Entrada[] = [];
+  public entradasRecentes: GetEntradaSimplesDTO[] = [];
   public isLoadingEntradas: boolean = false;
   public dataDash: string = ''; // Propriedade para o data picker
 
   constructor(
     private produtoService: ProdutoService,
+    private financeiroService: FinanceiroService,
     private entradaService: EntradaService,
     private errorHandler: ErrorHandlerService,
     private notification: NotificationService
@@ -67,7 +69,7 @@ export class HomePageComponent implements OnInit {
   carregarLucroSemanal() {
     this.financeiroService.obterLucroSemanal().subscribe({
       next: (lucro) => {
-        this.lucroSemanal = lucro;
+        this.lucroSemanal = lucro.valor;
       },
       error: (err) => {
         console.error('Erro ao buscar lucro semanal:', err);
@@ -78,7 +80,7 @@ export class HomePageComponent implements OnInit {
   carregarGastosMensais(): void {
     this.financeiroService.obterGastosMensais().subscribe({
       next: (gastos) => {
-        this.gastosMensais = gastos;
+        this.gastosMensais = gastos.valor;
       },
       error: (err) => {
         console.error('Erro ao buscar gastos mensais:', err);
@@ -89,8 +91,8 @@ export class HomePageComponent implements OnInit {
   carregarVendasDiarias(): void {
     this.financeiroService.obterVendasDiarias().subscribe({
       next: (vendas) => {
-        this.vendasDiarias = vendas;
-      },
+        this.vendasDiarias = vendas.valor;
+       },
       error: (err) => {
         console.error('Erro ao buscar vendas diárias:', err);
       }
@@ -99,16 +101,17 @@ export class HomePageComponent implements OnInit {
 
   carregarEntradasRecentes() {
     this.isLoadingEntradas = true;
-    this.entradaService.obterEntradasRecentes()
-      .pipe(finalize(() => this.isLoadingEntradas = false))
+    this.entradaService.obterTodasAsEntradas()
       .subscribe({
         next: (dados) => {
           this.entradasRecentes = dados;
+          this.isLoadingEntradas = false;
         },
         error: (err) => {
           console.error('Erro ao obter entradas recentes:', err);
           this.notification.erro(this.errorHandler.extrairMensagemErro(err, 'Erro ao obter entradas recentes.'));
           this.entradasRecentes = [];
+          this.isLoadingEntradas = false;
         }
       });
   }

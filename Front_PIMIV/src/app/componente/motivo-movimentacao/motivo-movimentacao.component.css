@@ -1,0 +1,53 @@
+/*  Mudanças CSS Alexandre */
+/*  Motivo Movimentacao */
+:host .form-card {
+  background-color: #669b665d;
+  padding: 30px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+#motivoName {
+  background-color: rgb(247, 255, 246);
+}
+
+/* Garantir que o componente raiz expanda toda a largura */
+:host {
+  display: block;
+  width: 100%;
+}
+
+button {
+  margin: 1%;
+}
+
+.data-table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.data-table th,
+.data-table td {
+  padding: 0.75rem;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-bottom: 1px solid #eee;
+}
+
+/* --- DEFINIÇÃO DAS LARGURAS --- */
+/* :host .data-table .col-id {
+  width: 20%;
+}
+
+:host .data-table .col-nome {
+  width: 60%;
+}
+*/
+:host .data-table .col-acoes {
+  width: 80%;
+  overflow: visible;
+} 

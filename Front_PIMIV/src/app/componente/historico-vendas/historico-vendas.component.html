@@ -1,0 +1,62 @@
+<main class="main-content">
+    <div class="content-header">
+        <h1>Histórico de Vendas</h1>
+        <p>Visualize, filtre e gerencie todas as transações realizadas no sistema.</p>
+    </div>
+
+    <section class="filter-section form-card">
+        <h2>Filtros de Vendas</h2>
+        
+        <form id="searchSalesForm" class="filter-form">
+            <div class="input-row">
+                <div class="input-group">
+                    <label for="startDate">Data Inicial</label>
+                    <input type="date" id="startDate" name="startDate">
+                </div>
+                
+                <div class="input-group">
+                    <label for="endDate">Data Final</label>
+                    <input type="date" id="endDate" name="endDate">
+                </div>
+                
+                <div class="input-group">
+                    <label for="saleId">ID da Venda</label>
+                    <input type="text" id="saleId" name="saleId" placeholder="Ex: 1001">
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn-default search-button">
+                    <span class="material-symbols-sharp">search</span>
+                    Buscar Vendas
+                </button>
+                <button type="button" class="btn-default clear-button" id="clearSalesFilters">
+                    <span class="material-symbols-sharp">close</span>
+                    Limpar Filtros
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <section class="results-section form-card">
+        <h2>Resultados da Busca</h2>
+        
+        <div class="table-container">
+            <table class="data-table" id="salesTable">
+                <thead>
+                    <tr>
+                        <th class="col-id">ID Venda</th>
+                        <th class="col-data">Data</th>
+                        <th class="col-itens">Itens</th>
+                        <th class="col-total">Total (R$)</th>
+                        <th class="col-acoes">Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="salesTableBody">
+                    </tbody>
+            </table>
+        </div>
+
+        <p id="noSalesResults" >Nenhuma venda encontrada com os filtros aplicados.</p>
+    </section>
+</main>

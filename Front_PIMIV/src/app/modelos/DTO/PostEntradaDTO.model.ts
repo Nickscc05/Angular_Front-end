@@ -1,4 +1,4 @@
-import { ItemEntradaDTO } from "./ItemEntradaDTO.model";
+import { ItemEntradaDTO } from "../ItemEntrada/ItemEntradaDTO.model";
 
 export interface PostEntradaDTO {
 

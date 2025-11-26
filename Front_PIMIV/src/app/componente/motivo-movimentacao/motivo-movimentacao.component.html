@@ -1,0 +1,86 @@
+<main class="main-content">
+  <div class="content-header">
+    <h1>Gerenciamento de Motivos de Movimentação</h1>
+    <p>Adicione, visualize e gerencie os motivos de movimentação de estoque.</p>
+  </div>
+
+  <section class="filter-section form-card">
+    @if (!editandoId) {
+      <h2>Adicionar Novo Motivo</h2>
+    } @else {
+      <h2>Editar Motivo</h2>
+    }
+
+    <form id="motivoForm" class="filter-form" (ngSubmit)="onSubmit()">
+      <div class="input-row">
+        <div class="input-group motivo-input-group">
+          <label for="motivoName">Nome do Motivo</label>
+          <input
+            type="text"
+            id="motivoName"
+            name="nome"
+            placeholder="Ex: Venda, Perda, Doação"
+            [(ngModel)]="novoMotivoNome"
+            required
+            autofocus
+          />
+        </div>
+
+        <div class="form-actions motivo-form-actions">
+          <button type="submit" class="btn-default search-button" [disabled]="enviando || !novoMotivoNome.trim()">
+            @if (!editandoId) {
+              <span class="material-symbols-sharp">add_circle</span>
+              {{ enviando ? 'Cadastrando...' : 'Cadastrar' }}
+            } @else {
+              <span class="material-symbols-sharp">save</span>
+              {{ enviando ? 'Salvando...' : 'Salvar Alterações' }}
+            }
+          </button>
+          @if (editandoId) {
+            <button type="button" class="btn-default outline" (click)="cancelarEdicao()" [disabled]="enviando">
+              Cancelar
+            </button>
+          }
+        </div>
+      </div>
+    </form>
+  </section>
+
+  <section class="results-section form-card">
+    <h2>Motivos Ativos</h2>
+
+    @if (listaMotivos.length) {
+      <div class="table-container">
+        <table class="data-table" id="motivosTable">
+          <thead>
+            <tr>
+              <th class="col-id">ID</th>
+              <th class="col-nome">Nome do Motivo</th>
+              <th class="col-acoes">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (m of listaMotivos; track m.id) {
+              <tr>
+                <td class="ids">{{ m.id }}</td>
+                <td>{{ m.motivo }}</td>
+                <td>
+                  <button type="button" class="" (click)="iniciarEdicao(m)" [disabled]="enviando"
+                    title="Editar motivo">
+                    <span class="material-symbols-sharp">edit</span>
+                  </button>
+                  <button type="button" class="" (click)="excluir(m.id)" [disabled]="enviando"
+                    title="Excluir motivo" style="color: var(--color-danger);">
+                    <span class="material-symbols-sharp">delete</span>
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <p id="noMotivos" class="empty-message">Nenhum motivo cadastrado.</p>
+    }
+  </section>
+</main>

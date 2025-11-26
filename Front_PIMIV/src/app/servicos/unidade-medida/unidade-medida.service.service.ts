@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { UnidadeMedida } from '../../modelos/UnidadeMedida.model';
+import { UnidadeMedida } from '../../modelos/UnidadeMedida/UnidadeMedida.model';
 import { Observable } from 'rxjs';
 import { PostUnidadeMedidaDTO } from '../../modelos/DTO/PostUnidadeMedidaDTO.model';
 import { PutUnidadeMedidaDTO } from '../../modelos/DTO/PutUnidadeMedidaDTO.model';

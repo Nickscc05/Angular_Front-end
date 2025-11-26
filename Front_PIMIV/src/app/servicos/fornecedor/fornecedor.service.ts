@@ -9,7 +9,7 @@ import { PostFornecedorDTO } from '../../modelos/Fornecedor/PostFornecedorDTO.mo
 @Injectable({
   providedIn: 'root',
 })
-export class Fornecedor {
+export class FornecedorService {
 
   private readonly url = 'http://localhost:5030/api/Fornecedor';
 

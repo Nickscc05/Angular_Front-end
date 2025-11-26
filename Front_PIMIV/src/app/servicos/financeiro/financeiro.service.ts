@@ -1,48 +1,40 @@
-// src/app/services/financeiro.service.ts
-
 import { Injectable } from '@angular/core';
+import { GetLucroSemanalDTO } from '../../modelos/Financeiro/GetLucroSemanal';
+import { Observable } from 'rxjs/internal/Observable';
+import { GetGastosMensaisDTO } from '../../modelos/Financeiro/GetGastosMensais';
+import { GetVendasDiariasDTO } from '../../modelos/Financeiro/GetVendasDiarias';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
-export interface Entrada {
-  id: number;
-  descricaoProduto: string; // Ou outro campo que represente o produto
-  codigo: string; // Se houver um código de produto
-  precoTotal: number;
-  itens: number;
-  dataCompra: string;
-  fornecedorId: number;
-  // Se você usou .Include() no backend:
-  // fornecedor: { nome: string }; 
-}
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FinanceiroService {
 
-  // Defina a URL base da sua API
-  private apiUrl = 'http://localhost:5030/api/Financeiro'; // Ajuste a URL base
+    private readonly url = 'http://localhost:5030/api/Financeiro'; // Adjust the base URL as needed
 
   constructor(private http: HttpClient) { }
 
   /**
-   * Obtém o lucro semanal do backend.
-   * O tipo de retorno é 'number' no TypeScript, pois o JSON será desserializado para um número.
+   * Fetches the weekly profit (current day to 7 days ago).
+   * Corresponds to: GET /api/Financeiro/lucro-semanal
    */
-  obterLucroSemanal(): Observable<number> {
-    return this.http.get<number>(`${this.apiUrl}/lucro-semanal`);
+  obterLucroSemanal(): Observable<GetLucroSemanalDTO> {
+    return this.http.get<GetLucroSemanalDTO>(`${this.url}/lucro-semanal`);
   }
 
-  obterGastosMensais(): Observable<number> {
-    return this.http.get<number>(`${this.apiUrl}/gastos-mensais`);
+  /**
+   * Fetches the total expenses for the current month.
+   * Corresponds to: GET /api/Financeiro/gastos-mensais
+   */
+  obterGastosMensais(): Observable<GetGastosMensaisDTO> {
+    return this.http.get<GetGastosMensaisDTO>(`${this.url}/gastos-mensais`);
   }
 
-  obterVendasDiarias(): Observable<number> {
-    return this.http.get<number>(`${this.apiUrl}/vendas-diarias`);
-  }
-  
-  obterEntradasRecentes(limite: number = 6): Observable<Entrada[]> {
-    return this.http.get<Entrada[]>(`${this.apiUrl}/entradas-recentes?limite=${limite}`);
+  /**
+   * Fetches the total sales for the current day.
+   * Corresponds to: GET /api/Financeiro/vendas-diarias
+   */
+  obterVendasDiarias(): Observable<GetVendasDiariasDTO> {
+    return this.http.get<GetVendasDiariasDTO>(`${this.url}/vendas-diarias`);
   }
 }

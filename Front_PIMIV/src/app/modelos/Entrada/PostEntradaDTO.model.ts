@@ -1,7 +1,8 @@
-import { ItemEntradaDTO } from "../DTO/ItemEntradaDTO.model";
+import { ItemEntradaDTO } from "../ItemEntrada/ItemEntradaDTO.model";
 
-export interface PostEntrada {
 
+export interface PostEntradaDTO {
+  
   fornecedorId: number;
   motivoMovimentacaoId: number;
   precoTotal: number;

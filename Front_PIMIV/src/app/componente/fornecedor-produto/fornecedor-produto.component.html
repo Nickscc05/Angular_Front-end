@@ -1,0 +1,82 @@
+<main class="main-content">
+    <div class="content-header">
+        <h1>Fornecedor-Produto</h1>
+        <p>Visualize a relação entre fornecedores e produtos.</p>
+    </div>
+
+    <section class="filter-section form-card">
+        <h2>Filtros</h2>
+        
+        <form id="searchForm" class="filter-form" (ngSubmit)="onSearch()">
+            <div class="filter-options">
+                <label>Tipo de Busca:</label>
+                <div class="radio-group">
+                    <input type="radio" id="todos" name="searchType" value="todos" [(ngModel)]="searchType">
+                    <label for="todos">Todos</label>
+                    
+                    <input type="radio" id="idFornecedor" name="searchType" value="idFornecedor" [(ngModel)]="searchType">
+                    <label for="idFornecedor">Por Fornecedor</label>
+                    
+                    <input type="radio" id="idProduto" name="searchType" value="idProduto" [(ngModel)]="searchType">
+                    <label for="idProduto">Por Produto</label>
+                </div>
+            </div>
+
+            <div class="input-row">
+                <div *ngIf="searchType === 'idFornecedor'" class="input-group">
+                    <label for="fornecedor">Fornecedor</label>
+                    <select id="fornecedor" name="fornecedor" [(ngModel)]="selectedFornecedor">
+                        <option [ngValue]="null">Selecione um Fornecedor</option>
+                        <option *ngFor="let f of fornecedores$ | async" [value]="f.id">{{ f.nome }}</option>
+                    </select>
+                </div>
+                
+                <div *ngIf="searchType === 'idProduto'" class="input-group">
+                    <label for="produto">Produto</label>
+                    <select id="produto" name="produto" [(ngModel)]="selectedProduto">
+                        <option [ngValue]="null">Selecione um Produto</option>
+                        <option *ngFor="let p of produtos$ | async" [value]="p.id">{{ p.nome }}</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn-default search-button" [disabled]="isSearchButtonDisabled()">
+                    <span class="material-symbols-sharp">search</span>
+                    {{ loading ? 'Buscando...' : 'Buscar' }}
+                </button>
+                <button type="button" class="btn-default clear-button" (click)="clearFilters()">
+                    <span class="material-symbols-sharp">close</span>
+                    Limpar Filtros
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <section class="results-section form-card">
+        <h2>Resultados da Busca</h2>
+        
+        <div *ngIf="fornecedorProduto$ | async as resultado" class="table-container">
+            <table class="data-table" id="dataTable">
+                <thead>
+                    <tr>
+                        <th class="col-fornecedor">Fornecedor</th>
+                        <th class="col-produto">Produto</th>
+                        <th class="col-codigo">Código do Fornecedor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of resultado">
+                        <td>{{ item.fornecedorNome }}</td>
+                        <td>{{ item.produtoNome }}</td>
+                        <td>{{ item.codigoFornecedor }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p *ngIf="!resultado.length && !loading" id="noResults">Nenhum resultado encontrado com os filtros aplicados.</p>
+        </div>
+        <div *ngIf="loading">
+            <p>Carregando...</p>
+        </div>
+    </section>
+</main>

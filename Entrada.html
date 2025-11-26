@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/Global.css">
-
+    <link rel="stylesheet" href="assets/css/Entradaprod.css">
     <script src="assets/js/Homepage.js" defer></script>
     <script src="assets/js/Entradaprod.js" defer></script>
     <title>Horti-fruti - Entrada de Produtos</title>
@@ -136,112 +136,152 @@
     </div>
   </div>
 
+<main class="main-content">
+    <div class="content-header">
+        <h1>Registro de Entrada de Produtos</h1>
+        <p>Utilize o formulário abaixo para dar entrada em produtos adquiridos e atualizar o estoque.</p>
+    </div>
 
-    <main class="main-content">
-        <div class="content-header">
-            <h1>Registro de Entrada de Produtos</h1>
-            <p>Utilize o formulário abaixo para dar entrada em produtos adquiridos e atualizar o estoque.</p>
-        </div>
-
-        <section class="form-card">
-            <h2>Informações da Entrada</h2>
-
-            <form id="productEntryForm" class="filter-form">
-                <div class="input-row">
-
-                    <div class="input-group">
-                        <label for="barcode">Código de Barras</label>
-                        <input type="text" id="barcode" name="barcode" placeholder="Leia ou digite o código" required
-                            autofocus>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="productName">Nome do Produto</label>
-                        <input type="text" id="productName" name="productName"
-                            placeholder="Será preenchido automaticamente" disabled>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="supplier">Fornecedor</label>
-                        <select id="supplier" name="supplier" required>
-                            <option value="" disabled selected>Selecione o Fornecedor</option>
-                            <option value="forn1">Fazenda Verde</option>
-                            <option value="forn2">Hortifruti Mais</option>
-                        </select>
-                    </div>
+    <section class="form-card">
+        <h2>Informações da Entrada</h2>
+        
+        <form id="entryHeaderForm" class="filter-form"> 
+            <div class="input-row">
+                <div class="input-group">
+                    <label for="motive">Motivo da Entrada</label>
+                    <select id="motive" name="motivoMovimentacaoId" required>
+                        <option value="" disabled selected>Selecione o Motivo</option>
+                        <option value="1">Compra de Estoque</option>
+                        <option value="2">Devolução de Cliente</option>
+                        <option option value="3">Transferência</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label for="invoiceNumber">Número da Nota Fiscal</label>
+                    <input type="text" id="invoiceNumber" name="numeroNota" placeholder="Ex: 000123456" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="entryDate">Data da Entrada</label>
+                    <input type="date" id="entryDate" name="dataCompra" required>
                 </div>
 
-                <div class="input-row">
-                    <div class="input-row">
-
-                        <div class="input-group">
-                            <label for="motive">Motivo da Entrada</label>
-                            <select id="motive" name="motivoMovimentacaoId" required>
-                                <option value="" disabled selected>Selecione o Motivo</option>
-                                <option value="1">Compra de Estoque</option>
-                                <option value="2">Devolução de Cliente</option>
-                                <option option value="3">Transferência</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="input-row">
-
-                        <div class="input-group">
-                            <label for="invoiceNumber">Número da Nota Fiscal</label>
-                            <input type="text" id="invoiceNumber" name="numeroNota" placeholder="Ex: 000123456"
-                                required>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <label for="entryDate">Data da Entrada</label>
-                        <input type="date" id="entryDate" name="entryDate" required>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="quantity">Quantidade (Un./Kg)</label>
-                        <input type="number" id="quantity" name="quantity" placeholder="0,00" min="0.01" step="0.01"
-                            required>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="unitCost">Custo Unitário (R$)</label>
-                        <input type="number" id="unitCost" name="unitCost" placeholder="0,00" min="0.01" step="0.01"
-                            required>
-                    </div>
-
+                <div class="input-group">
+                    <label for="supplier">Fornecedor</label>
+                    <select id="supplier" name="fornecedorId" required>
+                        <option value="" disabled selected>Selecione o Fornecedor</option>
+                        <option value="forn1">Fazenda Verde</option>
+                        <option value="forn2">Hortifruti Mais</option>
+                    </select>
                 </div>
-
-                <div class="form-actions">
-                    <button type="submit" class="btn-default search-button">
-                        <span class="material-symbols-sharp">inventory_2</span>
-                        Registrar Entrada
-                    </button>
-                </div>
-            </form>
-        </section>
-        <section class="results-section form-card">
-            <h2>Itens Adicionados à Entrada</h2>
-
-            <div class="table-container">
-                <table class="data-table" id="entryItemsTable">
-                    <thead>
-                        <tr>
-                            <th>Cód. Produto</th>
-                            <th>Descrição</th>
-                            <th>Qtd.</th>
-                            <th>Custo Unit. (R$)</th>
-                            <th>Custo Total (R$)</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody id="entryItemsBody">
-                    </tbody>
-                </table>
             </div>
 
-            <p class="empty-message">Nenhum produto adicionado ainda.</p>
-        </section>
-    </main>
-</body>
+            <div class="form-actions">
+                <button type="button" class="btn-default" id="openItemModalButton">
+                    <span class="material-symbols-sharp">add_circle_outline</span>
+                    Adicionar Item à Nota
+                </button>
+                
+                <button type="submit" class="btn-default finish-button" id="finalizeEntryButton">
+                    <span class="material-symbols-sharp">save</span>
+                    Finalizar Entrada
+                </button>
+            </div>
+        </form>
+    </section>
 
+    <section class="results-section form-card">
+        <h2>Itens Adicionados à Entrada</h2>
+
+        <div class="table-container">
+            <table class="data-table" id="entryItemsTable">
+                <thead>
+                    <tr>
+                        <th>Cód. Produto</th>
+                        <th>Descrição</th>
+                        <th>Qtd.</th>
+                        <th>Custo Unit. (R$)</th>
+                        <th>Custo Total (R$)</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="entryItemsBody">
+                    </tbody>
+            </table>
+        </div>
+
+        <p id="noEntryItems" class="empty-message">Nenhum produto adicionado ainda.</p>
+    </section>
+</main>
+
+<div class="item-modal" id="itemModal">
+    <div class="modal-content form-card">
+        <h3>Adicionar/Conferir Itens da Nota</h3>
+        
+        <form id="itemForm" class="filter-form">
+            <div class="input-row">
+                <div class="input-group">
+                    <label for="modalBarcode">Código de Barras</label>
+                    <input type="text" id="modalBarcode" name="barcode" placeholder="Leia ou digite o código" required autofocus>
+                </div>
+
+                <div class="input-group">
+                    <label for="modalProductName">Nome do Produto</label>
+                    <input type="text" id="modalProductName" name="productName" placeholder="Preenchido automaticamente" disabled>
+                </div>
+                
+                <div class="input-group">
+                    <label for="modalQuantity">Quantidade (Un./Kg)</label>
+                    <input type="number" id="modalQuantity" name="quantity" placeholder="0,00" min="0.01" step="0.01" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="modalUnitCost">Custo Unitário (R$)</label>
+                    <input type="number" id="modalUnitCost" name="unitCost" placeholder="0,00" min="0.01" step="0.01" required>
+                </div>
+            </div>
+            
+            <div class="form-actions modal-action-top">
+                <button type="submit" class="btn-default" id="addItemToTempList">
+                    <span class="material-symbols-sharp">add</span>
+                    Adicionar Item
+                </button>
+                <button type="button" class="btn-default cancel-modal-btn" id="closeItemModalButton">
+                    Cancelar
+                </button>
+            </div>
+        </form>
+
+        <hr class="modal-divider">
+
+        <h4>Itens Inseridos (Total: <span id="modalItemCount">0</span>)</h4>
+        <div class="table-container modal-mini-table">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Cód.</th>
+                        <th>Qtd.</th>
+                        <th>Custo Un.</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody id="modalItemsBody">
+                    </tbody>
+            </table>
+        </div>
+        
+        <div class="form-actions modal-action-bottom">
+            <button type="button" class="btn-default finish-button" id="confirmModalItems">
+                <span class="material-symbols-sharp">done_all</span>
+                Confirmar Itens e Fechar
+            </button>
+        </div>
+    </div>
+</div>
+
+
+
+
+</body>
 </html>
